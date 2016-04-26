@@ -6,17 +6,20 @@
   <title>Title</title>
 </head>
 <body>
+  <div class="container">
   <jsp:include page="../header.jsp"/>
   <h1>user-index</h1>
   <table>
     <tr>
+      <th>id</th>
       <th>user id</th>
       <th>username</th>
       <th>password</th>
       <th>opt</th>
     </tr>
-    <c:forEach items="${models}" var="model">
+    <c:forEach items="${models}" varStatus="status" var="model">
       <tr>
+        <td>${status.count}</td>
         <td>${model.id}</td>
         <td>${model.username}</td>
         <td>${model.password}</td>
@@ -29,7 +32,8 @@
     </c:forEach>
   </table>
   <a href="user/new">new</a>
-
+  </div>
+  <jsp:include page="../page.jsp"/>
   <jsp:include page="../footer.jsp"/>
 </body>
 </html>

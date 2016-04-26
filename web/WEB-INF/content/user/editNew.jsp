@@ -6,12 +6,14 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<h1>user-editNew</h1>
-<form action="/user" method="post">
-  <input type="text" name="username" ><br>
-  <input type="text" name="password" ><br>
-  <input type="submit" value="save">
-</form>
+<div class="container">
+  <h1>user-editNew</h1>
+  <form action="/user" method="post">
+    <input type="text" name="username" ><br>
+    <input type="text" name="password" ><br>
+    <input type="submit" value="save">
+  </form>
+</div>
 <jsp:include page="../footer.jsp"/>
 </body>
 </html>

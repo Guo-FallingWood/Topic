@@ -6,6 +6,7 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
+<div class="container">
 <h1>user-show</h1>
 <table>
   <tr>
@@ -21,6 +22,7 @@
     <td>${model.password}</td>
   </tr>
 </table>
+</div>
 <jsp:include page="../footer.jsp"/>
 </body>
 </html>

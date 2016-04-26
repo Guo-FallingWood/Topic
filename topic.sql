@@ -10,13 +10,8 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-04-23 22:45:27
+Date: 2016-04-26 20:25:48
 */
-
--- DROP DATABASE IF EXISTS topic;
--- CREATE DATABASE topic;
--- USE topic;
-
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -29,6 +24,7 @@ CREATE TABLE `topic_comments` (
   `content` varchar(255) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `post_id` int(11) DEFAULT NULL,
+  `discard` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `com_post_fk` (`post_id`),
   KEY `com_user_fk` (`user_id`),
@@ -50,9 +46,10 @@ CREATE TABLE `topic_post` (
   `content` varchar(2555) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `topic_id` int(11) DEFAULT NULL,
+  `discard` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `post_topic_fk` (`topic_id`),
   KEY `post_user_fk` (`user_id`),
+  KEY `post_topic_fk` (`topic_id`),
   CONSTRAINT `post_topic_fk` FOREIGN KEY (`topic_id`) REFERENCES `topic_topic` (`id`),
   CONSTRAINT `post_user_fk` FOREIGN KEY (`user_id`) REFERENCES `topic_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -68,49 +65,16 @@ DROP TABLE IF EXISTS `topic_role`;
 CREATE TABLE `topic_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) DEFAULT NULL,
+  `discard` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of topic_role
 -- ----------------------------
-INSERT INTO `topic_role` VALUES ('1', '超级管理员');
-INSERT INTO `topic_role` VALUES ('2', '管理员');
-INSERT INTO `topic_role` VALUES ('3', '会员');
-INSERT INTO `topic_role` VALUES ('4', '游客');
-
--- ----------------------------
--- Table structure for topic_role_permissions
--- ----------------------------
-DROP TABLE IF EXISTS `topic_role_permissions`;
-CREATE TABLE `topic_role_permissions` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of topic_role_permissions
--- ----------------------------
-
--- ----------------------------
--- Table structure for topic_role_permissions_link
--- ----------------------------
-DROP TABLE IF EXISTS `topic_role_permissions_link`;
-CREATE TABLE `topic_role_permissions_link` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) DEFAULT NULL,
-  `permissions_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk1` (`role_id`),
-  KEY `fk2` (`permissions_id`),
-  CONSTRAINT `fk1` FOREIGN KEY (`role_id`) REFERENCES `topic_role` (`id`),
-  CONSTRAINT `fk2` FOREIGN KEY (`permissions_id`) REFERENCES `topic_role_permissions` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of topic_role_permissions_link
--- ----------------------------
+INSERT INTO `topic_role` VALUES ('1', '超级管理员', '0');
+INSERT INTO `topic_role` VALUES ('2', '管理员', '0');
+INSERT INTO `topic_role` VALUES ('3', '会员', '0');
 
 -- ----------------------------
 -- Table structure for topic_topic
@@ -119,14 +83,14 @@ DROP TABLE IF EXISTS `topic_topic`;
 CREATE TABLE `topic_topic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `close` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of topic_topic
 -- ----------------------------
-INSERT INTO `topic_topic` VALUES ('1', 'Admin');
-INSERT INTO `topic_topic` VALUES ('2', 'Topic');
+INSERT INTO `topic_topic` VALUES ('1', '热点', '0');
 
 -- ----------------------------
 -- Table structure for topic_user
@@ -138,41 +102,17 @@ CREATE TABLE `topic_user` (
   `password` varchar(25) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+  `role_id` int(11) DEFAULT NULL,
+  `ban` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `user_role_fk` (`role_id`),
+  CONSTRAINT `user_role_fk` FOREIGN KEY (`role_id`) REFERENCES `topic_role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of topic_user
 -- ----------------------------
-INSERT INTO `topic_user` VALUES ('1', 'admin', 'admin1', null, null);
-INSERT INTO `topic_user` VALUES ('22', '1', '1', null, null);
-INSERT INTO `topic_user` VALUES ('24', '3', '3', null, null);
-INSERT INTO `topic_user` VALUES ('25', '3', '333333', null, null);
-INSERT INTO `topic_user` VALUES ('26', '333', '333', null, null);
-INSERT INTO `topic_user` VALUES ('27', '333', '33333333', null, null);
-INSERT INTO `topic_user` VALUES ('28', '333', '11111111', null, null);
-INSERT INTO `topic_user` VALUES ('29', '1', '11', null, null);
-INSERT INTO `topic_user` VALUES ('30', 'aaaaa', '1111111', null, null);
-INSERT INTO `topic_user` VALUES ('31', 'aaa', 'aaa', null, null);
-
--- ----------------------------
--- Table structure for topic_user_role_topic_link
--- ----------------------------
-DROP TABLE IF EXISTS `topic_user_role_topic_link`;
-CREATE TABLE `topic_user_role_topic_link` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
-  `topic_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `f1` (`user_id`),
-  KEY `f2` (`role_id`),
-  KEY `f3` (`topic_id`),
-  CONSTRAINT `f1` FOREIGN KEY (`user_id`) REFERENCES `topic_user` (`id`),
-  CONSTRAINT `f2` FOREIGN KEY (`role_id`) REFERENCES `topic_role` (`id`),
-  CONSTRAINT `f3` FOREIGN KEY (`topic_id`) REFERENCES `topic_topic` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of topic_user_role_topic_link
--- ----------------------------
+INSERT INTO `topic_user` VALUES ('39', 'admin', 'admin', null, null, '1', '0');
+INSERT INTO `topic_user` VALUES ('45', 'aaa', '111', null, null, null, null);
+INSERT INTO `topic_user` VALUES ('46', 'aaa', '111', null, null, null, null);
+INSERT INTO `topic_user` VALUES ('47', 'aaa', '111', null, null, null, null);
