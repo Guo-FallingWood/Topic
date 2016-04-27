@@ -3,7 +3,6 @@ package test.java;
 import com.sang.topic.model.User;
 import com.sang.topic.service.UserService;
 import com.sang.topic.util.Page;
-import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 
 import java.util.List;
@@ -19,15 +18,15 @@ public class UserTest {
 	public void valid(){
 		User user = userService.valid("admin", "admin");
 		System.out.println(user.getUsername());
+		System.out.println(userService.valid("admin1", "admin").getId());
 	}
 
 	@Test
 	public void getByPage(){
-        int rowNumber = userService.selectCount();
-        Page page = new Page(rowNumber, "");
+        Page page = new Page();
         page.setPageSize(2);
         page.setCurrentPage(3);
-        List<User> list = userService.selectByPage(page.toRowBounds());
+        List<User> list = userService.selectByPage(page);
         System.out.print("username(0):"+list.get(0).getUsername()+" size:"+list.size());
         System.out.print(" pageNumber:"+page.getPageNumber());
         System.out.println();
@@ -35,7 +34,7 @@ public class UserTest {
 
 	@Test
 	public void get(){
-		User user = userService.get(1);
+		User user = userService.get(39);
 		System.out.println(user.getUsername());
 	}
 

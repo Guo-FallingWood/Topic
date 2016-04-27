@@ -9,13 +9,17 @@ import org.apache.ibatis.session.RowBounds;
 public class Page {
     private int currentPage;    //当前页   提供set get
     private int pageSize;       //每页大小 提供set
-    private int rowNumber;      //总行数   提供set   需要外部计算行数
+    private int rowNumber;      //总行数   提供set   必须set
     private int pageNumber;     //总页数   提供get
-    private String url;         //url      提供get   类似 user?p=
+    private String url;         //url      提供get   必须set  类似 user?p=
 
-    public Page(int rowNumber, String url){
+    public Page(){
         currentPage = 1;
         pageSize = 10;
+    }
+
+    public Page(int rowNumber, String url){
+        super();
         this.url = url;
         setRowNumber(rowNumber);
     }
@@ -30,13 +34,18 @@ public class Page {
     public void setRowNumber(int rowNumber) {
         this.rowNumber = rowNumber;
         countPageNumber();
+        setCurrentPage(currentPage);
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setCurrentPage(int currentPage){
         int _currentPage = 1;
         if(currentPage > 0)
             _currentPage = currentPage;
-        if(currentPage > pageNumber)
+        if(pageNumber > 0 && currentPage > pageNumber)
             _currentPage = pageNumber;
         this.currentPage = _currentPage;
         countPageNumber();

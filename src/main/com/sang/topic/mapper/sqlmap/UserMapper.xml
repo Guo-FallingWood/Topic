@@ -17,7 +17,7 @@
     SELECT COUNT(*)
     FROM topic_user
   </select>
-  <select id="selectUserByPage" resultMap="BaseResultMap" resultSetType="SCROLL_SENSITIVE"
+  <select id="selectByPage" resultMap="BaseResultMap" resultSetType="SCROLL_SENSITIVE"
           parameterType="com.sang.topic.model.User">
     SELECT *
     FROM topic_user

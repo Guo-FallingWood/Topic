@@ -3,6 +3,7 @@ package com.sang.topic.service;
 import com.sang.topic.mapper.UserMapper;
 import com.sang.topic.model.User;
 import com.sang.topic.util.MyBatisSession;
+import com.sang.topic.util.Page;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -27,18 +28,14 @@ public class UserService {
 		}
 	}
 
-    public List<User> selectByPage(RowBounds rowBounds){
-        try(SqlSession session = MyBatisSession.getSession()) {
-            List<User> list = session.selectList("selectUserByPage", null, rowBounds);
-            return list;
-        }
-    }
-
-    public int selectCount(){
-        try(SqlSession session = MyBatisSession.getSession()) {
-            return session.getMapper(UserMapper.class).selectCount();
-        }
-    }
+	public List<User> selectByPage(Page page){
+		try(SqlSession session = MyBatisSession.getSession()) {
+            int rowNumber = session.getMapper(UserMapper.class).selectCount();
+			page.setRowNumber(rowNumber);
+            List<User> list = session.selectList("selectByPage", null, page.toRowBounds());
+			return list;
+		}
+	}
 
 	public User get(int id){
 		try(SqlSession session = MyBatisSession.getSession()) {
@@ -76,4 +73,18 @@ public class UserService {
 			return n;
 		}
 	}
+
+//    public List<User> selectByRowBounds(RowBounds rowBounds){
+//        try(SqlSession session = MyBatisSession.getSession()) {
+//            List<User> list = session.selectList("selectByPage", null, rowBounds);
+//            return list;
+//        }
+//    }
+//
+//    public int selectCount(){
+//        try(SqlSession session = MyBatisSession.getSession()) {
+//            return session.getMapper(UserMapper.class).selectCount();
+//        }
+//    }
+
 }

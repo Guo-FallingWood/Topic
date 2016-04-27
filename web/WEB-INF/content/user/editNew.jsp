@@ -1,18 +1,36 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Title</title>
+    <title>Title</title>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<div class="container">
-  <h1>user-editNew</h1>
-  <form action="/user" method="post">
-    <input type="text" name="username" ><br>
-    <input type="text" name="password" ><br>
-    <input type="submit" value="save">
-  </form>
+<div class="auth-body container">
+    <form id="regForm" action="" method="post">
+        <h2>Sign Up</h2>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Username</span>
+            <input type="text" name="username" class="form-control" placeholder="Username"
+                   aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon2">Password</span>
+            <input type="password" name="password" class="form-control" placeholder="Password"
+                   aria-describedby="basic-addon2">
+        </div>
+        <br>
+        <div id="formAlert" class="alert alert-danger hidden" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span id="formAlertText"></span>
+        </div>
+        <br>
+        <button class="btn btn-default navbar-right" type="button" onclick="reg()">Sign Up</button>
+    </form>
 </div>
 <jsp:include page="../footer.jsp"/>
 </body>

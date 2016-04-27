@@ -28,5 +28,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- 可访问资源文件 -->
+    <!--<mvc:default-servlet-handler/>-->
 
 </beans>
