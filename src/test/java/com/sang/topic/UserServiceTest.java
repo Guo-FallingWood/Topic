@@ -1,8 +1,12 @@
-package test.java;
+package com.sang.topic;
 
 import com.sang.topic.model.User;
 import com.sang.topic.service.UserService;
 import com.sang.topic.util.Page;
+import org.junit.Assert;
+import org.junit.runners.MethodSorters;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 
 import java.util.List;
@@ -10,16 +14,21 @@ import java.util.List;
 /**
  * Created by arch on 2016/4/19.
  */
-public class UserTest {
+@FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
+public class UserServiceTest {
 
-	UserService userService = new UserService();
+	UserService userService;
+
+    @Before
+    public void before(){
+        userService = new UserService();
+    }
 
 	@Test
 	public void valid(){
 		User user = userService.valid("admin", "admin");
-		System.out.println(user.getUsername());
-		System.out.println(userService.valid("admin1", "admin").getId());
-	}
+        Assert.assertNotNull(user);
+    }
 
 	@Test
 	public void getByPage(){
@@ -35,17 +44,16 @@ public class UserTest {
 	@Test
 	public void get(){
 		User user = userService.get(39);
-		System.out.println(user.getUsername());
-	}
+        Assert.assertNotNull(user);
+    }
 
 	@Test
-	public void insert(){
+	public void _insert(){
 		User user = new User();
 		user.setUsername("aaa");
 		user.setPassword("111");
-		System.out.println(userService.insert(user));
-        User user1 = userService.valid(user.getUsername(), user.getPassword());
-        System.out.println(user1.getId());
+		int n = userService.insert(user);
+        Assert.assertEquals(n, 1);
     }
 
 	@Test
@@ -55,6 +63,7 @@ public class UserTest {
 		user.setPassword("111");
 
 		User nUser = userService.valid(user.getUsername(), user.getPassword());
-		System.out.println(userService.delete(nUser.getId()));
+		int n =userService.delete(nUser.getId());
+        Assert.assertEquals(n, 1);
 	}
 }
