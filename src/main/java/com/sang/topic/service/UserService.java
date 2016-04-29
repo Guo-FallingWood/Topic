@@ -28,11 +28,11 @@ public class UserService {
 		}
 	}
 
-	public List<User> selectByPage(Page page){
+	public List<User> getByPage(Page page){
 		try(SqlSession session = MyBatisSession.getSession()) {
             int rowNumber = session.getMapper(UserMapper.class).selectCount();
 			page.setRowNumber(rowNumber);
-            List<User> list = session.selectList("selectByPage", null, page.toRowBounds());
+            List<User> list = session.selectList("selectUserByPage", null, page.toRowBounds());
 			return list;
 		}
 	}
@@ -76,7 +76,7 @@ public class UserService {
 
 //    public List<User> selectByRowBounds(RowBounds rowBounds){
 //        try(SqlSession session = MyBatisSession.getSession()) {
-//            List<User> list = session.selectList("selectByPage", null, rowBounds);
+//            List<User> list = session.selectList("getByPage", null, rowBounds);
 //            return list;
 //        }
 //    }

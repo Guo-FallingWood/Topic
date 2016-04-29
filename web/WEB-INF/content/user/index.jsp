@@ -17,16 +17,16 @@
             <th>password</th>
             <th>opt</th>
         </tr>
-        <c:forEach items="${models}" varStatus="status" var="model">
+        <c:forEach items="${users}" varStatus="status" var="user">
             <tr>
                 <td>${status.count}</td>
-                <td>${model.id}</td>
-                <td>${model.username}</td>
-                <td>${model.password}</td>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.password}</td>
                 <td>
-                    <a href="user/${model.id}">detail</a>
-                    <a href="user/${model.id}/edit">edit</a>
-                    <a href="" onclick="ajaxDelete('user/${model.id}')">delete</a>
+                    <a href="user/${user.id}">detail</a>
+                    <a href="user/${user.id}/edit">edit</a>
+                    <a href="" onclick="ajaxDelete('user/${user.id}')">delete</a>
                 </td>
             </tr>
         </c:forEach>

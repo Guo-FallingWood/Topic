@@ -41,7 +41,7 @@ public class Page {
         this.url = url;
     }
 
-    public void setCurrentPage(int currentPage){
+    public void setCurrentPage(Integer currentPage){
         int _currentPage = 1;
         if(currentPage > 0)
             _currentPage = currentPage;

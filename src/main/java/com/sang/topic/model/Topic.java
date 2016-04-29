@@ -5,6 +5,8 @@ public class Topic {
 
     private String name;
 
+    private String url;
+
     private Integer close;
 
     public Integer getId() {
@@ -21,6 +23,14 @@ public class Topic {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Integer getClose() {

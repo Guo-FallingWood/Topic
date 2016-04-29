@@ -16,7 +16,6 @@ import java.util.List;
  */
 @FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
 public class UserServiceTest {
-
 	UserService userService;
 
     @Before
@@ -35,7 +34,7 @@ public class UserServiceTest {
         Page page = new Page();
         page.setPageSize(2);
         page.setCurrentPage(3);
-        List<User> list = userService.selectByPage(page);
+        List<User> list = userService.getByPage(page);
         System.out.print("username(0):"+list.get(0).getUsername()+" size:"+list.size());
         System.out.print(" pageNumber:"+page.getPageNumber());
         System.out.println();

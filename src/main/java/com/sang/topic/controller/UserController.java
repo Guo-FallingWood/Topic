@@ -3,9 +3,6 @@ package com.sang.topic.controller;
 import com.sang.topic.model.User;
 import com.sang.topic.service.UserService;
 import com.sang.topic.util.Page;
-import org.codehaus.jackson.map.annotate.JsonView;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +25,7 @@ public class UserController {
         page.setUrl("user?p=");
 
         Map map = new HashMap<String, Object>();
-        map.put("models", userService.selectByPage(page));
+        map.put("users", userService.getByPage(page));
         map.put("page", page);
         return new ModelAndView("user/index", map);
 	}
