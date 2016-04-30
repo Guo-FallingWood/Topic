@@ -30,14 +30,14 @@ public class TopicController {
         return new ModelAndView("index", map);
 	}
 
-	@RequestMapping(value="/t/{topic}")
-    public ModelAndView topic(@PathVariable Integer topic, Integer p){
+	@RequestMapping(value="/t/{id}")
+    public ModelAndView topic(@PathVariable Integer id, Integer p){
         Page page = new Page();
         if(p != null) page.setCurrentPage(p);
-        page.setUrl("/t/"+topic+"?p=");
+        page.setUrl("/t/"+id+"?p=");
 
         List<Topic> topics = topicService.getAll();
-        List<Post> posts = postService.getByTopicAndPage(topic, page);
+        List<Post> posts = postService.getByTopicAndPage(id, page);
 
         Map<String, Object> map = new HashMap<>();
         map.put("topics", topics);
@@ -45,4 +45,5 @@ public class TopicController {
         map.put("page", page);
         return new ModelAndView("topic/index", map);
     }
+
 }

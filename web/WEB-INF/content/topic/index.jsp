@@ -7,23 +7,20 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<jsp:include page="../nav.jsp"/>
 <div class="container">
-    <h1>topic-index</h1>
-    <table>
-        <tr>
-            <th>title</th>
-            <th>userId</th>
-        </tr>
-        <c:forEach items="${posts}" var="post">
-            <tr>
-                <td>${post.title}</td>
-                <td>${post.userId}</td>
-            </tr>
-        </c:forEach>
-    </table>
+    <div class="main-bar">
+        <jsp:include page="../nav.jsp"/>
+        <div class="list-group">
+            <c:forEach items="${posts}" var="post">
+                <a class="list-group-item" href="/p/${post.id}">
+                    ${post.title}
+                </a>
+            </c:forEach>
+        </div>
+        <jsp:include page="../page.jsp"/>
+    </div>
+    <jsp:include page="../sidebar.jsp"/>
 </div>
-<jsp:include page="../page.jsp"/>
 <jsp:include page="../footer.jsp"/>
 </body>
 </html>

@@ -6,12 +6,13 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<jsp:include page="nav.jsp"/>
 <div class="container">
-
-    <h1>Index Page</h1>
-    <ul>
-    </ul>
+    <div class="main-bar">
+        <jsp:include page="nav.jsp"/>
+        <div class="list-group">
+        </div>
+    </div>
+    <%--<jsp:include page="sidebar.jsp"/>--%>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>

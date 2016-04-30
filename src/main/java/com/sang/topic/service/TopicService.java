@@ -11,9 +11,15 @@ import java.util.List;
  * Created by arch on 2016/4/25.
  */
 public class TopicService {
-    public List<Topic> getAll(){
+    public List<Topic> getAll() {
         try(SqlSession session = MyBatisSession.getSession()){
             return session.getMapper(TopicMapper.class).selectAll();
+        }
+    }
+
+    public Topic get(Integer id) {
+        try(SqlSession session = MyBatisSession.getSession()){
+            return session.getMapper(TopicMapper.class).selectByPrimaryKey(id);
         }
     }
 }

@@ -32,22 +32,24 @@ public class UserController {
 
     @ResponseBody
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public User create(User user){
+	public String create(User user){
+        String flag = "error";
 		int n = userService.insert(user);
         if(n>0)
-            return user;
-        return null;
+            flag = "success";
+        return flag;
 	}
 
     @ResponseBody
     @RequestMapping(value="/valid", method=RequestMethod.POST)
-    public User valid(String username, String password, HttpSession httpSession){
+    public String valid(String username, String password, HttpSession httpSession){
+        String flag = "error";
         User u = userService.valid(username, password);
         if(u != null) {
             httpSession.setAttribute("sessionUser", u);
-            return u;
+            flag = "success";
         }
-        else return null;
+        return flag;
     }
 
     @RequestMapping(value="/login", method=RequestMethod.GET)

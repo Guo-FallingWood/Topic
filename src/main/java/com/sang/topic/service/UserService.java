@@ -48,7 +48,7 @@ public class UserService {
 		try(SqlSession session = MyBatisSession.getSession()) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
 			int n;
-			n = userMapper.insert(user);
+			n = userMapper.insertSelective(user);
 			session.commit();
 			return n;
 		}
