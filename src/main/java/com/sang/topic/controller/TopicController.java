@@ -24,10 +24,19 @@ public class TopicController {
     TopicService topicService = new TopicService();
 
 	@RequestMapping(value="/")
-	public ModelAndView index(){
+	public ModelAndView index(Integer p){
+        Page page = new Page();
+        if(p != null) page.setCurrentPage(p);
+        page.setUrl("/?p=");
+
+        List<Topic> topics = topicService.getAll();
+        List<Post> posts = postService.getByPage(page);
+
         Map<String, Object> map = new HashMap<>();
-        map.put("topics", topicService.getAll());
-        return new ModelAndView("index", map);
+        map.put("topics", topics);
+        map.put("posts", posts);
+        map.put("page", page);
+        return new ModelAndView("topic/index", map);
 	}
 
 	@RequestMapping(value="/t/{id}")

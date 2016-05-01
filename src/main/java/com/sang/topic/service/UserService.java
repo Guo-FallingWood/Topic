@@ -74,17 +74,4 @@ public class UserService {
 		}
 	}
 
-//    public List<User> selectByRowBounds(RowBounds rowBounds){
-//        try(SqlSession session = MyBatisSession.getSession()) {
-//            List<User> list = session.selectList("getByPage", null, rowBounds);
-//            return list;
-//        }
-//    }
-//
-//    public int selectCount(){
-//        try(SqlSession session = MyBatisSession.getSession()) {
-//            return session.getMapper(UserMapper.class).selectCount();
-//        }
-//    }
-
 }

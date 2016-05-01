@@ -15,3 +15,34 @@
     text-align: center;
     /*background: #eeeeee;*/
 }
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #ffffff;
+    border: 0px;
+}
+/* START 话题分类导航栏 */
+.topic-nav{
+    padding: 0px;
+    margin-bottom: 40px;
+}
+.topic-nav li{
+    list-style: none;
+    float: left;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.topic-nav a{
+    text-decoration: none;
+    color: #000000;
+}
+.topic-nav .active{
+    background: #000000;
+}
+.topic-nav .active a{
+    color: #ffffff;
+}
+.topic-nav li:hover{
+    background: #cccccc;
+}
+/* END 话题分类导航栏 */

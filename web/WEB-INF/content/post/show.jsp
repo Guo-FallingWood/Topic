@@ -16,9 +16,9 @@
                     来自: <a href="/user/${user.id}">${user.username}</a>
                 </span>
             </div>
-            <p>
-                ${post.content}
-            </p>
+            <div class="panel-body">
+                <pre>${post.content}</pre>
+            </div>
         </div>
     </div>
     <%--<jsp:include page="../sidebar.jsp"/>--%>
