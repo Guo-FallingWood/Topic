@@ -2,6 +2,7 @@ package com.sang.topic.controller;
 
 import com.sang.topic.model.Post;
 import com.sang.topic.model.Topic;
+import com.sang.topic.service.CommentsService;
 import com.sang.topic.service.PostService;
 import com.sang.topic.service.TopicService;
 import com.sang.topic.service.UserService;
@@ -23,6 +24,7 @@ public class PostController {
     PostService postService = new PostService();
     TopicService topicService = new TopicService();
     UserService userService = new UserService();
+    CommentsService commentsService = new CommentsService();
 
     @RequestMapping(value="/p", method = RequestMethod.POST)
     public String create(Post post){
@@ -50,6 +52,7 @@ public class PostController {
         map.put("post", post);
         map.put("topics", topicService.getAll());
         map.put("user", userService.get(post.getUserId()));
+        map.put("comments", commentsService.getCommentsByPostId(id));
         return new ModelAndView("post/show", map);
     }
 

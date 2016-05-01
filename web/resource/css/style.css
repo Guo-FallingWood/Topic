@@ -39,10 +39,13 @@ pre {
 .topic-nav .active{
     background: #000000;
 }
-.topic-nav .active a{
+.topic-nav .active{
     color: #ffffff;
 }
 .topic-nav li:hover{
     background: #cccccc;
+}
+.topic-nav li:hover{
+    color: #000000;
 }
 /* END 话题分类导航栏 */
