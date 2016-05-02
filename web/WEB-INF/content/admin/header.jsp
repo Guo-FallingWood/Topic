@@ -14,22 +14,21 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             </button>
-            <a class="navbar-brand" href="/">Topic</a>
+            <a class="navbar-brand" href="/admin">Topic Admin</a>
         </div>
+
+        <ul class="nav navbar-nav">
+            <li><a href="/">主页</a></li>
+            <li><a href="/admin/user">用户管理</a></li>
+        </ul>
 
         <%----%>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <c:choose>
-                    <c:when test="${sessionUser==null}">
-                        <a href="/user/login" class="btn btn-default navbar-btn" role="button">sign in</a>
-                        <a href="/user/new" class="btn btn-default navbar-btn" role="button">sign up</a>
-                    </c:when>
-                    <c:otherwise>
-                        <li><a href="/user/${sessionUser.id}">${sessionUser.username}</a></li>
-                        <li><a href="/user/logout">logout</a></li>
-                    </c:otherwise>
-                </c:choose>
+                <c:if test="${sessionUser != null}">
+                    <li><a href="/user/${sessionUser.id}">${sessionUser.username}</a></li>
+                    <li><a href="/user/logout">logout</a></li>
+                </c:if>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

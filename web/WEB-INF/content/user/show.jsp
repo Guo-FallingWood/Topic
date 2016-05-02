@@ -2,26 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Title</title>
+    <title>Title</title>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <div class="container">
-<h1>user-show</h1>
-<table>
-  <tr>
-    <td>id:</td>
-    <td>${model.id}</td>
-  </tr>
-  <tr>
-    <td>username:</td>
-    <td>${model.username}</td>
-  </tr>
-  <tr>
-    <td>password:</td>
-    <td>${model.password}</td>
-  </tr>
-</table>
+    <h1>个人信息</h1>
+    <ul>
+        <li>用户名：${user.username}</li>
+        <li>email：${user.email}</li>
+        <li>手机号码：${user.phone}</li>
+    </ul>
+    <a href="/user/${user.id}/edit">编辑信息</a>
 </div>
 <jsp:include page="../footer.jsp"/>
 </body>

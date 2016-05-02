@@ -44,8 +44,6 @@ pre {
 }
 .topic-nav li:hover{
     background: #cccccc;
-}
-.topic-nav li:hover{
     color: #000000;
 }
 /* END 话题分类导航栏 */

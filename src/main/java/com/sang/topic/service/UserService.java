@@ -68,7 +68,7 @@ public class UserService {
 		try(SqlSession session = MyBatisSession.getSession()) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
 			int n;
-			n = userMapper.updateByPrimaryKey(user);
+			n = userMapper.updateByPrimaryKeySelective(user);
 			session.commit();
 			return n;
 		}
