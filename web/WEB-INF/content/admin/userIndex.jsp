@@ -6,16 +6,17 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="../header.jsp"/>
+<jsp:include page="header.jsp"/>
 <div class="container">
-    <h1>user-index</h1>
-    <table>
+    <h1>用户管理</h1>
+    <table class="table">
         <tr>
             <th>id</th>
             <th>user id</th>
             <th>username</th>
             <th>password</th>
-            <th>opt</th>
+            <th>email</th>
+            <th>phone</th>
         </tr>
         <c:forEach items="${users}" varStatus="status" var="user">
             <tr>
@@ -23,17 +24,12 @@
                 <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>${user.password}</td>
-                <td>
-                    <a href="user/${user.id}">detail</a>
-                    <a href="user/${user.id}/edit">edit</a>
-                    <a href="" onclick="ajaxDelete('user/${user.id}')">delete</a>
-                </td>
+                <td>${user.email}</td>
+                <td>${user.phone}</td>
             </tr>
         </c:forEach>
     </table>
-    <a href="user/new">new</a>
+    <jsp:include page="../page.jsp"/>
 </div>
-<jsp:include page="../page.jsp"/>
-<jsp:include page="../footer.jsp"/>
 </body>
 </html>
