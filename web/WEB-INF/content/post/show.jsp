@@ -23,7 +23,11 @@
         </div>
         <ul class="list-group">
             <c:forEach items="${comments}" var="comment">
-                <li class="list-group-item">${comment.content}</li>
+                <li class="list-group-item">
+                    <a href="/user/${comment.userId}">${comment.userUsername}</a>:
+                    发表时间：${comment.createTime}
+                    <pre>${comment.content}</pre>
+                </li>
             </c:forEach>
         </ul>
         <div class="panel panel-default">

@@ -21,6 +21,21 @@ pre {
     background: #ffffff;
     border: 0px;
 }
+/* POST列表项 */
+.post-list{
+
+}
+.post-top *{
+    color: #555555;
+    font-size: 18px;
+}
+.post-bottom {
+    font-size: 10px;
+}
+.post-right{
+    float: right;
+}
+/**/
 /* START 话题分类导航栏 */
 .topic-nav{
     padding: 0px;

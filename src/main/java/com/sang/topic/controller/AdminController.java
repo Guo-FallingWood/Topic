@@ -34,5 +34,4 @@ public class AdminController {
         map.put("page", page);
         return new ModelAndView("admin/userIndex", map);
     }
-
 }

@@ -12,9 +12,19 @@
         <jsp:include page="../nav.jsp"/>
         <div class="list-group">
             <c:forEach items="${posts}" var="post">
-                <a class="list-group-item" href="/p/${post.id}">
-                    ${post.title}
-                </a>
+                <li class="list-group-item" >
+                    <div class="post-right">
+                            ${post.commentsNumber}
+                    </div>
+                    <div class="post-top">
+                        <a href="/p/${post.id}">${post.title}</a>
+                    </div>
+                    <div class="post-bottom">
+                        作者：<a href="/user/${post.userId}">${post.userUsername}</a>
+                        创建时间：${post.createTime}
+                        最后回复时间：${post.lastTime}
+                    </div>
+                </li>
             </c:forEach>
         </div>
         <jsp:include page="../page.jsp"/>

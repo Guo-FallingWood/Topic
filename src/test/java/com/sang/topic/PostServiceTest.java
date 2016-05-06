@@ -52,6 +52,8 @@ public class PostServiceTest {
     @Test
     public void get(){
         Post post = postService.get(1);
+        System.out.println(post.getCreateTime());
+        System.out.println(post.getLastTime());
         Assert.assertNotNull(post);
     }
 

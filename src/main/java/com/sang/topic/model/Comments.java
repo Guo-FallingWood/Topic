@@ -1,5 +1,9 @@
 package com.sang.topic.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class Comments {
     private Integer id;
 
@@ -10,6 +14,10 @@ public class Comments {
     private Integer postId;
 
     private Integer discard;
+
+    private String userUsername;
+
+    private Date createTime;
 
     public Integer getId() {
         return id;
@@ -49,5 +57,21 @@ public class Comments {
 
     public void setDiscard(Integer discard) {
         this.discard = discard;
+    }
+
+    public String getUserUsername() {
+        return userUsername;
+    }
+
+    public void setUserUsername(String userUsername) {
+        this.userUsername = userUsername;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
