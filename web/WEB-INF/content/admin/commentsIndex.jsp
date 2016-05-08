@@ -8,26 +8,24 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="container">
-    <h1>用户管理</h1>
+    <h1>评论管理</h1>
     <table class="table">
         <tr>
-            <th>user id</th>
-            <th>username</th>
-            <th>password</th>
-            <th>email</th>
-            <th>phone</th>
+            <th>comment id</th>
+            <th>content</th>
+            <th>user</th>
+            <th>create time</th>
             <th>opt</th>
         </tr>
-        <c:forEach items="${users}" var="user">
+        <c:forEach items="${comments}" var="comment">
             <tr>
-                <td>${user.id}</td>
-                <td><a href="/user/${user.id}">${user.username}</a></td>
-                <td>${user.password}</td>
-                <td>${user.email}</td>
-                <td>${user.phone}</td>
+                <td>${comment.id}</td>
+                <td>${comment.content}</td>
+                <th><a href="/user/${comment.userId}">${comment.userUsername}</a></th>
+                <td>${comment.discard}</td>
                 <td>
-                    <a href="">禁用</a>
-                    <a href="">解禁</a>
+                    <a href="">折叠</a>
+                    <a href="">显示</a>
                 </td>
             </tr>
         </c:forEach>

@@ -2,6 +2,7 @@ package com.sang.topic;
 
 import com.sang.topic.model.Comments;
 import com.sang.topic.service.CommentsService;
+import com.sang.topic.util.Page;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,13 @@ public class CommentsServiceTest {
     @Test
     public void getCommentsByPostId() {
         List<Comments> list = commentsService.getCommentsByPostId(1);
+        System.out.println(list.size());
+    }
+
+    @Test
+    public void getCommentsByPostIdAndPage() {
+        Page page = new Page();
+        List<Comments> list = commentsService.getCommentsByPostIdAndPage(1, page);
         System.out.println(list.size());
     }
 

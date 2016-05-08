@@ -2,11 +2,9 @@
 
 ### 介绍
 
-一个简单的讨论社区，类似于v2ex或reddit
+一个简单的论坛
 
-本系统使用Spring MVC和Mybatis开发,前端用bootstrap的组件
-
-这是我个人的毕业设计,目前刚开始写,预计2016年5月中旬前完成
+使用Spring MVC和Mybatis开发,前端用bootstrap的组件
 
 ### Introduction
 

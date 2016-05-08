@@ -18,4 +18,6 @@ public interface CommentsMapper {
     int updateByPrimaryKey(Comments record);
 
     List<Comments> selectByPostId(Integer topicId);
+
+    int selectCount();
 }

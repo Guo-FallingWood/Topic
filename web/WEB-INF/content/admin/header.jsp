@@ -18,11 +18,11 @@
         </div>
 
         <ul class="nav navbar-nav">
-            <li><a href="/">主页</a></li>
             <li><a href="/admin/user">用户管理</a></li>
+            <li><a href="/admin/topic">话题管理</a></li>
+            <li><a href="/admin/post">帖子管理</a></li>
         </ul>
 
-        <%----%>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${sessionUser != null}">

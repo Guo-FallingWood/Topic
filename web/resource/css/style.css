@@ -1,3 +1,9 @@
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #ffffff;
+    border: 0px;
+}
 .auth-body{
     width: 500px;
     padding: 30px 70px;
@@ -14,12 +20,6 @@
     width: 25%;
     text-align: center;
     /*background: #eeeeee;*/
-}
-pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    background: #ffffff;
-    border: 0px;
 }
 /* POST列表项 */
 .post-list{

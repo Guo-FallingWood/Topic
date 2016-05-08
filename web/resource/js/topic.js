@@ -1,50 +1,3 @@
-function login(){
-    $("#formAlert").removeClass("hidden");
-    $.ajax({
-        type: "post",
-        url: "/user/valid",
-        data: $("#loginForm").serialize(),
-        success: function(data){
-            console.log(data);
-            if(data == "success") {
-                $("#formAlert").removeClass("alert-danger");
-                $("#formAlert").addClass("alert-success");
-                $("#formAlertText").text("登陆成功");
-            }else {
-                $("#formAlertText").text("用户名或密码错误");
-            }
-        },
-        error: function(){
-            //console.log("error function");
-            $("#formAlertText").text("登陆异常");
-        }
-    });
-}
-
-function reg(){
-    $.ajax({
-        type: "post",
-        url: "/user",
-        data: $("#regForm").serialize(),
-        success: function(data){
-            console.log(data);
-            if(data == "success") {
-                $("#formAlert").removeClass("hidden");
-                $("#formAlert").removeClass("alert-danger");
-                $("#formAlert").addClass("alert-success");
-                $("#formAlertText").text("注册成功");
-            }else {
-                $("#formAlert").removeClass("hidden");
-                $("#formAlertText").text("注册失败");
-            }
-        },
-        error: function(){
-            $("#formAlert").removeClass("hidden");
-            $("#formAlertText").text("注册异常");
-        }
-    });
-}
-
 function ajaxPostNew(url) {
     $("#formAlert").removeClass("hidden");
     console.log(url);
@@ -67,7 +20,32 @@ function ajaxPostNew(url) {
         }
     });
 }
-
+function ajaxForm(url, text, params){
+    if(params == undefined) {
+        params = $("#ajaxForm").serialize();
+    }
+    $("#formAlert").removeClass("hidden");
+    console.log(url);
+    console.log(params);
+    $.ajax({
+        type: "post",
+        url: url,
+        data: params,
+        success: function (data) {
+            console.log(data);
+            if(data == "success") {
+                $("#formAlertText").text(text+"成功");
+                $("#formAlert").removeClass("alert-danger");
+                $("#formAlert").addClass("alert-success");
+            }else{
+                $("#formAlertText").text(text+"失败");
+            }
+        },
+        error: function () {
+            $("#formAlertText").text(text+"异常");
+        }
+    });
+}
 function ajaxDelete(url){
     console.log(url);
     $.ajax({

@@ -10,7 +10,7 @@
 
 <div class="container auth-body">
     <h1>编辑个人信息 - ${user.username}</h1>
-    <form action="/user/${user.id}" method="post">
+    <form id="ajaxForm" >
         <input type="hidden" name="_method" value="put">
         <input type="hidden" name="id" value="${user.id}" readonly="readonly"><br>
         <div class="input-group">
@@ -25,7 +25,13 @@
                    aria-describedby="basic-addon2">
         </div>
         <br>
-        <button type="submit">保存</button>
+        <div id="formAlert" class="alert alert-danger hidden" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span id="formAlertText"></span>
+        </div>
+        <button type="button" onclick="ajaxForm('/user/${user.id}','保存')">保存</button>
     </form>
 </div>
 <jsp:include page="../footer.jsp"/>

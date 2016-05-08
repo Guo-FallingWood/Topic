@@ -10,6 +10,7 @@ import com.sang.topic.util.Page;
 import javafx.geometry.Pos;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,11 +41,20 @@ public class PostService {
 
     public int insert (Post post) {
         try(SqlSession session = MyBatisSession.getSession()) {
-            User user = session.getMapper(UserMapper.class).selectByPrimaryKey(post.getUserId());
-            post.setUserUsername(user.getUsername());
+            post.setUserUsername(session.getMapper(UserMapper.class).selectByPrimaryKey(post.getUserId()).getUsername());
+            post.setCreateTime(new Date());
             int n = session.getMapper(PostMapper.class).insertSelective(post);
             session.commit();
             return n;
         }
     }
+
+    public int update(Post post) {
+        try (SqlSession session = MyBatisSession.getSession()) {
+            int n = session.getMapper(PostMapper.class).updateByPrimaryKeySelective(post);
+            session.commit();
+            return n;
+        }
+    }
+
 }

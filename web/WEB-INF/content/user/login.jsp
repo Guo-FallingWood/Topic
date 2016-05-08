@@ -8,7 +8,7 @@
 <jsp:include page="../header.jsp"/>
 
 <div class="auth-body container">
-    <form id="loginForm" action="" method="post">
+    <form id="ajaxForm" action="" method="post">
         <h2>Sign in</h2>
         <br>
         <div class="input-group">
@@ -30,7 +30,7 @@
             <span id="formAlertText"></span>
         </div>
         <br>
-        <button class="btn btn-default navbar-right" type="button" onclick="login()">Sign In</button>
+        <button class="btn btn-default navbar-right" type="button" onclick="ajaxForm('/user/valid','登录')">Sign In</button>
     </form>
 </div>
 

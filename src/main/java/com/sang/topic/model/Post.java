@@ -21,8 +21,10 @@ public class Post {
 
     private Integer commentsNumber;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private Date createTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private Date lastTime;
 
     public Integer getId() {

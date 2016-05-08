@@ -17,6 +17,7 @@ public class Comments {
 
     private String userUsername;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private Date createTime;
 
     public Integer getId() {

@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <div class="auth-body container">
-    <form id="regForm" action="" method="post">
+    <form id="ajaxForm" action="" method="post">
         <h2>Sign Up</h2>
         <br>
         <div class="input-group">
@@ -29,7 +29,7 @@
             <span id="formAlertText"></span>
         </div>
         <br>
-        <button class="btn btn-default navbar-right" type="button" onclick="reg()">Sign Up</button>
+        <button class="btn btn-default navbar-right" type="button" onclick="ajaxForm('/user','注册')">Sign Up</button>
     </form>
 </div>
 <jsp:include page="../footer.jsp"/>

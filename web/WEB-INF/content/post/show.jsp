@@ -22,8 +22,9 @@
             </div>
         </div>
         <ul class="list-group">
-            <c:forEach items="${comments}" var="comment">
+            <c:forEach items="${comments}" varStatus="status" var="comment">
                 <li class="list-group-item">
+                    ${status.count}#
                     <a href="/user/${comment.userId}">${comment.userUsername}</a>:
                     发表时间：${comment.createTime}
                     <pre>${comment.content}</pre>

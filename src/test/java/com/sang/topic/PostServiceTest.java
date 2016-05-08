@@ -34,8 +34,11 @@ public class PostServiceTest {
     public void getByTopicAndPage(){
         Page page = new Page();
         page.setCurrentPage(2);
+        page.setPageSize(100);
         List<Post> list = postService.getByTopicAndPage(1, page);
-        System.out.println(list.size());
+        for (Post post : list) {
+            System.out.println(post.getLastTime());
+        }
     }
 
     @Test
