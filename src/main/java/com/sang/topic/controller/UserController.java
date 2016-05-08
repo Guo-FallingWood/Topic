@@ -57,20 +57,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/{userId}", method=RequestMethod.PUT)
-	public String update(@PathVariable Integer userId, User user){
+	public String update(@PathVariable Integer userId, User user, HttpSession httpSession){
         String flag = "error";
-		int n = userService.update(user);
-        if(n > 0)
-            flag = "success";
-        return flag;
-	}
-
-	@RequestMapping(value="/{userId}", method=RequestMethod.DELETE)
-	public String delete(@PathVariable Integer userId){
-        String flag = "error";
-		int n = userService.delete(userId);
-        if(n > 0)
-            flag = "success";
+        User sessionUser = (User) httpSession.getAttribute("sessionUser");
+        if(sessionUser.getId() == userId) {
+            int n = userService.update(user);
+            if (n > 0)
+                flag = "success";
+        }
         return flag;
 	}
 

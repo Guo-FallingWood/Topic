@@ -2,6 +2,7 @@ package com.sang.topic.controller;
 
 import com.sang.topic.model.Post;
 import com.sang.topic.model.Topic;
+import com.sang.topic.model.User;
 import com.sang.topic.service.CommentsService;
 import com.sang.topic.service.PostService;
 import com.sang.topic.service.TopicService;
@@ -27,16 +28,20 @@ public class PostController {
     CommentsService commentsService = new CommentsService();
 
     @RequestMapping(value="/p", method = RequestMethod.POST)
-    public String create(Post post){
+    public String create(Post post, HttpSession httpSession){
         String flag = "error";
-        int n = postService.insert(post);
-        if(n > 0)
-            flag = "success";
+        User user = (User) httpSession.getAttribute("sessionUser");
+        if(user != null) {
+            post.setUserId(user.getId());
+            int n = postService.insert(post);
+            if (n > 0)
+                flag = "success";
+        }
         return flag;
     }
 
     @RequestMapping(value="/t/{id}/p/new",method = RequestMethod.GET)
-    public ModelAndView editNewPost(@PathVariable Integer id, HttpSession httpSession){
+    public ModelAndView editNewPost(@PathVariable Integer id){
         Topic topic = topicService.get(id);
         Map<String, Object> map = new HashMap<>();
         map.put("topic", topic);

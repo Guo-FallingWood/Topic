@@ -15,6 +15,7 @@
             <th>username</th>
             <th>password</th>
             <th>email</th>
+            <th>role</th>
             <th>phone</th>
             <th>opt</th>
         </tr>
@@ -24,6 +25,7 @@
                 <td><a href="/user/${user.id}">${user.username}</a></td>
                 <td>${user.password}</td>
                 <td>${user.email}</td>
+                <td>${user.roleId}</td>
                 <td>${user.phone}</td>
                 <td>
                     <a href="">禁用</a>

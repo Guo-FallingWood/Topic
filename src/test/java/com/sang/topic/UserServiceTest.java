@@ -30,7 +30,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void getByPage() {
+    public void getUserByPage() {
         Page page = new Page();
         page.setPageSize(2);
         page.setCurrentPage(3);

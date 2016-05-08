@@ -12,7 +12,6 @@
         <h2>添加新文章到 [${topic.name}] </h2>
         <form action="" id="ajaxForm">
             <input type="hidden" name="topicId" value="${topic.id}" >
-            <input type="hidden" name="userId" value="${sessionUser.id}" >
             <label class="control-label">文章标题</label>
             <input type="text" class="form-control" name="title">
             <label class="control-label">文章内容</label>

@@ -10,26 +10,35 @@
         <result column="role_id" property="roleId" jdbcType="INTEGER"/>
         <result column="ban" property="ban" jdbcType="INTEGER"/>
     </resultMap>
+    <resultMap id="UserRoleResultMap" type="com.sang.topic.model.User" extends="BaseResultMap">
+        <association property="role" javaType="com.sang.topic.model.Role">
+            <id property="id" column="roleId"/>
+            <result property="name" column="roleName"/>
+        </association>
+    </resultMap>
     <sql id="Base_Column_List">
     id, username, password, email, phone, role_id, ban
   </sql>
-    <!-- 手写 -->
+    <!--  -->
     <select id="selectCount" resultType="java.lang.Integer">
     SELECT COUNT(*)
     FROM topic_user
     </select>
-    <select id="selectUserByPage" resultMap="BaseResultMap" resultSetType="SCROLL_SENSITIVE"
+    <select id="selectUserByPage" resultMap="UserRoleResultMap" resultSetType="SCROLL_SENSITIVE"
             parameterType="com.sang.topic.model.User">
-    SELECT *
-    FROM topic_user
+    SELECT
+    u.*, r.name as roleName
+    FROM topic_user as u,
+          topic_role as r
+    WHERE u.role_id = r.id
   </select>
-    <!-- 自动生成 -->
     <select id="selectByUsernameAndPassword" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         from topic_user
         where username = #{username} and password = #{password}
     </select>
+    <!--  -->
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>

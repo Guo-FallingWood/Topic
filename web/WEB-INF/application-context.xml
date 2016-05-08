@@ -35,4 +35,13 @@
     <bean id="conversionService"
          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
     </bean>
+    
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 后台拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <bean class="com.sang.topic.interceptor.PermissionInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

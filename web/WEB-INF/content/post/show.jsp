@@ -40,7 +40,6 @@
                 <form id="ajaxForm">
                     <textarea name="content" class="form-control" rows="5"></textarea>
                     <div id="formAlert" class="alert alert-danger hidden" role="alert">
-                        <input type="hidden" name="userId" value="${sessionUser.id}">
                         <input type="hidden" name="postId" value="${post.id}">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <span id="formAlertText"></span>

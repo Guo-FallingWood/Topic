@@ -15,6 +15,16 @@ public class User {
 
     private Integer ban;
 
+    private Role role;
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
     public Integer getId() {
         return id;
     }
