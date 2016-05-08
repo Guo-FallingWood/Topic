@@ -1,25 +1,3 @@
-function ajaxPostNew(url) {
-    $("#formAlert").removeClass("hidden");
-    console.log(url);
-    $.ajax({
-        type: "post",
-        url: url,
-        data: $("#postForm").serialize(),
-        success: function (data) {
-            console.log(data);
-            if(data == "success") {
-                $("#formAlertText").text("发表成功");
-                $("#formAlert").removeClass("alert-danger");
-                $("#formAlert").addClass("alert-success");
-            }else{
-                $("#formAlertText").text("发表失败");
-            }
-        },
-        error: function () {
-            $("#formAlertText").text("发表异常");
-        }
-    });
-}
 function ajaxForm(url, text, params){
     if(params == undefined) {
         params = $("#ajaxForm").serialize();

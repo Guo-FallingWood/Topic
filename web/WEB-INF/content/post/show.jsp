@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
                 <li class="list-group-item">
                     ${status.count}#
                     <a href="/user/${comment.userId}">${comment.userUsername}</a>:
-                    发表时间：${comment.createTime}
+                    发表时间：<spring:eval expression="comment.createTime"/>
                     <pre>${comment.content}</pre>
                 </li>
             </c:forEach>
@@ -36,7 +37,7 @@
                 回复
             </div>
             <div class="panel-body">
-                <form id="postForm">
+                <form id="ajaxForm">
                     <textarea name="content" class="form-control" rows="5"></textarea>
                     <div id="formAlert" class="alert alert-danger hidden" role="alert">
                         <input type="hidden" name="userId" value="${sessionUser.id}">
@@ -44,7 +45,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <span id="formAlertText"></span>
                     </div>
-                    <button type="button" onclick="ajaxPostNew('/c')">回复</button>
+                    <button type="button" onclick="ajaxForm('/c','回复')">回复</button>
                 </form>
             </div>
         </div>

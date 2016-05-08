@@ -8,7 +8,7 @@
 <body>
 <jsp:include page="../header.jsp"/>
 
-<div class="container auth-body">
+<div class="edit-bar container">
     <h1>编辑个人信息 - ${user.username}</h1>
     <form id="ajaxForm" >
         <input type="hidden" name="_method" value="put">

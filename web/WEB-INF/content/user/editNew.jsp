@@ -6,9 +6,9 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<div class="auth-body container">
+<div class="edit-bar container">
+    <h2>注册</h2>
     <form id="ajaxForm" action="" method="post">
-        <h2>Sign Up</h2>
         <br>
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Username</span>
@@ -29,7 +29,9 @@
             <span id="formAlertText"></span>
         </div>
         <br>
-        <button class="btn btn-default navbar-right" type="button" onclick="ajaxForm('/user','注册')">Sign Up</button>
+        <button class="btn btn-default navbar-right" type="button" onclick="ajaxForm('/user','注册')">
+            注册
+        </button>
     </form>
 </div>
 <jsp:include page="../footer.jsp"/>

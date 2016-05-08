@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
     <div class="main-bar">
         <%--<jsp:include page="../nav.jsp"/>--%>
         <h2>添加新文章到 [${topic.name}] </h2>
-        <form action="" id="postForm">
+        <form action="" id="ajaxForm">
             <input type="hidden" name="topicId" value="${topic.id}" >
             <input type="hidden" name="userId" value="${sessionUser.id}" >
             <label class="control-label">文章标题</label>
@@ -21,7 +22,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <span id="formAlertText"></span>
             </div>
-            <button type="button" class="btn btn-default" onclick="ajaxPostNew('/p')">发表</button>
+            <button type="button" class="btn btn-default" onclick="ajaxForm('/p','发表')">发表</button>
         </form>
     </div>
     <%--<jsp:include page="../sidebar.jsp"/>--%>

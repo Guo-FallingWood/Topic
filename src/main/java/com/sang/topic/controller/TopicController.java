@@ -36,7 +36,7 @@ public class TopicController {
         map.put("topics", topics);
         map.put("posts", posts);
         map.put("page", page);
-        return new ModelAndView("topic/index", map);
+        return new ModelAndView("index", map);
 	}
 
 	@RequestMapping(value="/t/{id}")
