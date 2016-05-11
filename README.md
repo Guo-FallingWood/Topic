@@ -2,9 +2,11 @@
 
 ### 介绍
 
-一个简单的论坛
+一个简单的论坛,模仿V2EX做的
 
-使用Spring MVC和Mybatis开发,前端用bootstrap的组件
+用Maven构建项目,主要使用Spring MVC和Mybatis框架
+
+数据库用Mysql,前端用bootstrap UI
 
 ### Introduction
 

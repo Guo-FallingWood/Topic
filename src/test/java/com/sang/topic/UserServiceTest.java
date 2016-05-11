@@ -56,17 +56,6 @@ public class UserServiceTest {
     }
 
     @Test
-    public void delete() {
-        User user = new User();
-        user.setUsername("aaa");
-        user.setPassword("111");
-
-        User nUser = userService.valid(user.getUsername(), user.getPassword());
-        int n = userService.delete(nUser.getId());
-        Assert.assertEquals(n, 1);
-    }
-
-    @Test
     public void updateDiscard(){
         User user = new User();
         user.setId(39);

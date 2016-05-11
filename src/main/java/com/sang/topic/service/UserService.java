@@ -54,16 +54,6 @@ public class UserService {
         }
     }
 
-    public int delete(int id) {
-        try (SqlSession session = MyBatisSession.getSession()) {
-            UserMapper userMapper = session.getMapper(UserMapper.class);
-            int n;
-            n = userMapper.deleteByPrimaryKey(id);
-            session.commit();
-            return n;
-        }
-    }
-
     public int update(User user) {
         try (SqlSession session = MyBatisSession.getSession()) {
             UserMapper userMapper = session.getMapper(UserMapper.class);

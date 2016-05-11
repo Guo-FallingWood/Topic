@@ -16,10 +16,10 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/sang/topic/mapper/sqlmap/CommentsMapper.xml"/>
-        <mapper resource="com/sang/topic/mapper/sqlmap/PostMapper.xml"/>
-        <mapper resource="com/sang/topic/mapper/sqlmap/RoleMapper.xml"/>
-        <mapper resource="com/sang/topic/mapper/sqlmap/TopicMapper.xml"/>
-        <mapper resource="com/sang/topic/mapper/sqlmap/UserMapper.xml"/>
+        <mapper resource="sqlmap/CommentsMapper.xml"/>
+        <mapper resource="sqlmap/PostMapper.xml"/>
+        <mapper resource="sqlmap/RoleMapper.xml"/>
+        <mapper resource="sqlmap/TopicMapper.xml"/>
+        <mapper resource="sqlmap/UserMapper.xml"/>
     </mappers>
 </configuration>
