@@ -1,4 +1,4 @@
-package com.sang.topic;
+package com.sang.topic.service;
 
 import com.sang.topic.model.Comments;
 import com.sang.topic.service.CommentsService;

@@ -44,6 +44,12 @@ public class UserService {
         }
     }
 
+    public int getCountByUsername(String username){
+        try (SqlSession session = MyBatisSession.getSession()) {
+            return session.getMapper(UserMapper.class).selectCountByUsername(username);
+        }
+    }
+
     public int insert(User user) {
         try (SqlSession session = MyBatisSession.getSession()) {
             UserMapper userMapper = session.getMapper(UserMapper.class);

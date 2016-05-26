@@ -9,14 +9,16 @@ function ajaxForm(url, text, params){
         type: "post",
         url: url,
         data: params,
+        //dataType: "json",
         success: function (data) {
             console.log(data);
-            if(data == "success") {
+            if(data.success){
                 $("#formAlertText").text(text+"成功");
                 $("#formAlert").removeClass("alert-danger");
                 $("#formAlert").addClass("alert-success");
             }else{
-                $("#formAlertText").text(text+"失败");
+                //$("#formAlertText").text(text+"失败");
+                $("#formAlertText").text(data.message);
             }
         },
         error: function () {

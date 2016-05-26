@@ -38,6 +38,12 @@
         from topic_user
         where username = #{username} and password = #{password}
     </select>
+    <select id="selectCountByUsername" parameterType="String" resultType="Integer">
+        select
+        count(*)
+        from topic_user
+        where username=#{username}
+    </select>
     <!--  -->
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select

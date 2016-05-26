@@ -28,16 +28,23 @@ public class PostController {
     CommentsService commentsService = new CommentsService();
 
     @RequestMapping(value="/p", method = RequestMethod.POST)
-    public String create(Post post, HttpSession httpSession){
-        String flag = "error";
+    public Map<String, Object> create(Post post, HttpSession httpSession){
+        Map<String, Object> resultMap = new HashMap<>();
+        boolean success = false;
+        String message = "";
         User user = (User) httpSession.getAttribute("sessionUser");
         if(user != null) {
             post.setUserId(user.getId());
             int n = postService.insert(post);
             if (n > 0)
-                flag = "success";
+                success = true;
+            else message = "发帖失败";
+        }else{
+            message = "请登录后在发帖";
         }
-        return flag;
+        resultMap.put("success", success);
+        resultMap.put("message", message);
+        return resultMap;
     }
 
     @RequestMapping(value="/t/{id}/p/new",method = RequestMethod.GET)

@@ -20,4 +20,6 @@ public interface UserMapper {
     int selectCount();
 
     List<User> selectByUsernameAndPassword(User record);
+
+    int selectCountByUsername(String username);
 }

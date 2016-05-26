@@ -3,6 +3,7 @@ package com.sang.topic.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class Post {
     private Integer id;

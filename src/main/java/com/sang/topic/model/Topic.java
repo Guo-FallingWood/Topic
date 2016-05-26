@@ -1,5 +1,6 @@
 package com.sang.topic.model;
 
+
 public class Topic {
     private Integer id;
 

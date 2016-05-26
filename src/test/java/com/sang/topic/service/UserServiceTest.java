@@ -1,4 +1,4 @@
-package com.sang.topic;
+package com.sang.topic.service;
 
 import com.sang.topic.model.User;
 import com.sang.topic.service.UserService;
@@ -21,6 +21,12 @@ public class UserServiceTest {
     @Before
     public void before() {
         userService = new UserService();
+    }
+
+    @Test
+    public void selectUsername(){
+        int n = userService.getCountByUsername("admin");
+        Assert.assertEquals(n, 1);
     }
 
     @Test

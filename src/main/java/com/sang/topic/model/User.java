@@ -1,5 +1,6 @@
 package com.sang.topic.model;
 
+
 public class User {
     private Integer id;
 
