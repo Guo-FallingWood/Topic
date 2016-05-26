@@ -21,11 +21,10 @@
                         <a href="/p/${post.id}">${post.title}</a>
                     </div>
                     <div class="post-bottom">
-                        作者：<a href="/user/${post.userId}">${post.userUsername}</a>
+                        作者：<a href="/u/${post.userUsername}">${post.userUsername}</a>
                         创建时间：<spring:eval expression="post.createTime"/>
                         最后回复时间：<spring:eval expression="post.lastTime"/>
                     </div>
-
                 </li>
             </c:forEach>
         </div>

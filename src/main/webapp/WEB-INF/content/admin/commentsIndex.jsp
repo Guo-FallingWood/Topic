@@ -21,7 +21,7 @@
             <tr>
                 <td>${comment.id}</td>
                 <td>${comment.content}</td>
-                <th><a href="/user/${comment.userId}">${comment.userUsername}</a></th>
+                <th><a href="/u/${comment.userId}">${comment.userUsername}</a></th>
                 <td>${comment.discard}</td>
                 <td>
                     <a href="">折叠</a>

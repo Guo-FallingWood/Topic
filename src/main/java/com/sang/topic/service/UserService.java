@@ -14,13 +14,12 @@ import java.util.List;
  * Created by arch on 2016/4/19.
  */
 public class UserService {
-    public User valid(String username, String password) {
+    public User getByUsernameAndPassword(String username, String password) {
         try (SqlSession session = MyBatisSession.getSession()) {
             UserMapper userMapper = session.getMapper(UserMapper.class);
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
-
             List<User> list = userMapper.selectByUsernameAndPassword(user);
             if (list != null && !list.isEmpty())
                 return list.get(0);
@@ -44,9 +43,12 @@ public class UserService {
         }
     }
 
-    public int getCountByUsername(String username){
+    public User getByUsername(String username){
         try (SqlSession session = MyBatisSession.getSession()) {
-            return session.getMapper(UserMapper.class).selectCountByUsername(username);
+            List<User> list = session.getMapper(UserMapper.class).selectByUsername(username);
+            if(list != null && list.size() > 0)
+                return list.get(0);
+            return null;
         }
     }
 

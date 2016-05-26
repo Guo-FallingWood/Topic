@@ -22,7 +22,7 @@
             <tr>
                 <td>${post.id}</td>
                 <td><a href="/p/${post.id}">${post.title}</a></td>
-                <th><a href="/user/${post.userId}">${post.userUsername}</a></th>
+                <th><a href="/u/${post.userId}">${post.userUsername}</a></th>
                 <td>${post.discard}</td>
                 <td><a href="post/${post.id}/comments">comment</a></td>
                 <td>

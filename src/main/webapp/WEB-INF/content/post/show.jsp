@@ -11,22 +11,24 @@
 <div class="container">
     <div class="main-bar">
         <jsp:include page="../nav.jsp"/>
+        <%-- 帖子主要内容 --%>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <span>${post.title}</span>
                 <span class="navbar-right">
-                    来自: <a href="/user/${user.id}">${user.username}</a>
+                    来自: <a href="/u/${user.username}">${user.username}</a>
                 </span>
             </div>
             <div class="panel-body">
                 <pre>${post.content}</pre>
             </div>
         </div>
+        <%-- 帖子评论列表 --%>
         <ul class="list-group">
             <c:forEach items="${comments}" varStatus="status" var="comment">
                 <li class="list-group-item">
                     ${status.count}#
-                    <a href="/user/${comment.userId}">${comment.userUsername}</a>:
+                    <a href="/u/${comment.userUsername}">${comment.userUsername}</a>:
                     发表时间：<spring:eval expression="comment.createTime"/>
                     <pre>${comment.content}</pre>
                 </li>

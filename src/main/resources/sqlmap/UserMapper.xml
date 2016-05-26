@@ -44,6 +44,12 @@
         from topic_user
         where username=#{username}
     </select>
+    <select id="selectByUsername" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from topic_user
+        where username=#{username}
+    </select>
     <!--  -->
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select

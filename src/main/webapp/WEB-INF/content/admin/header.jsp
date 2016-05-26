@@ -26,8 +26,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${sessionUser != null}">
-                    <li><a href="/user/${sessionUser.id}">${sessionUser.username}</a></li>
-                    <li><a href="/user/logout">logout</a></li>
+                    <li><a href="/u/${sessionUser.id}">${sessionUser.username}</a></li>
+                    <li><a href="/u/logout">logout</a></li>
                 </c:if>
             </ul>
         </div><!-- /.navbar-collapse -->

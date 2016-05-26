@@ -1,12 +1,11 @@
 package com.sang.topic.service;
 
 import com.sang.topic.model.User;
-import com.sang.topic.service.UserService;
 import com.sang.topic.util.Page;
+import com.sang.topic.util.Security;
 import org.junit.Assert;
-import org.junit.runners.MethodSorters;
 import org.junit.Before;
-import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.List;
 /**
  * Created by arch on 2016/4/19.
  */
-@FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
 public class UserServiceTest {
     UserService userService;
 
@@ -24,14 +22,8 @@ public class UserServiceTest {
     }
 
     @Test
-    public void selectUsername(){
-        int n = userService.getCountByUsername("admin");
-        Assert.assertEquals(n, 1);
-    }
-
-    @Test
     public void valid() {
-        User user = userService.valid("admin", "admin");
+        User user = userService.getByUsernameAndPassword("admin", Security.MD5("admin"));
         Assert.assertNotNull(user);
     }
 
@@ -48,15 +40,22 @@ public class UserServiceTest {
 
     @Test
     public void get() {
-        User user = userService.get(39);
+        User user = userService.get(1);
         Assert.assertNotNull(user);
     }
 
     @Test
-    public void _insert() {
+    public void getByUsername(){
+        User user = userService.getByUsername("admin");
+        Assert.assertNotNull(user);
+    }
+
+    @Ignore
+    @Test
+    public void insert() {
         User user = new User();
         user.setUsername("aaa");
-        user.setPassword("111");
+        user.setPassword(Security.MD5("111"));
         int n = userService.insert(user);
         Assert.assertEquals(n, 1);
     }
@@ -64,7 +63,7 @@ public class UserServiceTest {
     @Test
     public void updateDiscard(){
         User user = new User();
-        user.setId(39);
+        user.setId(1);
         user.setBan(1);
         int n = userService.update(user);
         Assert.assertEquals(n, 1);

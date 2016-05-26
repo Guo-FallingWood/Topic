@@ -2,10 +2,14 @@ package com.sang.topic.controller;
 
 import com.sang.topic.model.User;
 import com.sang.topic.service.UserService;
+import com.sang.topic.util.Security;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +17,7 @@ import java.util.Map;
  * Created by arch on 2016/4/23.
  */
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/u")
 public class UserController {
     UserService userService = new UserService();
 
@@ -22,9 +26,11 @@ public class UserController {
         Map<String, Object> resultMap = new HashMap<>();
         boolean success = false;
         String message = "";
-        int n = userService.getCountByUsername(user.getUsername());
-        if (n == 0) {
-            n = userService.insert(user);
+        User u = userService.getByUsername(user.getUsername());
+        if (u == null) {
+            String newPwd = Security.MD5(user.getPassword());
+            user.setPassword(newPwd);
+            int n = userService.insert(user);
             if (n > 0) {
                 success = true;
             } else {
@@ -41,7 +47,7 @@ public class UserController {
     @RequestMapping(value = "/valid", method = RequestMethod.POST)
     public Map<String, Object> valid(String username, String password, HttpSession httpSession) {
         Map<String, Object> resultMap = new HashMap<>();
-        User u = userService.valid(username, password);
+        User u = userService.getByUsernameAndPassword(username, Security.MD5(password));
         if (u != null) {
             httpSession.setAttribute("sessionUser", u);
             resultMap.put("success", true);
@@ -60,7 +66,7 @@ public class UserController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView logout(HttpSession httpSession) {
         httpSession.invalidate();
-        return new ModelAndView("redirect:/user/login");
+        return new ModelAndView("redirect:/u/login");
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -68,18 +74,22 @@ public class UserController {
         return new ModelAndView("user/editNew");
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public ModelAndView show(@PathVariable Integer userId) {
-        return new ModelAndView("user/show", "user", userService.get(userId));
+    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    public ModelAndView show(@PathVariable String username, HttpServletResponse response)
+            throws IOException {
+        User user = userService.getByUsername(username);
+        if(user == null)
+            response.sendError(404);
+        return new ModelAndView("user/show", "user", user);
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-    public Map<String, Object> update(@PathVariable Integer userId, User user, HttpSession httpSession) {
+    @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
+    public Map<String, Object> update(@PathVariable String username, User user, HttpSession httpSession) {
         Map<String, Object> resultMap = new HashMap<>();
         boolean success = false;
         String message = "";
         User sessionUser = (User) httpSession.getAttribute("sessionUser");
-        if (sessionUser != null && sessionUser.getId() == userId) {
+        if (sessionUser != null && sessionUser.getUsername().equals(username)) {
             int n = userService.update(user);
             if (n > 0) {
                 success = true;
@@ -94,8 +104,8 @@ public class UserController {
         return resultMap;
     }
 
-    @RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
-    public ModelAndView edit(@PathVariable Integer userId) {
-        return new ModelAndView("user/edit", "user", userService.get(userId));
+    @RequestMapping(value = "/{username}/edit", method = RequestMethod.GET)
+    public ModelAndView edit(@PathVariable String username) {
+        return new ModelAndView("user/edit", "user", userService.getByUsername(username));
     }
 }

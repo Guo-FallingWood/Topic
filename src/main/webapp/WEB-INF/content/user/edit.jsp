@@ -31,7 +31,7 @@
             </button>
             <span id="formAlertText"></span>
         </div>
-        <button type="button" onclick="ajaxForm('/user/${user.id}','保存')">保存</button>
+        <button type="button" onclick="ajaxForm('/u/${user.username}','保存')">保存</button>
     </form>
 </div>
 <jsp:include page="../footer.jsp"/>

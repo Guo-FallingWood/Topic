@@ -22,12 +22,12 @@
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
                     <c:when test="${sessionUser==null}">
-                        <a href="/user/login" class="btn btn-default navbar-btn" role="button">sign in</a>
-                        <a href="/user/new" class="btn btn-default navbar-btn" role="button">sign up</a>
+                        <a href="/u/login" class="btn btn-default navbar-btn" role="button">sign in</a>
+                        <a href="/u/new" class="btn btn-default navbar-btn" role="button">sign up</a>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="/user/${sessionUser.id}">${sessionUser.username}</a></li>
-                        <li><a href="/user/logout">logout</a></li>
+                        <li><a href="/u/${sessionUser.username}">${sessionUser.username}</a></li>
+                        <li><a href="/u/logout">logout</a></li>
                     </c:otherwise>
                 </c:choose>
             </ul>

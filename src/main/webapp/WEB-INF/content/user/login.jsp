@@ -30,7 +30,7 @@
             <span id="formAlertText"></span>
         </div>
         <br>
-        <button class="btn btn-default navbar-right" type="button" onclick="ajaxForm('/user/valid','登录')">
+        <button class="btn btn-default navbar-right" type="button" onclick="ajaxForm('/u/valid','登录')">
             登录
         </button>
     </form>

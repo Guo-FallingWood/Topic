@@ -11,7 +11,7 @@
     <p>用户名：${user.username}</p>
     <p>email：${user.email}</p>
     <p>手机号码：${user.phone}</p>
-    <a href="/user/${user.id}/edit">编辑信息</a>
+    <a href="/u/${user.username}/edit">编辑信息</a>
 </div>
 <jsp:include page="../footer.jsp"/>
 </body>

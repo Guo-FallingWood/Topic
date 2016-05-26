@@ -18,11 +18,11 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         User user = (User) request.getSession().getAttribute("sessionUser");
         if(user != null) {
             if(user.getRoleId() != 1){
-                response.sendError(403);
+                response.sendError(404);
             }
             return super.preHandle(request, response, handler);
         }
-        response.sendRedirect("/user/login");
+        response.sendError(404);
         return false;
     }
 
