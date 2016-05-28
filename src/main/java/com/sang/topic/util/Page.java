@@ -3,7 +3,6 @@ package com.sang.topic.util;
 import org.apache.ibatis.session.RowBounds;
 
 /**
- * Created by arch on 2016/4/26.
  * 每次调用set方法自动计算pageNumber
  */
 public class Page {

@@ -10,9 +10,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-/**
- * Created by arch on 2016/4/19.
- */
 public class UserServiceTest {
     UserService userService;
 

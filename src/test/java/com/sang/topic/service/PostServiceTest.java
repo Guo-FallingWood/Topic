@@ -1,17 +1,14 @@
 package com.sang.topic.service;
 
 import com.sang.topic.model.Post;
-import com.sang.topic.service.PostService;
 import com.sang.topic.util.Page;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
 
-/**
- * Created by arch on 2016/4/29.
- */
 public class PostServiceTest {
 
     PostService postService;
@@ -41,6 +38,7 @@ public class PostServiceTest {
         }
     }
 
+    @Ignore
     @Test
     public void insert(){
         Post post = new Post();

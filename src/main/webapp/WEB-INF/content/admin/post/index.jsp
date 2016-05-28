@@ -6,10 +6,10 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<div class="container">
+<jsp:include page="../header.jsp"/>
+<div class="container main-bar">
     <h1>帖子管理</h1>
-    <table class="table">
+    <table class="table table-bordered">
         <tr>
             <th>post id</th>
             <th>title</th>
@@ -24,7 +24,7 @@
                 <td><a href="/p/${post.id}">${post.title}</a></td>
                 <th><a href="/u/${post.userId}">${post.userUsername}</a></th>
                 <td>${post.discard}</td>
-                <td><a href="post/${post.id}/comments">comment</a></td>
+                <td><a href="comments?postId=${post.id}">${post.commentsNumber}</a></td>
                 <td>
                     <a href="">折叠</a>
                     <a href="">显示</a>
@@ -32,7 +32,7 @@
             </tr>
         </c:forEach>
     </table>
-    <jsp:include page="../page.jsp"/>
+    <jsp:include page="../../page.jsp"/>
 </div>
 </body>
 </html>

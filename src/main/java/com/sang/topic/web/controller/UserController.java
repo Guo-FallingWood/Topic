@@ -1,9 +1,8 @@
-package com.sang.topic.controller;
+package com.sang.topic.web.controller;
 
 import com.sang.topic.model.User;
 import com.sang.topic.service.UserService;
 import com.sang.topic.util.Security;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,9 +12,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by arch on 2016/4/23.
- */
 @RestController
 @RequestMapping(value = "/u")
 public class UserController {

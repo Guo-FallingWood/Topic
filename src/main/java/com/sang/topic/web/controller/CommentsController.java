@@ -1,4 +1,4 @@
-package com.sang.topic.controller;
+package com.sang.topic.web.controller;
 
 import com.sang.topic.model.Comments;
 import com.sang.topic.model.User;
@@ -11,9 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by arch on 2016/5/1.
- */
 @RestController
 public class CommentsController {
     CommentsService commentsService = new CommentsService();

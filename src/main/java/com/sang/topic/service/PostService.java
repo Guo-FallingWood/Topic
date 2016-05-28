@@ -10,9 +10,6 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by arch on 2016/4/29.
- */
 public class PostService {
     public List<Post> getByPage(Page page){
         try(SqlSession session = MyBatisSession.getSession()) {

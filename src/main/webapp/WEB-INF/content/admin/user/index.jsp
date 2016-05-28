@@ -6,10 +6,10 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<div class="container">
+<jsp:include page="../header.jsp"/>
+<div class="container main-bar">
     <h1>用户管理</h1>
-    <table class="table">
+    <table class="table table-bordered">
         <tr>
             <th>user id</th>
             <th>username</th>
@@ -17,6 +17,7 @@
             <th>email</th>
             <th>role</th>
             <th>phone</th>
+            <th>ban</th>
             <th>opt</th>
         </tr>
         <c:forEach items="${users}" var="user">
@@ -27,6 +28,7 @@
                 <td>${user.email}</td>
                 <td>${user.roleId}</td>
                 <td>${user.phone}</td>
+                <td><c:if test="${user.ban==1}">禁言</c:if></td>
                 <td>
                     <a href="">禁用</a>
                     <a href="">解禁</a>
@@ -34,7 +36,7 @@
             </tr>
         </c:forEach>
     </table>
-    <jsp:include page="../page.jsp"/>
+    <jsp:include page="../../page.jsp"/>
 </div>
 </body>
 </html>

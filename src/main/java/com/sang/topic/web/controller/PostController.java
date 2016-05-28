@@ -1,4 +1,4 @@
-package com.sang.topic.controller;
+package com.sang.topic.web.controller;
 
 import com.sang.topic.model.Post;
 import com.sang.topic.model.Topic;
@@ -17,9 +17,6 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by arch on 2016/4/29.
- */
 @RestController
 public class PostController {
     PostService postService = new PostService();
@@ -47,9 +44,9 @@ public class PostController {
         return resultMap;
     }
 
-    @RequestMapping(value="/t/{id}/p/new",method = RequestMethod.GET)
-    public ModelAndView editNewPost(@PathVariable Integer id){
-        Topic topic = topicService.get(id);
+    @RequestMapping(value="/p/new",method = RequestMethod.GET)
+    public ModelAndView editNewPost(Integer topicId){
+        Topic topic = topicService.get(topicId);
         Map<String, Object> map = new HashMap<>();
         map.put("topic", topic);
         return new ModelAndView("post/editNew", map);

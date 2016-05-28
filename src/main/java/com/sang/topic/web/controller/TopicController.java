@@ -1,4 +1,4 @@
-package com.sang.topic.controller;
+package com.sang.topic.web.controller;
 
 import com.sang.topic.model.Post;
 import com.sang.topic.model.Topic;
@@ -14,9 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by arch on 2016/4/23.
- */
 @RestController
 public class TopicController {
 

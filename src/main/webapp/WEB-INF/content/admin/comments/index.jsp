@@ -6,10 +6,10 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<div class="container">
+<jsp:include page="../header.jsp"/>
+<div class="container main-bar">
     <h1>评论管理</h1>
-    <table class="table">
+    <table class="table table-bordered">
         <tr>
             <th>comment id</th>
             <th>content</th>
@@ -30,7 +30,7 @@
             </tr>
         </c:forEach>
     </table>
-    <jsp:include page="../page.jsp"/>
+    <jsp:include page="../../page.jsp"/>
 </div>
 </body>
 </html>

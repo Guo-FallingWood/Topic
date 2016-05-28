@@ -5,9 +5,6 @@ import org.junit.Test;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by arch on 2016/5/12.
- */
 public class SecurityTest {
 
     @Test

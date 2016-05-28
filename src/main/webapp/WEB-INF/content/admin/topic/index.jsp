@@ -6,10 +6,10 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<div class="container">
+<jsp:include page="../header.jsp"/>
+<div class="container main-bar">
     <h1>话题管理</h1>
-    <table class="table">
+    <table class="table table-bordered">
         <tr>
             <th>topic id</th>
             <th>name</th>

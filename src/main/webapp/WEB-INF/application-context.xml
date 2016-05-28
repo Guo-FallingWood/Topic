@@ -19,7 +19,8 @@
     <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 
     <!-- 扫描组件包 -->
-    <context:component-scan base-package="com.sang.topic.controller"/>
+    <context:component-scan base-package="com.sang.topic.web.controller"/>
+    <context:component-scan base-package="com.sang.topic.admin.controller"/>
 
     <!-- 设置静态资源 -->
     <mvc:resources mapping="/**" location="resource"/>
@@ -44,8 +45,9 @@
     <mvc:interceptors>
         <!-- 后台拦截器 -->
         <mvc:interceptor>
-            <mvc:mapping path="/admin/**"/>
-            <bean class="com.sang.topic.interceptor.PermissionInterceptor"/>
+            <!-- 调试时关闭 -->
+            <mvc:mapping path="/admin/a/**"/>
+            <bean class="com.sang.topic.admin.interceptor.PermissionInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

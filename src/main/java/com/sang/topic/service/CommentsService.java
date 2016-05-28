@@ -12,9 +12,6 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by arch on 2016/5/1.
- */
 public class CommentsService {
 
     public List<Comments> getCommentsByPostId(Integer postId) {

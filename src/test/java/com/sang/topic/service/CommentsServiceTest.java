@@ -1,17 +1,14 @@
 package com.sang.topic.service;
 
 import com.sang.topic.model.Comments;
-import com.sang.topic.service.CommentsService;
 import com.sang.topic.util.Page;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
 
-/**
- * Created by arch on 2016/5/1.
- */
 public class CommentsServiceTest {
     CommentsService commentsService;
 
@@ -29,10 +26,11 @@ public class CommentsServiceTest {
     @Test
     public void getCommentsByPostIdAndPage() {
         Page page = new Page();
-        List<Comments> list = commentsService.getCommentsByPostIdAndPage(1, page);
+        List<Comments> list = commentsService.getCommentsByPostIdAndPage(64, page);
         System.out.println(list.size());
     }
 
+    @Ignore
     @Test
     public void insertComments() {
         Comments comments = new Comments();

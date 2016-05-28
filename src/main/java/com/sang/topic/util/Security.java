@@ -3,9 +3,6 @@ package com.sang.topic.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by arch on 2016/5/26.
- */
 public class Security {
     public static String MD5(String md5){
         try {

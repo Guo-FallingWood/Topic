@@ -6,5 +6,8 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
+<div class="container jumbotron">
+    <h1>Topic Admin</h1>
+</div>
 </body>
 </html>
