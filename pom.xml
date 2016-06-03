@@ -24,6 +24,7 @@
 
     <properties>
         <junit.version>4.12</junit.version>
+        <commons-fileupload.version>1.3.2</commons-fileupload.version>
         <spring.version>4.2.6.RELEASE</spring.version>
         <mybatis.version>3.4.0</mybatis.version>
         <mysql.version>5.1.38</mysql.version>
@@ -38,7 +39,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -53,6 +53,11 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${servlet-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

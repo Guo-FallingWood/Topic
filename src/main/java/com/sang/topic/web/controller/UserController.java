@@ -86,6 +86,7 @@ public class UserController {
         String message = "";
         User sessionUser = (User) httpSession.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getUsername().equals(username)) {
+            user.setId(sessionUser.getId());
             int n = userService.update(user);
             if (n > 0) {
                 success = true;

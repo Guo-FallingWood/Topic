@@ -8,11 +8,18 @@ pre {
     border: 0px;
 }
 .edit-bar {
-    width: 500px;
+    width: 70%;
     padding: 30px 70px;
-    border: 1px solid #cccccc;
     border-radius: 6px;
     background: #fff;
+}
+.edit-bar img{
+    width: 200px;
+    height: 200px;
+    border: 2px #000 solid;
+}
+.edit-bar input{
+    width: 300px;
 }
 .main-bar{
     float: left;
@@ -33,9 +40,41 @@ pre {
     /*height: 70px;*/
     /*background: #fff;*/
 }
+/* user-show页面 */
 .user-show{
     background: #fff;
-    padding: 50px 100px;
+    padding: 20px 40px;
+    float: left;
+    width: 70%;
+}
+.user-show-top{
+
+}
+.user-show-top h1{
+    text-align: center;
+}
+.user-show-left{
+    width: 240px;
+    float: left;
+    height: 240px;
+}
+.user-show-left a{
+    text-align: center;
+}
+.user-show-left img{
+    width: 200px;
+    height: 200px;
+    border: 2px #000 solid;
+}
+.user-show-right{
+    /*float: right;*/
+    padding: 20px;
+    margin-left: 100px;
+    min-height: 240px;
+}
+.user-show-bottom{
+    width: 100%;
+    /*background: #ccc;*/
 }
 /* POST列表项 */
 .post-list{

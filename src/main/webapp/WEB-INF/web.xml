@@ -15,7 +15,6 @@
         <param-value/>
     </context-param>
 
-
     <filter>
         <filter-name>hiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>

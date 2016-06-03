@@ -8,31 +8,33 @@
 <body>
 <jsp:include page="../header.jsp"/>
 
-<div class="edit-bar container">
+<div class="container edit-bar">
     <h1>编辑个人信息 - ${user.username}</h1>
-    <form id="ajaxForm" >
-        <input type="hidden" name="_method" value="put">
-        <input type="hidden" name="id" value="${user.id}" readonly="readonly"><br>
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">email</span>
-            <input type="text" name="email" value="${user.email}" class="form-control" placeholder=""
-                   aria-describedby="basic-addon1">
+    <form id="photoForm" action="/photo/upload" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <div class="">
+                <img src="/resource/upload/photo/${user.photo}"><br>
+                原头像
+            </div>
+            <input name="photo" type="file" style="float: left;">
+            <button type="submit">保存头像</button>
         </div>
-        <br>
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon2">手机号码</span>
-            <input type="text" name="phone" value="${user.phone}" class="form-control" placeholder=""
-                   aria-describedby="basic-addon2">
-        </div>
-        <br>
-        <div id="formAlert" class="alert alert-danger hidden" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <span id="formAlertText"></span>
-        </div>
-        <button type="button" onclick="ajaxForm('/u/${user.username}','保存')">保存</button>
     </form>
+    <form id="ajaxForm">
+        <input type="hidden" name="_method" value="put">
+        <div class="form-group">
+            <label for="email">email</label>
+            <input type="text" id="email" name="email" value="${user.email}" class="form-control" placeholder="email"/>
+        </div>
+        <div class="form-group">
+            <label for="phone">手机号码</label>
+            <input type="text" id="phone" name="phone" value="${user.phone}" class="form-control" placeholder="phone"/>
+        </div>
+        <button class="btn btn-default" type="button" onclick="ajaxForm('/u/${user.username}','保存')">保存</button>
+    </form>
+    <div id="formAlert" class="alert alert-danger hidden" role="alert">
+        <span id="formAlertText"></span>
+    </div>
 </div>
 <jsp:include page="../footer.jsp"/>
 </body>

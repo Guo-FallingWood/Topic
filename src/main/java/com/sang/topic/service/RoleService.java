@@ -7,9 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
-/**
- * Created by arch on 2016/5/8.
- */
 public class RoleService {
 
     public List<Role> getAll(){

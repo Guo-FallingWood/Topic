@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
-
 public class TopicService {
     public List<Topic> getAll() {
         try(SqlSession session = MyBatisSession.getSession()){

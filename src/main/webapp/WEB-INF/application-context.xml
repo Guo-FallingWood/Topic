@@ -14,16 +14,31 @@
     <!-- 注解驱动 -->
     <mvc:annotation-driven />
 
-
-    <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
-    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-
     <!-- 扫描组件包 -->
     <context:component-scan base-package="com.sang.topic.web.controller"/>
     <context:component-scan base-package="com.sang.topic.admin.controller"/>
 
     <!-- 设置静态资源 -->
     <mvc:resources mapping="/**" location="resource"/>
+
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 后台拦截器 -->
+        <mvc:interceptor>
+            <!-- 调试中，调试后下面地址改为 /admin/** -->
+            <mvc:mapping path="/admin/a/**"/>
+            <bean class="com.sang.topic.admin.interceptor.PermissionInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- Controller返回model或map类型 -->
+    <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+
+    <!-- 文件上传配置 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="500000"/>
+    </bean>
 
     <!-- 配置view前后缀 -->
     <bean id="viewResolver"
@@ -33,21 +48,8 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!-- 可访问资源文件 -->
-    <!--<mvc:default-servlet-handler/>-->
-
     <!-- 日期格式化 -->
     <bean id="conversionService"
          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
     </bean>
-    
-    <!-- 拦截器 -->
-    <mvc:interceptors>
-        <!-- 后台拦截器 -->
-        <mvc:interceptor>
-            <!-- 调试时关闭 -->
-            <mvc:mapping path="/admin/a/**"/>
-            <bean class="com.sang.topic.admin.interceptor.PermissionInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
 </beans>

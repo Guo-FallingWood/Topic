@@ -12,11 +12,21 @@ public class User {
 
     private String phone;
 
+    private String photo;
+
     private Integer roleId;
 
     private Integer ban;
 
     private Role role;
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
 
     public void setRole(Role role) {
         this.role = role;
