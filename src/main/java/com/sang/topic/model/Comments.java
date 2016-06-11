@@ -1,15 +1,6 @@
 package com.sang.topic.model;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.sang.topic.format.annotation.TopicDateFormat;
-=======
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
-=======
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
-=======
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -28,20 +19,8 @@ public class Comments {
     private String userUsername;
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 //    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     @TopicDateFormat
-=======
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
-=======
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
-=======
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
     private Date createTime;
 
     public Integer getId() {

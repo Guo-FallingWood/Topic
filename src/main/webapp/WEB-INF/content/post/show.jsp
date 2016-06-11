@@ -16,16 +16,7 @@
             <div class="panel-heading">
                 <span>${post.title}</span>
                 <span class="navbar-right">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                     创建时间：<spring:eval expression="post.createTime"/>
-=======
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
-=======
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
-=======
->>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
                     来自: <a href="/u/${user.username}">${user.username}</a>
                 </span>
             </div>
