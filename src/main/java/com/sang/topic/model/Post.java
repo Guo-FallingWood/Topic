@@ -2,6 +2,7 @@ package com.sang.topic.model;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.sang.topic.format.annotation.TopicDateFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,11 +10,16 @@ import java.util.Date;
 =======
 =======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+=======
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+=======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 =======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
@@ -37,6 +43,7 @@ public class Post {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     @TopicDateFormat
     private Date createTime;
@@ -46,11 +53,16 @@ public class Post {
 =======
 =======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+=======
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private Date createTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+=======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 =======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120

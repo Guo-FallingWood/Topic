@@ -14,7 +14,11 @@
     <!-- 注解驱动 -->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <mvc:annotation-driven conversion-service="conversionService"/>
+=======
+    <mvc:annotation-driven />
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 =======
     <mvc:annotation-driven />
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
@@ -41,6 +45,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatterRegistrars">
             <set>
@@ -52,6 +57,11 @@
     <!-- Controller返回model或map类型 -->
     <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>-->
     <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
+=======
+    <!-- Controller返回model或map类型 -->
+    <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 =======
     <!-- Controller返回model或map类型 -->
     <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
@@ -77,7 +87,10 @@
     </bean>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 =======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 
@@ -86,6 +99,9 @@
          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
     </bean>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+=======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
 =======
 >>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
