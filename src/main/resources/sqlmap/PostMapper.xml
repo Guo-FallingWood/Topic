@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sang.topic.mapper.PostMapper" >
+  <resultMap id="BaseResultMap" type="com.sang.topic.model.Post" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="topic_id" property="topicId" jdbcType="INTEGER" />
+    <result column="discard" property="discard" jdbcType="INTEGER" />
+    <result column="user_username" property="userUsername" jdbcType="VARCHAR" />
+    <result column="comments_number" property="commentsNumber" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, content, user_id, topic_id, discard, user_username, comments_number, create_time, 
+    last_time
+  </sql>
+  <!--  -->
+  <select id="selectCount" resultType="java.lang.Integer" >
+    SELECT COUNT(*)
+    FROM topic_post
+  </select>
+  <select id="selectCountByTopic" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    SELECT COUNT(*)
+    FROM topic_post
+    WHERE topic_id = #{id}
+  </select>
+  <select id="selectPostByPage" resultMap="BaseResultMap" resultSetType="SCROLL_SENSITIVE"
+          parameterType="com.sang.topic.model.Post">
+    SELECT *
+    FROM topic_post
+    ORDER BY last_time DESC
+  </select>
+  <select id="selectPostByTopicAndPage" resultMap="BaseResultMap" resultSetType="SCROLL_SENSITIVE"
+          parameterType="com.sang.topic.model.Post">
+    SELECT *
+    FROM topic_post
+    WHERE topic_id = #{topic_id}
+    ORDER BY last_time DESC
+  </select>
+  <update id="updateCommentsNumberByPrimaryKey" parameterType="Integer">
+    UPDATE topic_post
+    SET comments_number = comments_number+1
+    WHERE id = #{id}
+  </update>
+  <!--  -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic_post
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from topic_post
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sang.topic.model.Post" >
+    insert into topic_post (id, title, content, 
+      user_id, topic_id, discard, 
+      user_username, comments_number, create_time, 
+      last_time)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{discard,jdbcType=INTEGER}, 
+      #{userUsername,jdbcType=VARCHAR}, #{commentsNumber,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sang.topic.model.Post" >
+    insert into topic_post
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="discard != null" >
+        discard,
+      </if>
+      <if test="userUsername != null" >
+        user_username,
+      </if>
+      <if test="commentsNumber != null" >
+        comments_number,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastTime != null" >
+        last_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="discard != null" >
+        #{discard,jdbcType=INTEGER},
+      </if>
+      <if test="userUsername != null" >
+        #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="commentsNumber != null" >
+        #{commentsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sang.topic.model.Post" >
+    update topic_post
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        topic_id = #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="discard != null" >
+        discard = #{discard,jdbcType=INTEGER},
+      </if>
+      <if test="userUsername != null" >
+        user_username = #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="commentsNumber != null" >
+        comments_number = #{commentsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastTime != null" >
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sang.topic.model.Post" >
+    update topic_post
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      topic_id = #{topicId,jdbcType=INTEGER},
+      discard = #{discard,jdbcType=INTEGER},
+      user_username = #{userUsername,jdbcType=VARCHAR},
+      comments_number = #{commentsNumber,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_time = #{lastTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

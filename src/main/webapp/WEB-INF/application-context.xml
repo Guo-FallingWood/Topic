@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 注解驱动 -->
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <mvc:annotation-driven conversion-service="conversionService"/>
+=======
+    <mvc:annotation-driven />
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+=======
+    <mvc:annotation-driven />
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+
+    <!-- 扫描组件包 -->
+    <context:component-scan base-package="com.sang.topic.web.controller"/>
+    <context:component-scan base-package="com.sang.topic.admin.controller"/>
+
+    <!-- 设置静态资源 -->
+    <mvc:resources mapping="/**" location="resource"/>
+
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 后台拦截器 -->
+        <mvc:interceptor>
+            <!-- 调试中，调试后下面地址改为 /admin/** -->
+            <mvc:mapping path="/admin/a/**"/>
+            <bean class="com.sang.topic.admin.interceptor.PermissionInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatterRegistrars">
+            <set>
+                <bean class="com.sang.topic.format.datetime.TopicDateFormatterRegistrar"/>
+            </set>
+        </property>
+    </bean>
+
+    <!-- Controller返回model或map类型 -->
+    <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>-->
+    <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
+=======
+    <!-- Controller返回model或map类型 -->
+    <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+=======
+    <!-- Controller返回model或map类型 -->
+    <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+
+    <!-- 文件上传配置 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="500000"/>
+    </bean>
+
+    <!-- 配置view前后缀 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/content/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+
+    <!-- 日期格式化 -->
+    <bean id="conversionService"
+         class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    </bean>
+<<<<<<< HEAD
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+=======
+>>>>>>> 315a87405659f35f4521fbd4db8650f79cc56120
+</beans>
