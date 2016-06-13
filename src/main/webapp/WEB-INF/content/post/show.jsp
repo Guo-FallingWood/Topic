@@ -41,13 +41,10 @@
             </div>
             <div class="panel-body">
                 <form id="ajaxForm">
+                    <input name="post_id" value="${post.id}" type="hidden">
                     <textarea name="content" class="form-control" rows="5"></textarea>
-                    <div id="formAlert" class="alert alert-danger hidden" role="alert">
-                        <input type="hidden" name="postId" value="${post.id}">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <span id="formAlertText"></span>
-                    </div>
-                    <button type="button" onclick="ajaxForm('/c','回复')">回复</button>
+                    <div id="formAlert" class="alert hidden" role="alert"></div>
+                    <button type="button" onclick="ajaxForm('/c')">回复</button>
                 </form>
             </div>
         </div>

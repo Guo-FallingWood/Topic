@@ -1,13 +1,19 @@
 package com.sang.topic.model;
 
+import org.hibernate.validator.constraints.Email;
+
+import javax.validation.constraints.Size;
 
 public class User {
     private Integer id;
 
+    @Size(max = 16, min = 6)
     private String username;
 
+    @Size(max = 16, min = 6)
     private String password;
 
+    @Email
     private String email;
 
     private String phone;

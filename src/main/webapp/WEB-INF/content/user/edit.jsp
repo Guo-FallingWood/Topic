@@ -30,11 +30,9 @@
             <label for="phone">手机号码</label>
             <input type="text" id="phone" name="phone" value="${user.phone}" class="form-control" placeholder="phone"/>
         </div>
-        <button class="btn btn-default" type="button" onclick="ajaxForm('/u/${user.username}','保存')">保存</button>
+        <div id="formAlert" class="alert hidden" role="alert"></div>
+        <button class="btn btn-default" type="button" onclick="ajaxForm('/u/${user.username}')">保存</button>
     </form>
-    <div id="formAlert" class="alert alert-danger hidden" role="alert">
-        <span id="formAlertText"></span>
-    </div>
 </div>
 <jsp:include page="../footer.jsp"/>
 </body>

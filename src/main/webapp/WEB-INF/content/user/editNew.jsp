@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,33 +9,34 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <div class="edit-bar container">
-    <h2>注册</h2>
-    <form id="ajaxForm" action="" method="post">
-        <br>
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Username</span>
-            <input type="text" name="username" class="form-control" placeholder="Username"
-                   aria-describedby="basic-addon1">
+    <h2 style="text-align: center">用户注册</h2>
+    <br>
+    <spring:url value="/u" var="formUrl"/>
+    <form:form modelAttribute="user" id="add-user" class="form-horizontal">
+        <div class="form-group" id="username">
+            <label class="col-md-4 control-label">用户名</label>
+            <div class="col-md-4">
+                <form:input path="username" cssClass="form-control"/>
+            </div>
+            <span class="col-md-4 help-inline"><form:errors path="username"/></span>
         </div>
-        <br>
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon2">Password</span>
-            <input type="password" name="password" class="form-control" placeholder="Password"
-                   aria-describedby="basic-addon2">
+        <div class="form-group" id="password">
+            <label class="col-md-4 control-label">密码</label>
+            <div class="col-md-4">
+                <form:password path="password" cssClass="form-control"/>
+            </div>
+            <span class="col-md-4 help-inline"><form:errors path="password"/></span>
         </div>
-        <br>
-        <div id="formAlert" class="alert alert-danger hidden" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <span id="formAlertText"></span>
+        <div id="formAlert" class="alert hidden" role="alert"></div>
+        <div class="col-md-12">
+            <span class="col-md-7"></span>
+            <input class="btn btn-default" type="submit" value="注册"/>
         </div>
-        <br>
-        <button class="btn btn-default navbar-right" type="button" onclick="ajaxForm('/u','注册')">
-            注册
-        </button>
-    </form>
+    </form:form>
 </div>
 <jsp:include page="../footer.jsp"/>
+<script>
+    $(document).ready(dataBind("add-user", '${formUrl}'));
+</script>
 </body>
 </html>

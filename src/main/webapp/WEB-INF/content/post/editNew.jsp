@@ -17,11 +17,8 @@
             <label class="control-label">文章内容</label>
             <textarea name="content" id="" cols="" rows="10" class="form-control"></textarea>
             <br>
-            <div id="formAlert" class="alert alert-danger hidden" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <span id="formAlertText"></span>
-            </div>
-            <button type="button" class="btn btn-default" onclick="ajaxForm('/p','发表')">发表</button>
+            <div id="formAlert" class="alert hidden" role="alert"></div>
+            <button type="button" class="btn btn-default" onclick="ajaxForm('/p')">发表</button>
         </form>
     </div>
     <%--<jsp:include page="../sidebar.jsp"/>--%>

@@ -8,31 +8,34 @@
 <jsp:include page="../header.jsp"/>
 
 <div class="edit-bar container">
-    <form id="ajaxForm" action="" method="post">
-        <h2>登录</h2>
+    <form id="ajaxForm" action="" method="post" class="form-horizontal">
+        <h2 style="text-align: center">登录</h2>
         <br>
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Username</span>
-            <input type="text" name="username" class="form-control" placeholder="Username"
-                   aria-describedby="basic-addon1">
+        <div class="form-group">
+            <label class="col-md-4 control-label">用户名</label>
+            <div class="col-md-4">
+                <input name="username" type="text" class="form-control"/>
+            </div>
         </div>
-        <br>
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon2">Password</span>
-            <input type="password" name="password" class="form-control" placeholder="Password"
-                   aria-describedby="basic-addon2">
+        <div class="form-group">
+            <label class="col-md-4 control-label">密码</label>
+            <div class="col-md-4">
+                <input name="password" type="password" class="form-control"/>
+            </div>
         </div>
-        <br>
-        <div id="formAlert" class="alert alert-danger hidden" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <span id="formAlertText"></span>
+        <div class="form-group">
+            <div class="col-md-4"></div>
+            <div class="col-sm-8">
+                <div class="checkbox">
+                    <label><input type="checkbox">记住密码</label>
+                </div>
+            </div>
         </div>
-        <br>
-        <button class="btn btn-default navbar-right" type="button" onclick="ajaxForm('/u/valid','登录')">
-            登录
-        </button>
+        <div id="formAlert" class="alert hidden" role="alert"></div>
+        <div class="col-md-12">
+            <span class="col-md-7"></span>
+            <button class="btn btn-default" type="button" onclick="ajaxForm('/u/valid')">登录</button>
+        </div>
     </form>
 </div>
 

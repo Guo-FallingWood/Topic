@@ -7,6 +7,12 @@ pre {
     background: #ffffff;
     border: 0px;
 }
+.error {
+    color: red;
+}
+.right{
+    color: green;
+}
 .edit-bar {
     width: 70%;
     padding: 30px 70px;
@@ -17,9 +23,6 @@ pre {
     width: 200px;
     height: 200px;
     border: 2px #000 solid;
-}
-.edit-bar input{
-    width: 300px;
 }
 .main-bar{
     float: left;

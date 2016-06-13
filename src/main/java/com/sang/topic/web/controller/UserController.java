@@ -1,43 +1,53 @@
 package com.sang.topic.web.controller;
 
+import com.sang.topic.util.ErrorMessage;
 import com.sang.topic.model.User;
 import com.sang.topic.service.UserService;
 import com.sang.topic.util.Security;
+import com.sang.topic.util.ValidationResponse;
+import org.apache.log4j.Logger;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/u")
 public class UserController {
     UserService userService = new UserService();
+    Logger logger = Logger.getLogger(UserController.class);
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Map<String, Object> create(User user) {
-        Map<String, Object> resultMap = new HashMap<>();
-        boolean success = false;
-        String message = "";
-        User u = userService.getByUsername(user.getUsername());
-        if (u == null) {
-            String newPwd = Security.MD5(user.getPassword());
-            user.setPassword(newPwd);
-            int n = userService.insert(user);
-            if (n > 0) {
-                success = true;
+    public ValidationResponse create(@Valid User user, BindingResult bindingResult) {
+        ValidationResponse response = new ValidationResponse();
+        List<ErrorMessage> errorMessages = new ArrayList<>();
+        if(bindingResult.hasErrors()) {
+            bindingResult.getFieldErrors().forEach(
+                    fieldError -> errorMessages.add(
+                            new ErrorMessage(fieldError.getField(), fieldError.getDefaultMessage())));
+        }else{
+            User u = userService.getByUsername(user.getUsername());
+            if (u == null) {
+                String newPwd = Security.MD5(user.getPassword());
+                user.setPassword(newPwd);
+                int n = userService.insert(user);
+                if (n > 0) {
+                    response.setStatus("SUCCESS");
+                }
             } else {
-                message = "注册失败,原因不明";
+                errorMessages.add(new ErrorMessage("username", "用户名重复"));
             }
-        } else {
-            message = "用户名重复";
         }
-        resultMap.put("success", success);
-        resultMap.put("message", message);
-        return resultMap;
+        response.setErrors(errorMessages);
+        return response;
     }
 
     @RequestMapping(value = "/valid", method = RequestMethod.POST)
@@ -67,7 +77,9 @@ public class UserController {
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public ModelAndView editNew() {
-        return new ModelAndView("user/editNew");
+        ModelAndView modelAndView = new ModelAndView("user/editNew");
+        modelAndView.addObject("user", new User());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
@@ -80,7 +92,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
-    public Map<String, Object> update(@PathVariable String username, User user, HttpSession httpSession) {
+    public Map<String, Object> update(@PathVariable String username, @Valid User user,
+                                      BindingResult bindingResult, HttpSession httpSession) {
         Map<String, Object> resultMap = new HashMap<>();
         boolean success = false;
         String message = "";
@@ -98,6 +111,10 @@ public class UserController {
         }
         resultMap.put("success", success);
         resultMap.put("message", message);
+        if(bindingResult.hasErrors()){
+            bindingResult.getAllErrors()
+                    .forEach(error->System.out.println(error.getDefaultMessage()));
+        }
         return resultMap;
     }
 

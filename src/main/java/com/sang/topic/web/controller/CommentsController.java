@@ -16,10 +16,13 @@ public class CommentsController {
     CommentsService commentsService = new CommentsService();
 
     @RequestMapping(value = "/c", method = RequestMethod.POST)
-    public Map<String, Object> create(Comments comments, HttpSession httpSession){
+    public Map<String, Object> create(String content, Integer post_id, HttpSession httpSession){
         Map<String, Object> resultMap = new HashMap<>();
         boolean success = false;
         String message = "";
+        Comments comments = new Comments();
+        comments.setContent(content);
+        comments.setPostId(post_id);
         User user = (User) httpSession.getAttribute("sessionUser");
         if(user != null) {
             comments.setUserId(user.getId());
