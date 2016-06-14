@@ -3,7 +3,7 @@ package com.sang.topic.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Security {
+public class SecurityUtil {
     public static String MD5(String md5){
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

@@ -1,8 +1,8 @@
 package com.sang.topic.service;
 
 import com.sang.topic.model.User;
-import com.sang.topic.util.Page;
-import com.sang.topic.util.Security;
+import com.sang.topic.model.support.Page;
+import com.sang.topic.util.SecurityUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -20,7 +20,7 @@ public class UserServiceTest {
 
     @Test
     public void valid() {
-        User user = userService.getByUsernameAndPassword("admin", Security.MD5("admin"));
+        User user = userService.getByUsernameAndPassword("admin", SecurityUtil.MD5("admin"));
         Assert.assertNotNull(user);
     }
 
@@ -52,7 +52,7 @@ public class UserServiceTest {
     public void insert() {
         User user = new User();
         user.setUsername("aaa");
-        user.setPassword(Security.MD5("111"));
+        user.setPassword(SecurityUtil.MD5("111"));
         int n = userService.insert(user);
         Assert.assertEquals(n, 1);
     }

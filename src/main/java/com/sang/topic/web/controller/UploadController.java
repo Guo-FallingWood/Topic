@@ -2,7 +2,7 @@ package com.sang.topic.web.controller;
 
 import com.sang.topic.model.User;
 import com.sang.topic.service.UserService;
-import com.sang.topic.util.AjaxResultMap;
+import com.sang.topic.model.support.AjaxResultMap;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.bind.annotation.RequestMapping;

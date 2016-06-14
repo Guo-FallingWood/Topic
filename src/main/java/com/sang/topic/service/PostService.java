@@ -4,7 +4,7 @@ import com.sang.topic.mapper.PostMapper;
 import com.sang.topic.mapper.UserMapper;
 import com.sang.topic.model.Post;
 import com.sang.topic.util.MyBatisSession;
-import com.sang.topic.util.Page;
+import com.sang.topic.model.support.Page;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Date;

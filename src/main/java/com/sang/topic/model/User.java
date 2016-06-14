@@ -2,20 +2,22 @@ package com.sang.topic.model;
 
 import org.hibernate.validator.constraints.Email;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class User {
     private Integer id;
 
-    @Size(max = 16, min = 6)
+    @Size(max = 16, min = 5)
     private String username;
 
-    @Size(max = 16, min = 6)
+    @Size(max = 16, min = 5)
     private String password;
 
     @Email
     private String email;
 
+    @Pattern(regexp = "^[\\d-]*$", message = "只允许数字和下划线")
     private String phone;
 
     private String photo;

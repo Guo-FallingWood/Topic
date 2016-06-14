@@ -1,4 +1,4 @@
-package com.sang.topic.util;
+package com.sang.topic.model.support;
 
 import org.apache.ibatis.session.RowBounds;
 

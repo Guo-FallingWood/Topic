@@ -24,8 +24,10 @@
                 <td>${topic.url}</td>
                 <td>${topic.close}</td>
                 <td>
-                    <button onclick="ajaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:1})">关闭</button>
-                    <button onclick="ajaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:0})">开放</button>
+                    <%--<button onclick="ajaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:1})">关闭</button>--%>
+                    <%--<button onclick="ajaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:0})">开放</button>--%>
+                    <button class="btn btn-default">关闭</button>
+                    <button class="btn btn-default">开放</button>
                 </td>
             </tr>
         </c:forEach>

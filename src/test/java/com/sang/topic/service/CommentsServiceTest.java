@@ -1,7 +1,7 @@
 package com.sang.topic.service;
 
 import com.sang.topic.model.Comments;
-import com.sang.topic.util.Page;
+import com.sang.topic.model.support.Page;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;

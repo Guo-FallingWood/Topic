@@ -4,7 +4,7 @@ import com.sang.topic.model.Post;
 import com.sang.topic.model.Topic;
 import com.sang.topic.service.PostService;
 import com.sang.topic.service.TopicService;
-import com.sang.topic.util.Page;
+import com.sang.topic.model.support.Page;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -22,12 +22,12 @@
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
                     <c:when test="${sessionUser==null}">
-                        <a href="/u/login" class="btn btn-default navbar-btn" role="button">sign in</a>
-                        <a href="/u/new" class="btn btn-default navbar-btn" role="button">sign up</a>
+                        <a href="/u/login" class="btn btn-default navbar-btn" role="button">登录</a>
+                        <a href="/u/new" class="btn btn-default navbar-btn" role="button">注册</a>
                     </c:when>
                     <c:otherwise>
                         <li><a href="/u/${sessionUser.username}">${sessionUser.username}</a></li>
-                        <li><a href="/u/logout">logout</a></li>
+                        <li><a href="/u/logout">退出登录</a></li>
                     </c:otherwise>
                 </c:choose>
             </ul>

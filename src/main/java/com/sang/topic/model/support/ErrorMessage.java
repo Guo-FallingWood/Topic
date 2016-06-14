@@ -1,9 +1,9 @@
-package com.sang.topic.util;
+package com.sang.topic.model.support;
 
 public class ErrorMessage {
 	private String fieldName;
 	private String message;
-	
+
 	public ErrorMessage(String fieldName, String message) {
 		this.fieldName = fieldName;
 		this.message = message;

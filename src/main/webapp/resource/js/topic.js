@@ -5,9 +5,9 @@ function ajaxForm(url, params, formAlertId) {
     if (formAlertId == undefined)
         $formAlert = $("#formAlert");
     else
-        $formAlert = $("#"+formAlertId);
+        $formAlert = $("#" + formAlertId);
     $formAlert.removeClass("hidden");
-    console.log("params:"+params);
+    console.log("params:" + params);
     $.ajax({
         type: "post",
         url: url,
@@ -60,14 +60,16 @@ function dataBind(formId, jsonUrl) {
             $form.find('.form-group').removeClass('error');
             $form.find('.help-inline').empty();
 
+            console.log(response);
+
             if (response.status == "SUCCESS") {
-                console.log("success");
                 var $formAlert = $("#formAlert");
                 $formAlert.removeClass("hidden");
                 $formAlert.addClass("alert-success");
                 $formAlert.text("成功");
 
                 $form.unbind('submit');
+                return false;
             } else {
                 for (var i = 0; response.errors != null && i < response.errors.length; i++) {
                     var item = response.errors[i];
@@ -77,7 +79,6 @@ function dataBind(formId, jsonUrl) {
                 }
             }
         }, 'json');
-
         e.preventDefault();
         return false;
     });

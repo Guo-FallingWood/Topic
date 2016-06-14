@@ -12,7 +12,7 @@
     <h2 style="text-align: center">用户注册</h2>
     <br>
     <spring:url value="/u" var="formUrl"/>
-    <form:form modelAttribute="user" id="add-user" class="form-horizontal">
+    <form:form modelAttribute="user" id="user-add" class="form-horizontal">
         <div class="form-group" id="username">
             <label class="col-md-4 control-label">用户名</label>
             <div class="col-md-4">
@@ -36,7 +36,7 @@
 </div>
 <jsp:include page="../footer.jsp"/>
 <script>
-    $(document).ready(dataBind("add-user", '${formUrl}'));
+    $(document).ready(dataBind("user-add", '${formUrl}'));
 </script>
 </body>
 </html>
