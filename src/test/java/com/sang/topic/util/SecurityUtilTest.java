@@ -1,8 +1,10 @@
 package com.sang.topic.util;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SecurityUtilTest {
+    @Ignore
     @Test
     public void test(){
         String password = "123456";

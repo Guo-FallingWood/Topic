@@ -23,12 +23,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/u")
+@SessionAttributes(names = "sessionUser")
 public class UserController {
     UserService userService = new UserService();
     Logger logger = Logger.getLogger(UserController.class);
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ValidationResponse create(@Valid User user, BindingResult bindingResult) {
+    public ValidationResponse create(@ModelAttribute @Valid User user, BindingResult bindingResult) {
         ValidationResponse response = new ValidationResponse();
         List<ErrorMessage> errors = null;
         if(bindingResult.hasErrors()) {
@@ -96,7 +97,7 @@ public class UserController {
     public ValidationResponse update(@PathVariable String username, @Valid User user,
                                       BindingResult bindingResult, HttpSession httpSession) {
         ValidationResponse response = new ValidationResponse();
-        List<ErrorMessage> errors = null;
+        List<ErrorMessage> errors;
         if(bindingResult.hasErrors()){
             errors = ValidationUtil.FieldErrorsToErrorMessages(bindingResult.getFieldErrors());
         }else {

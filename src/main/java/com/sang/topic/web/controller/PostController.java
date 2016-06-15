@@ -7,11 +7,9 @@ import com.sang.topic.service.CommentsService;
 import com.sang.topic.service.PostService;
 import com.sang.topic.service.TopicService;
 import com.sang.topic.service.UserService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -25,13 +23,14 @@ public class PostController {
     CommentsService commentsService = new CommentsService();
 
     @RequestMapping(value="/p", method = RequestMethod.POST)
-    public Map<String, Object> create(Post post, HttpSession httpSession){
+    public Map<String, Object> create(@ModelAttribute Post post, HttpSession httpSession){
         Map<String, Object> resultMap = new HashMap<>();
         boolean success = false;
         String message = "";
         User user = (User) httpSession.getAttribute("sessionUser");
         if(user != null) {
             post.setUserId(user.getId());
+            post.setContent(HtmlUtils.htmlEscape(post.getContent()));
             int n = postService.insert(post);
             if (n > 0)
                 success = true;

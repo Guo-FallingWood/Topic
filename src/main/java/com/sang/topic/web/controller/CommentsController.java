@@ -6,6 +6,7 @@ import com.sang.topic.service.CommentsService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class CommentsController {
         comments.setPostId(post_id);
         User user = (User) httpSession.getAttribute("sessionUser");
         if(user != null) {
+            comments.setContent(HtmlUtils.htmlEscape(comments.getContent()));
             comments.setUserId(user.getId());
             int n = commentsService.insert(comments);
             if (n > 0)

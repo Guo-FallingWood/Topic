@@ -17,7 +17,7 @@ public class User {
     @Email
     private String email;
 
-    @Pattern(regexp = "^[\\d-]*$", message = "只允许数字和下划线")
+    @Pattern(regexp = "^[\\d-]*$", message = "格式不正确")
     private String phone;
 
     private String photo;
