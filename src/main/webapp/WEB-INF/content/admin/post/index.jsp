@@ -21,8 +21,8 @@
         <c:forEach items="${posts}" var="post">
             <tr>
                 <td>${post.id}</td>
-                <td><a href="/p/${post.id}">${post.title}</a></td>
-                <th><a href="/u/${post.userId}">${post.userUsername}</a></th>
+                <td><a href="<c:url value="/p/${post.id}"/>">${post.title}</a></td>
+                <th><a href="<c:url value="/u/${post.userUsername}"/>">${post.userUsername}</a></th>
                 <td>${post.discard}</td>
                 <td><a href="comments?postId=${post.id}">${post.commentsNumber}</a></td>
                 <td>

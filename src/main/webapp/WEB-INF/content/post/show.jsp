@@ -17,7 +17,7 @@
                 <span>${post.title}</span>
                 <span class="navbar-right">
                     创建时间：<spring:eval expression="post.createTime"/>
-                    来自: <a href="/u/${user.username}">${user.username}</a>
+                    来自: <a href="<c:url value="/u/${user.username}"/>" >${user.username}</a>
                 </span>
             </div>
             <div class="panel-body">
@@ -29,7 +29,7 @@
             <c:forEach items="${comments}" varStatus="status" var="comment">
                 <li class="list-group-item">
                     ${status.count}#
-                    <a href="/u/${comment.userUsername}">${comment.userUsername}</a>:
+                    <a href="<c:url value="/u/${comment.userUsername}"/>">${comment.userUsername}</a>:
                     发表时间：<spring:eval expression="comment.createTime"/>
                     <pre>${comment.content}</pre>
                 </li>
@@ -44,7 +44,7 @@
                     <input name="post_id" value="${post.id}" type="hidden">
                     <textarea name="content" class="form-control" rows="5"></textarea>
                     <div id="formAlert" class="alert hidden" role="alert"></div>
-                    <button type="button" onclick="ajaxForm('/c')">回复</button>
+                    <button type="button" onclick="ajaxForm('<c:url value="/c"/>')">回复</button>
                 </form>
             </div>
         </div>

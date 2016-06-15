@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +12,10 @@
 
 <div class="container edit-bar">
     <h1>编辑个人信息 - ${user.username}</h1>
-    <form id="photoForm" action="/photo/upload" enctype="multipart/form-data" method="post">
+    <form id="photoForm" action="<c:url value="/photo/upload"/>" enctype="multipart/form-data" method="post">
         <div class="form-group ">
             <div class="">
-                <img src="/resource/upload/photo/${user.photo}">
+                <img src="<c:url value="/resource/upload/photo/${user.photo}"/> ">
             </div>
             <div class="">
                 <input name="photo" class="btn btn-default" type="file" style="float: left;">

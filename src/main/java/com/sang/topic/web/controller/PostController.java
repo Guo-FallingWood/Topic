@@ -45,6 +45,8 @@ public class PostController {
 
     @RequestMapping(value="/p/new",method = RequestMethod.GET)
     public ModelAndView editNewPost(Integer topicId){
+        if(topicId == null)
+            topicId = 1;
         Topic topic = topicService.get(topicId);
         Map<String, Object> map = new HashMap<>();
         map.put("topic", topic);

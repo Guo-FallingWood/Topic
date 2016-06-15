@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,7 @@
         <div id="formAlert" class="alert hidden" role="alert"></div>
         <div class="col-md-12">
             <span class="col-md-7"></span>
-            <button class="btn btn-default" type="button" onclick="ajaxForm('/u/valid')">登录</button>
+            <button class="btn btn-default" type="button" onclick="ajaxForm('<c:url value="/u/valid"/>')">登录</button>
         </div>
     </form>
 </div>

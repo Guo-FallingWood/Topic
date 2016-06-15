@@ -37,7 +37,7 @@
                 <td><input type="text" name="name"></td>
                 <td><input name="url"></td>
                 <td></td>
-                <td><button type="button" onclick="ajaxForm('/admin/topic','创建')">new</button></td>
+                <td><button type="button" onclick="ajaxForm('<c:url value="/admin/topic"/>','创建')">new</button></td>
             </tr>
             <div id="formAlert" class="alert alert-danger hidden" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -13,7 +13,7 @@
             <h1>个人信息</h1>
         </div>
         <div class="user-show-left">
-            <img src="/resource/upload/photo/${user.photo}" alt=""/><br>
+            <img src="<c:url value="/resource/upload/photo/${user.photo}"/>" alt=""/><br>
             <%--<a href="#">修改头像</a>--%>
         </div>
         <div class="user-show-right">
@@ -21,7 +21,7 @@
             <p>email：${user.email}</p>
             <p>手机号码：${user.phone}</p>
             <c:if test="${sessionUser != null && sessionUser.id==user.id}">
-                <a href="/u/${user.username}/edit">编辑信息</a>
+                <a href="<c:url value="/u/${user.username}/edit"/>" >编辑信息</a>
                 <a href="#">修改密码</a>
             </c:if>
         </div>
