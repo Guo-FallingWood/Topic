@@ -6,7 +6,6 @@ function ajaxForm(url, params, formAlertId) {
         $formAlert = $("#formAlert");
     else
         $formAlert = $("#" + formAlertId);
-    $formAlert.removeClass("hidden");
     console.log("params:" + params);
     $.ajax({
         type: "post",
@@ -15,7 +14,9 @@ function ajaxForm(url, params, formAlertId) {
         //dataType: "json",
         success: function (data) {
             console.log(data);
+            $formAlert.removeClass("hidden");
             if (data.success) {
+                $formAlert.removeClass("alert-danger");
                 $formAlert.addClass("alert-success");
                 $formAlert.text("成功");
             } else {
@@ -25,6 +26,7 @@ function ajaxForm(url, params, formAlertId) {
             }
         },
         error: function () {
+            $formAlert.removeClass("hidden");
             $formAlert.addClass("alert-danger");
             $formAlert.text("异常");
         }
@@ -62,15 +64,21 @@ function dataBind(formId, jsonUrl) {
 
             console.log(response);
 
+            var $formAlert = $("#formAlert");
             if (response.status == "SUCCESS") {
-                var $formAlert = $("#formAlert");
                 $formAlert.removeClass("hidden");
+                $formAlert.removeClass("alert-danger");
                 $formAlert.addClass("alert-success");
                 $formAlert.text("成功");
 
                 $form.unbind('submit');
                 return false;
             } else {
+                if(response.message != null){
+                    $formAlert.removeClass("hidden");
+                    $formAlert.addClass("alert-danger");
+                    $formAlert.text(response.message);
+                }
                 for (var i = 0; response.errors != null && i < response.errors.length; i++) {
                     var item = response.errors[i];
                     var $controlGroup = $('#' + item.fieldName);

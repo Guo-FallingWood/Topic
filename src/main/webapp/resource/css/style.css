@@ -1,11 +1,17 @@
-body{
-    background: #ccc;
-}
 pre {
     white-space: pre-wrap;
     word-wrap: break-word;
     background: #ffffff;
     border: 0px;
+}
+.top{
+}
+.content{
+    background: #ccc;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+.bottom{
 }
 .error {
     color: red;
@@ -29,7 +35,6 @@ pre {
     width: 70%;
     background: #fff;
     padding: 20px;
-    margin-bottom: 50px;
 }
 .side-bar{
     float: right;
@@ -37,11 +42,6 @@ pre {
     width: 25%;
     text-align: center;
     /*background: #eeeeee;*/
-}
-.bottom-bar{
-    /*margin-top: 30px;*/
-    /*height: 70px;*/
-    /*background: #fff;*/
 }
 /* user-show页面 */
 .user-show{

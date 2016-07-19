@@ -11,23 +11,26 @@
     <h1>话题管理</h1>
     <table class="table table-bordered">
         <tr>
-            <th>topic id</th>
-            <th>name</th>
+            <th>编号</th>
+            <th>名称</th>
             <th>url</th>
-            <th>status</th>
-            <th>opt</th>
+            <th>状态</th>
+            <th>操作</th>
         </tr>
         <c:forEach items="${topics}" var="topic">
-            <tr>
+            <tr <c:if test="${topic.close==1}">class="danger"</c:if></tr>
                 <td>${topic.id}</td>
                 <td>${topic.name}</td>
                 <td>${topic.url}</td>
-                <td>${topic.close}</td>
+                <td>
+                    <c:if test="${topic.close == 0}">开放</c:if>
+                    <c:if test="${topic.close == 1}">关闭</c:if>
+                </td>
                 <td>
                     <%--<button onclick="ajaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:1})">关闭</button>--%>
                     <%--<button onclick="ajaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:0})">开放</button>--%>
-                    <button class="btn btn-default">关闭</button>
-                    <button class="btn btn-default">开放</button>
+                    <button onclick="ajaxForm('<c:url value="/admin/topic/${topic.id}"/>', {_method:'put', discard:1})" class="btn btn-default">关闭</button>
+                    <button onclick="ajaxForm('<c:url value="/admin/topic/${topic.id}"/>', {_method:'put', discard:0})" class="btn btn-default">开放</button>
                 </td>
             </tr>
         </c:forEach>
@@ -37,7 +40,7 @@
                 <td><input type="text" name="name"></td>
                 <td><input name="url"></td>
                 <td></td>
-                <td><button type="button" onclick="ajaxForm('<c:url value="/admin/topic"/>','创建')">new</button></td>
+                <td><button type="button" onclick="ajaxForm('<c:url value="/admin/topic"/>')">new</button></td>
             </tr>
             <div id="formAlert" class="alert alert-danger hidden" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

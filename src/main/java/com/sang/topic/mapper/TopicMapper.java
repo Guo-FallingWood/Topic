@@ -18,4 +18,6 @@ public interface TopicMapper {
     int updateByPrimaryKey(Topic record);
 
     List<Topic> selectAll();
+
+    List<Topic> selectAllOpen();
 }

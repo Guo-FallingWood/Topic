@@ -26,7 +26,7 @@ public class TopicController {
         if(p != null) page.setCurrentPage(p);
         page.setUrl("/?p=");
 
-        List<Topic> topics = topicService.getAll();
+        List<Topic> topics = topicService.getAllOPen();
         List<Post> posts = postService.getByPage(page);
 
         Map<String, Object> map = new HashMap<>();
@@ -42,7 +42,7 @@ public class TopicController {
         if(p != null) page.setCurrentPage(p);
         page.setUrl("/t/"+id+"?p=");
 
-        List<Topic> topics = topicService.getAll();
+        List<Topic> topics = topicService.getAllOPen();
         List<Post> posts = postService.getByTopicAndPage(id, page);
 
         Map<String, Object> map = new HashMap<>();

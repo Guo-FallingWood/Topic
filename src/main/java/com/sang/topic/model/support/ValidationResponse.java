@@ -4,10 +4,19 @@ import java.util.List;
 
 public class ValidationResponse {
     private String status;
+    private String message;
     private List<ErrorMessage> errors;
 
     public ValidationResponse(){
         status = "FAIL";
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public List getErrors() {

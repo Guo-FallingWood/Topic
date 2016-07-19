@@ -4,15 +4,15 @@
   <nav>
     <ul class="pagination">
       <li>
-        <a href="${page.url}${page.currentPage-1}" aria-label="Previous">
+        <a href="<c:url value="${page.url}${page.currentPage-1}"/>" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <c:forEach var="index" begin="1" end="${page.pageNumber}" step="1">
-        <li><a href="${page.url}${index}">${index}</a></li>
+        <li><a href="<c:url value="${page.url}${index}"/>">${index}</a></li>
       </c:forEach>
       <li>
-        <a href="${page.url}${page.currentPage+1}" aria-label="Next">
+        <a href="<c:url value="${page.url}${page.currentPage+1}"/>" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

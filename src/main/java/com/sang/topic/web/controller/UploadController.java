@@ -44,7 +44,6 @@ public class UploadController {
                                 getRealPath("/resource/upload/photo/");
                         File newFile = new File(filepath+"/"+filename);
                         FileUtils.writeByteArrayToFile(newFile, bytes);
-                        System.out.println(filepath);
 
                         user.setPhoto(filename);
                         int n = userService.update(user);

@@ -8,7 +8,6 @@ import com.sang.topic.model.support.ValidationResponse;
 import com.sang.topic.util.ValidationUtil;
 import org.apache.log4j.Logger;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,6 +56,7 @@ public class UserController {
         Map<String, Object> resultMap = new HashMap<>();
         User u = userService.getByUsernameAndPassword(username, SecurityUtil.MD5(password));
         if (u != null) {
+            System.out.println("登录");
             httpSession.setAttribute("sessionUser", u);
             resultMap.put("success", true);
         } else {
@@ -72,9 +72,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ModelAndView logout(HttpSession httpSession) {
-        httpSession.invalidate();
-        return new ModelAndView("redirect:/u/login");
+    public String logout(HttpSession httpSession) {
+        if(httpSession != null) {
+            User user = (User) httpSession.getAttribute("sessionUser");
+            System.out.println("注销 "+user.getUsername());
+            httpSession.removeAttribute("sessionUser");
+            httpSession.invalidate();
+        }
+        return "success";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)

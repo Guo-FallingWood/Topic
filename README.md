@@ -1,15 +1,31 @@
-## Topic
+## Topic 在线论坛
 
-### 介绍
+### 平台介绍
 
-一个简单的论坛,前端模仿的V2EX
+Topic是一个简单的在线论坛，现在仅拥有论坛基本的发帖和回复功能
 
-主要使用Spring MVC和Mybatis框架
+Topic主要分前台用户界面和后台管理员界面两个部分
 
-数据库用Mysql,前端用Bootstrap UI
+效果预览：[topicbbs.top](http://topicbbs.top)
 
-### Introduction
+### 使用技术框架
 
-A simple discussion community,imitate V2EX
+后端
 
-Use Spring MVC ,Mybatis, Mysql, Bootstrap
+* Spring
+* Spring MVC
+* Mybatis
+* JUnit
+* Hibernate Validation
+
+前端
+
+* JQuery
+* Bootstrap
+
+### 运行要求
+
+- JDK 1.8
+- MySql 5.6
+- Tomcat 6
+- Maven

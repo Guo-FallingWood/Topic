@@ -14,6 +14,12 @@ public class TopicService {
         }
     }
 
+    public List<Topic> getAllOPen() {
+        try(SqlSession session = MyBatisSession.getSession()){
+            return session.getMapper(TopicMapper.class).selectAllOpen();
+        }
+    }
+
     public Topic get(Integer id) {
         try(SqlSession session = MyBatisSession.getSession()){
             return session.getMapper(TopicMapper.class).selectByPrimaryKey(id);

@@ -2,6 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
 		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+	<!--<properties resource="resources/jdbc.properties"/>-->
 	<classPathEntry location="mysql-connector-java-5.1.35.jar" />
 	<context id="jdbc">
 		<!-- 删除所有注释 -->

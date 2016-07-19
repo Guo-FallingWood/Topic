@@ -8,30 +8,32 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<div class="container">
-    <div class="main-bar">
-        <jsp:include page="../nav.jsp"/>
-        <div class="list-group">
-            <c:forEach items="${posts}" var="post">
-                <li class="list-group-item" >
-                    <div class="post-right">
-                            ${post.commentsNumber}
-                    </div>
-                    <div class="post-top">
-                        <a href="<c:url value="/p/${post.id}"/>" >${post.title}</a>
-                    </div>
-                    <div class="post-bottom">
-                        作者：<a href="<c:url value="/u/${post.userUsername}"/>" >${post.userUsername}</a>
-                        创建时间：<spring:eval expression="post.createTime"/>
-                        最后回复时间：<spring:eval expression="post.lastTime"/>
-                    </div>
+<div class="content">
+    <div class="container">
+        <div class="main-bar">
+            <jsp:include page="../nav.jsp"/>
+            <div class="list-group">
+                <c:forEach items="${posts}" var="post">
+                    <li class="list-group-item">
+                        <div class="post-right">
+                                ${post.commentsNumber}
+                        </div>
+                        <div class="post-top">
+                            <a href="<c:url value="/p/${post.id}"/>">${post.title}</a>
+                        </div>
+                        <div class="post-bottom">
+                            作者：<a href="<c:url value="/u/${post.userUsername}"/>">${post.userUsername}</a>
+                            创建时间：<spring:eval expression="post.createTime"/>
+                            最后回复时间：<spring:eval expression="post.lastTime"/>
+                        </div>
 
-                </li>
-            </c:forEach>
+                    </li>
+                </c:forEach>
+            </div>
+            <jsp:include page="../page.jsp"/>
         </div>
-        <jsp:include page="../page.jsp"/>
+        <jsp:include page="../sidebar.jsp"/>
     </div>
-    <jsp:include page="../sidebar.jsp"/>
 </div>
 <jsp:include page="../footer.jsp"/>
 </body>

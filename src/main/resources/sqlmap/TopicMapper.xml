@@ -14,6 +14,11 @@
         SELECT *
         FROM topic_topic
     </select>
+    <select id="selectAllOpen" resultMap="BaseResultMap">
+        select *
+        from topic_topic
+        where close = 0
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
