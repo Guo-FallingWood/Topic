@@ -5,6 +5,7 @@ import com.sang.topic.model.Topic;
 import com.sang.topic.service.PostService;
 import com.sang.topic.service.TopicService;
 import com.sang.topic.model.support.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +17,10 @@ import java.util.Map;
 
 @RestController
 public class TopicController {
-
-    PostService postService = new PostService();
-    TopicService topicService = new TopicService();
+    @Autowired
+    PostService postService;
+    @Autowired
+    private TopicService topicService;
 
 	@RequestMapping(value="/")
 	public ModelAndView index(Integer p){
@@ -26,7 +28,7 @@ public class TopicController {
         if(p != null) page.setCurrentPage(p);
         page.setUrl("/?p=");
 
-        List<Topic> topics = topicService.getAllOPen();
+        List<Topic> topics = topicService.selectAllOpen();
         List<Post> posts = postService.getByPage(page);
 
         Map<String, Object> map = new HashMap<>();
@@ -42,7 +44,7 @@ public class TopicController {
         if(p != null) page.setCurrentPage(p);
         page.setUrl("/t/"+id+"?p=");
 
-        List<Topic> topics = topicService.getAllOPen();
+        List<Topic> topics = topicService.selectAllOpen();
         List<Post> posts = postService.getByTopicAndPage(id, page);
 
         Map<String, Object> map = new HashMap<>();

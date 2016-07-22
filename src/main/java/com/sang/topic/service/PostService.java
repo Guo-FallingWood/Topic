@@ -6,11 +6,19 @@ import com.sang.topic.model.Post;
 import com.sang.topic.util.MyBatisSession;
 import com.sang.topic.model.support.Page;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class PostService {
+    @Autowired
+    private PostMapper postMapper;
+    @Autowired
+    private UserMapper userMapper;
     public List<Post> getByPage(Page page){
         try(SqlSession session = MyBatisSession.getSession()) {
             int rowNumber = session.getMapper(PostMapper.class).selectCount();
@@ -28,27 +36,18 @@ public class PostService {
     }
 
     public Post get(Integer id) {
-        try(SqlSession session = MyBatisSession.getSession()) {
-            return session.getMapper(PostMapper.class).selectByPrimaryKey(id);
-        }
+        return postMapper.selectByPrimaryKey(id);
     }
 
+    @Transactional
     public int insert (Post post) {
-        try(SqlSession session = MyBatisSession.getSession()) {
-            post.setUserUsername(session.getMapper(UserMapper.class).selectByPrimaryKey(post.getUserId()).getUsername());
-            post.setCreateTime(new Date());
-            int n = session.getMapper(PostMapper.class).insertSelective(post);
-            session.commit();
-            return n;
-        }
+        post.setUserUsername(userMapper.selectByPrimaryKey(post.getUserId()).getUsername());
+        post.setCreateTime(new Date());
+        return postMapper.insertSelective(post);
     }
 
+    @Transactional
     public int update(Post post) {
-        try (SqlSession session = MyBatisSession.getSession()) {
-            int n = session.getMapper(PostMapper.class).updateByPrimaryKeySelective(post);
-            session.commit();
-            return n;
-        }
+        return postMapper.updateByPrimaryKeySelective(post);
     }
-
 }

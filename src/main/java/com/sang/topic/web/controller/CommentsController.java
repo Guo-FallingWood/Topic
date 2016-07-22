@@ -3,6 +3,7 @@ package com.sang.topic.web.controller;
 import com.sang.topic.model.Comments;
 import com.sang.topic.model.User;
 import com.sang.topic.service.CommentsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,8 @@ import java.util.Map;
 
 @RestController
 public class CommentsController {
-    CommentsService commentsService = new CommentsService();
+    @Autowired
+    CommentsService commentsService;
 
     @RequestMapping(value = "/c", method = RequestMethod.POST)
     public Map<String, Object> create(String content, Integer post_id, HttpSession httpSession){

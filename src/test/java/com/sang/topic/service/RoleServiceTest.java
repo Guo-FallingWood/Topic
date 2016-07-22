@@ -3,15 +3,21 @@ package com.sang.topic.service;
 import com.sang.topic.model.Role;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:spring-mybatis.xml"})
 public class RoleServiceTest {
+    @Autowired
     RoleService roleService;
 
     @Before
     public void setup(){
-        roleService = new RoleService();
     }
 
     @Test

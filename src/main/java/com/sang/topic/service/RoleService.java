@@ -4,14 +4,17 @@ import com.sang.topic.mapper.RoleMapper;
 import com.sang.topic.model.Role;
 import com.sang.topic.util.MyBatisSession;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleService {
+    @Autowired
+    private RoleMapper roleMapper;
 
     public List<Role> getAll(){
-        try(SqlSession session = MyBatisSession.getSession()) {
-            return session.getMapper(RoleMapper.class).selectAll();
-        }
+        return roleMapper.selectAll();
     }
 }

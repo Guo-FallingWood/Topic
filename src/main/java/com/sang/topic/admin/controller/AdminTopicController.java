@@ -6,6 +6,7 @@ import com.sang.topic.model.support.AjaxResultMap;
 import com.sang.topic.model.support.Page;
 import com.sun.org.apache.xml.internal.security.signature.ObjectContainer;
 import com.sun.org.apache.xpath.internal.operations.Mod;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,7 +16,8 @@ import java.util.Map;
 @RestController
 @RequestMapping(value="/admin/topic")
 public class AdminTopicController {
-    TopicService topicService = new TopicService();
+    @Autowired
+    private TopicService topicService;
 
     @RequestMapping(value="", method = RequestMethod.GET)
     public ModelAndView index(Integer p) {

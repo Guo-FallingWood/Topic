@@ -5,21 +5,25 @@ import com.sang.topic.model.User;
 import com.sang.topic.util.MyBatisSession;
 import com.sang.topic.model.support.Page;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class UserService {
+    @Autowired
+    private UserMapper userMapper;
+
     public User getByUsernameAndPassword(String username, String password) {
-        try (SqlSession session = MyBatisSession.getSession()) {
-            UserMapper userMapper = session.getMapper(UserMapper.class);
-            User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
-            List<User> list = userMapper.selectByUsernameAndPassword(user);
-            if (list != null && !list.isEmpty())
-                return list.get(0);
-            else return null;
-        }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        List<User> list = userMapper.selectByUsernameAndPassword(user);
+        if (list != null && !list.isEmpty())
+            return list.get(0);
+        else return null;
     }
 
     public List<User> getByPage(Page page) {
@@ -32,38 +36,23 @@ public class UserService {
     }
 
     public User get(int id) {
-        try (SqlSession session = MyBatisSession.getSession()) {
-            UserMapper userMapper = session.getMapper(UserMapper.class);
-            return userMapper.selectByPrimaryKey(id);
-        }
+        return userMapper.selectByPrimaryKey(id);
     }
 
-    public User getByUsername(String username){
-        try (SqlSession session = MyBatisSession.getSession()) {
-            List<User> list = session.getMapper(UserMapper.class).selectByUsername(username);
-            if(list != null && list.size() > 0)
-                return list.get(0);
-            return null;
-        }
+    public User getByUsername(String username) {
+        List<User> list = userMapper.selectByUsername(username);
+        if (list != null && list.size() > 0)
+            return list.get(0);
+        return null;
     }
 
+    @Transactional
     public int insert(User user) {
-        try (SqlSession session = MyBatisSession.getSession()) {
-            UserMapper userMapper = session.getMapper(UserMapper.class);
-            int n;
-            n = userMapper.insertSelective(user);
-            session.commit();
-            return n;
-        }
+        return userMapper.insertSelective(user);
     }
 
+    @Transactional
     public int update(User user) {
-        try (SqlSession session = MyBatisSession.getSession()) {
-            UserMapper userMapper = session.getMapper(UserMapper.class);
-            int n;
-            n = userMapper.updateByPrimaryKeySelective(user);
-            session.commit();
-            return n;
-        }
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 }

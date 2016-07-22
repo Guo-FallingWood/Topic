@@ -7,6 +7,7 @@ import com.sang.topic.util.SecurityUtil;
 import com.sang.topic.model.support.ValidationResponse;
 import com.sang.topic.util.ValidationUtil;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +25,8 @@ import java.util.Map;
 @RequestMapping(value = "/u")
 @SessionAttributes(names = "sessionUser")
 public class UserController {
-    UserService userService = new UserService();
+    @Autowired
+    private UserService userService;
     Logger logger = Logger.getLogger(UserController.class);
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -56,7 +58,7 @@ public class UserController {
         Map<String, Object> resultMap = new HashMap<>();
         User u = userService.getByUsernameAndPassword(username, SecurityUtil.MD5(password));
         if (u != null) {
-            System.out.println("登录");
+            logger.debug("登录成功,username："+username+" uid:"+u.getId());
             httpSession.setAttribute("sessionUser", u);
             resultMap.put("success", true);
         } else {

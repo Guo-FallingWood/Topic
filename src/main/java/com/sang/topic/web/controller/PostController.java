@@ -7,6 +7,7 @@ import com.sang.topic.service.CommentsService;
 import com.sang.topic.service.PostService;
 import com.sang.topic.service.TopicService;
 import com.sang.topic.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
@@ -17,10 +18,14 @@ import java.util.Map;
 
 @RestController
 public class PostController {
-    PostService postService = new PostService();
-    TopicService topicService = new TopicService();
-    UserService userService = new UserService();
-    CommentsService commentsService = new CommentsService();
+    @Autowired
+    PostService postService;
+    @Autowired
+    TopicService topicService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    CommentsService commentsService;
 
     @RequestMapping(value="/p", method = RequestMethod.POST)
     public Map<String, Object> create(@ModelAttribute Post post, HttpSession httpSession){

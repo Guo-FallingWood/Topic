@@ -5,6 +5,7 @@ import com.sang.topic.service.UserService;
 import com.sang.topic.model.support.AjaxResultMap;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +24,8 @@ import java.util.UUID;
  */
 @RestController
 public class UploadController {
-    UserService userService = new UserService();
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/photo/upload", method = RequestMethod.POST)
     public AjaxResultMap uploadUserPhoto(@RequestParam("photo") MultipartFile file, HttpServletRequest request) {
