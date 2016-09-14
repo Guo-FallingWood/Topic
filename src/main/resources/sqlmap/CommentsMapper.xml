@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sang.topic.mapper.CommentsMapper">
-    <resultMap id="BaseResultMap" type="com.sang.topic.model.Comments">
+<mapper namespace="com.sang.topic.common.mapper.CommentsMapper">
+    <resultMap id="BaseResultMap" type="com.sang.topic.common.model.Comments">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
@@ -39,7 +39,7 @@
     delete from topic_comments
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.sang.topic.model.Comments">
+    <insert id="insert" parameterType="com.sang.topic.common.model.Comments">
     insert into topic_comments (id, content, user_id, 
       post_id, discard, user_username, 
       create_time)
@@ -47,7 +47,7 @@
       #{postId,jdbcType=INTEGER}, #{discard,jdbcType=INTEGER}, #{userUsername,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.sang.topic.model.Comments">
+    <insert id="insertSelective" parameterType="com.sang.topic.common.model.Comments">
         insert into topic_comments
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -96,7 +96,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.sang.topic.model.Comments">
+    <update id="updateByPrimaryKeySelective" parameterType="com.sang.topic.common.model.Comments">
         update topic_comments
         <set>
             <if test="content != null">
@@ -120,7 +120,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.sang.topic.model.Comments">
+    <update id="updateByPrimaryKey" parameterType="com.sang.topic.common.model.Comments">
     update topic_comments
     set content = #{content,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},

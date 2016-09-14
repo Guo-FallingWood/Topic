@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="<c:url value="/resource/css/bootstrap.min.css"/>"/>
+<link rel="stylesheet" href="<c:url value="/resource/module/bootstrap/css/bootstrap.min.css"/>"/>
 <link rel="stylesheet" href="<c:url value="/resource/css/style.css"/>"/>
 
-<script src="<c:url value="/resource/js/jquery-1.12.3.min.js"/>"></script>
-<script src="<c:url value="/resource/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resource/module/jquery/jquery-1.12.3/jquery-1.12.3.min.js"/>"></script>
+<script src="<c:url value="/resource/module/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resource/js/topic.js"/>"></script>
 <div class="top">
     <nav class="navbar-default">

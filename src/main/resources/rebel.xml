@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application generated-by="intellij" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_1.xsd">
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns="http://www.zeroturnaround.com"
+			 xsi:schemaLocation="http://www.zeroturnaround.com
+			 http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd">
 
 	<classpath>
-		<dir name="C:/wordspace/Topic/target/classes">
+		<dir name="C:/code/workspace/topic/target/classes">
 		</dir>
 	</classpath>
 
 	<web>
 		<link target="/">
-			<dir name="C:/wordspace/Topic/src/main/webapp">
+			<dir name="C:/code/workspace/topic/src/main/webapp">
 			</dir>
 		</link>
 	</web>

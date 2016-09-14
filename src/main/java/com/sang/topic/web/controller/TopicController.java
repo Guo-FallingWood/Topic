@@ -1,10 +1,10 @@
 package com.sang.topic.web.controller;
 
-import com.sang.topic.model.Post;
-import com.sang.topic.model.Topic;
-import com.sang.topic.service.PostService;
-import com.sang.topic.service.TopicService;
-import com.sang.topic.model.support.Page;
+import com.sang.topic.common.model.Post;
+import com.sang.topic.common.model.Topic;
+import com.sang.topic.common.service.PostService;
+import com.sang.topic.common.service.TopicService;
+import com.sang.topic.common.model.support.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

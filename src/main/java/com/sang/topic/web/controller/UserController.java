@@ -1,11 +1,11 @@
 package com.sang.topic.web.controller;
 
-import com.sang.topic.model.support.ErrorMessage;
-import com.sang.topic.model.User;
-import com.sang.topic.service.UserService;
-import com.sang.topic.util.SecurityUtil;
-import com.sang.topic.model.support.ValidationResponse;
-import com.sang.topic.util.ValidationUtil;
+import com.sang.topic.common.model.support.ErrorMessage;
+import com.sang.topic.common.model.User;
+import com.sang.topic.common.service.UserService;
+import com.sang.topic.common.util.SecurityUtil;
+import com.sang.topic.common.model.support.ValidationResponse;
+import com.sang.topic.common.util.ValidationUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

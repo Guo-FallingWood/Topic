@@ -2,9 +2,11 @@
 
 ### 平台介绍
 
-Topic是一个简单的在线论坛，现在仅拥有论坛基本的发帖和回复功能
+Topic是一个简单的在线论坛，拥有论坛基本功能
 
-Topic主要分前台用户界面和后台管理员界面两个部分
+支持数据采集，可以在后台页面操作爬虫
+
+附带少量匹配规则，可以自定义匹配规则
 
 效果预览：[topicbbs.top](http://topicbbs.top)
 
@@ -15,6 +17,7 @@ Topic主要分前台用户界面和后台管理员界面两个部分
 * Spring
 * Spring MVC
 * Mybatis
+* WebMagic
 * JUnit
 * Hibernate Validation
 

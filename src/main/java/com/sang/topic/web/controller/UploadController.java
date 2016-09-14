@@ -1,8 +1,8 @@
 package com.sang.topic.web.controller;
 
-import com.sang.topic.model.User;
-import com.sang.topic.service.UserService;
-import com.sang.topic.model.support.AjaxResultMap;
+import com.sang.topic.common.model.User;
+import com.sang.topic.common.service.UserService;
+import com.sang.topic.common.model.support.AjaxResultMap;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;

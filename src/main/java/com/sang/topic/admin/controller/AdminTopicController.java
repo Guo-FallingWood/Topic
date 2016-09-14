@@ -1,11 +1,8 @@
 package com.sang.topic.admin.controller;
 
-import com.sang.topic.model.Topic;
-import com.sang.topic.service.TopicService;
-import com.sang.topic.model.support.AjaxResultMap;
-import com.sang.topic.model.support.Page;
-import com.sun.org.apache.xml.internal.security.signature.ObjectContainer;
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.sang.topic.common.model.Topic;
+import com.sang.topic.common.service.TopicService;
+import com.sang.topic.common.model.support.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

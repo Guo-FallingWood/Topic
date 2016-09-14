@@ -11,9 +11,14 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <!-- 注解驱动 -->
+    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
     <!-- 扫描组件包 -->
     <context:component-scan base-package="com.sang.topic.web.controller"/>
     <context:component-scan base-package="com.sang.topic.admin.controller"/>
+    <context:component-scan base-package="com.sang.topic.common.service"/>
 
     <!-- 设置静态资源 -->
     <mvc:resources mapping="/**" location="resource"/>
@@ -28,9 +33,6 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <!-- 注解驱动 -->
-    <mvc:annotation-driven conversion-service="conversionService"/>
-
     <!-- Hibernate 数据验证 -->
     <!--<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>-->
 
@@ -38,7 +40,7 @@
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatterRegistrars">
             <set>
-                <bean class="com.sang.topic.format.datetime.TopicDateFormatterRegistrar"/>
+                <bean class="com.sang.topic.common.format.datetime.TopicDateFormatterRegistrar"/>
             </set>
         </property>
     </bean>

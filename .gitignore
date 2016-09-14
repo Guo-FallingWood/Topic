@@ -23,3 +23,5 @@ buildNumber.properties
 
 # jrebel
 rebel.xml
+
+doc

@@ -5,7 +5,7 @@
 	<!--<properties resource="resources/jdbc.properties"/>-->
 	<classPathEntry location="mysql-connector-java-5.1.35.jar" />
 	<context id="jdbc">
-		<!-- åˆ é™¤æ‰€æœ‰æ³¨é‡Š -->
+		<!-- É¾³ýËùÓÐ×¢ÊÍ -->
 		<commentGenerator>
 			<property name="suppressAllComments" value="true"/>
 		</commentGenerator>
@@ -19,16 +19,16 @@
 						connectionURL="jdbc:mysql://localhost:3306/topic">
 		</jdbcConnection>
 
-		<javaModelGenerator targetPackage="com.sang.topic.model" targetProject=".">
+		<javaModelGenerator targetPackage="com.sang.topic.common.model" targetProject=".">
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.sang.topic.mapper.sqlmap" targetProject=".">
+		<sqlMapGenerator targetPackage="com.sang.topic.common.mapper.sqlmap" targetProject=".">
 		</sqlMapGenerator>
 		
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.sang.topic.mapper" targetProject=".">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.sang.topic.common.mapper" targetProject=".">
             <property name="enableSubPackages" value="true"/>
 		</javaClientGenerator>
-
+<!--
 		<table tableName="topic_user" domainObjectName="User"  enableCountByExample="false" enableDeleteByExample="false"
 			 enableSelectByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
 		</table>
@@ -44,7 +44,11 @@
 		<table tableName="topic_topic" domainObjectName="Topic" enableCountByExample="false" enableDeleteByExample="false"
 			   enableSelectByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
 		</table>
-		<!--
+		
 		-->
+		<table tableName="topic_url" domainObjectName="TopicUrl" enableCountByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+		</table>
+		
 	</context>
 </generatorConfiguration>

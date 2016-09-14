@@ -1,8 +1,8 @@
 package com.sang.topic.web.controller;
 
-import com.sang.topic.model.Comments;
-import com.sang.topic.model.User;
-import com.sang.topic.service.CommentsService;
+import com.sang.topic.common.model.Comments;
+import com.sang.topic.common.model.User;
+import com.sang.topic.common.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

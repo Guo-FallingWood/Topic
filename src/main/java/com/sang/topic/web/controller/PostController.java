@@ -1,12 +1,12 @@
 package com.sang.topic.web.controller;
 
-import com.sang.topic.model.Post;
-import com.sang.topic.model.Topic;
-import com.sang.topic.model.User;
-import com.sang.topic.service.CommentsService;
-import com.sang.topic.service.PostService;
-import com.sang.topic.service.TopicService;
-import com.sang.topic.service.UserService;
+import com.sang.topic.common.model.Post;
+import com.sang.topic.common.model.Topic;
+import com.sang.topic.common.model.User;
+import com.sang.topic.common.service.CommentsService;
+import com.sang.topic.common.service.PostService;
+import com.sang.topic.common.service.TopicService;
+import com.sang.topic.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

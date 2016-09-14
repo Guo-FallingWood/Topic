@@ -12,8 +12,6 @@
        http://www.springframework.org/schema/context/spring-context.xsd
        ">
 
-    <context:component-scan base-package="com.sang.topic.service"/>
-
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
             <value>classpath:jdbc.properties</value>
@@ -35,7 +33,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.sang.topic"/>
+        <property name="basePackage" value="com.sang.topic.common.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

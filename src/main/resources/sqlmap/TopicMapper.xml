@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sang.topic.mapper.TopicMapper">
-    <resultMap id="BaseResultMap" type="com.sang.topic.model.Topic">
+<mapper namespace="com.sang.topic.common.mapper.TopicMapper">
+    <resultMap id="BaseResultMap" type="com.sang.topic.common.model.Topic">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="url" property="url" jdbcType="VARCHAR"/>
@@ -29,13 +29,13 @@
     delete from topic_topic
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.sang.topic.model.Topic">
+    <insert id="insert" parameterType="com.sang.topic.common.model.Topic">
     insert into topic_topic (id, name, url, 
       close)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
       #{close,jdbcType=INTEGER})
   </insert>
-    <insert id="insertSelective" parameterType="com.sang.topic.model.Topic">
+    <insert id="insertSelective" parameterType="com.sang.topic.common.model.Topic">
         insert into topic_topic
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -66,7 +66,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.sang.topic.model.Topic">
+    <update id="updateByPrimaryKeySelective" parameterType="com.sang.topic.common.model.Topic">
         update topic_topic
         <set>
             <if test="name != null">
@@ -81,7 +81,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.sang.topic.model.Topic">
+    <update id="updateByPrimaryKey" parameterType="com.sang.topic.common.model.Topic">
     update topic_topic
     set name = #{name,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
