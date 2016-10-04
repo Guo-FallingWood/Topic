@@ -74,7 +74,7 @@ function dataBind(formId, jsonUrl) {
                 $form.unbind('submit');
                 return false;
             } else {
-                if(response.message != null){
+                if (response.message != null) {
                     $formAlert.removeClass("hidden");
                     $formAlert.addClass("alert-danger");
                     $formAlert.text(response.message);
@@ -91,3 +91,27 @@ function dataBind(formId, jsonUrl) {
         return false;
     });
 };
+
+function fillDiv($div, json){
+    var $table = $("<table class='table'></table>")
+    for (var key in json){
+        var $tr = $("<tr></tr>");
+        var $td1 = $("<td></td>").text(key);
+        var $td2 = $("<td></td>").text(json[key]);
+        $table.append($tr.append($td1).append($td2));
+    }
+    $div.text("");
+    $div.append($table);
+}
+
+function fillForm($form, json) {
+    var jsonObj = json;
+    if (typeof json === 'string') {
+        jsonObj = $.parseJSON(json);
+    }
+    for (var key in jsonObj) {  //遍历json字符串
+        var v = jsonObj[key];
+        if (v == null) v = '';
+        $("[name=" + key + "]", $form).val(v);
+    }
+}

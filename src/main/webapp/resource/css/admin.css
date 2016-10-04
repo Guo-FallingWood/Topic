@@ -4,3 +4,6 @@ body{
 .main-bar{
     background: #fff;
 }
+.no-padding {
+    padding: 0;
+}

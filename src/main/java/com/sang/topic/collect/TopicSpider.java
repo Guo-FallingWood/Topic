@@ -1,5 +1,7 @@
 package com.sang.topic.collect;
 
+import com.sang.topic.collect.processor.TopicPageProcessor;
+import com.sang.topic.common.model.CollectRule;
 import com.sang.topic.common.model.Post;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -11,10 +13,10 @@ import java.util.UUID;
  */
 public class TopicSpider extends Spider{
     protected Post post = null;
-    private String name = "v2ex";
+    private String name = "";
 
-    public TopicSpider(PageProcessor pageProcessor){
-        super(pageProcessor);
+    public TopicSpider(CollectRule rule){
+        super(TopicPageProcessor.newInstance(rule));
         uuid = UUID.randomUUID().toString();
     }
 

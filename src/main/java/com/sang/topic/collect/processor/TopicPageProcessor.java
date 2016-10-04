@@ -1,8 +1,10 @@
 package com.sang.topic.collect.processor;
 
+import com.sang.topic.common.model.CollectRule;
+import com.sang.topic.common.model.CollectUrl;
 import com.sang.topic.common.model.Post;
-import com.sang.topic.common.model.TopicUrl;
-import com.sang.topic.common.service.TopicUrlService;
+import com.sang.topic.common.service.CollectUrlService;
+import com.sang.topic.common.util.ApplicationContextHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
@@ -12,7 +14,6 @@ import us.codecraft.webmagic.selector.Html;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,24 +24,32 @@ import java.util.stream.Collectors;
 @Component(value = "topicPageProcessor")
 public class TopicPageProcessor implements PageProcessor {
     private Site site;
-    private Map<String, TopicUrl> urlMap;
+    private Map<String, CollectUrl> urlMap;
+    private CollectRule rule;
 
     private static int topicId = 4;
     static int userId = 2;
 
     @Autowired
-    TopicUrlService urlService;
+    CollectUrlService urlService;
 
-    public TopicPageProcessor() {
+    private TopicPageProcessor() {
     }
 
-    public void init() {
+    public static TopicPageProcessor newInstance(CollectRule rule) {
+        TopicPageProcessor processor = (TopicPageProcessor) ApplicationContextHelper.getBean("topicPageProcessor");
+        processor.rule = rule;
+        processor.init();
+        return processor;
+    }
+
+    private void init() {
         site = new Site();
-        site.setSleepTime(3000);
-        site.setRetryTimes(3);
-        List<TopicUrl> list = urlService.getAll();
-        urlMap = new LinkedHashMap<>(list.stream()
-                .collect(Collectors.toMap(TopicUrl::getNoparamUrl, item -> item)));
+        site.setSleepTime(5000);
+        site.setRetryTimes(2);
+        List<CollectUrl> list = urlService.getAll();
+        urlMap = list.stream()
+                .collect(Collectors.toMap(CollectUrl::getNoparamUrl, item -> item));
     }
 
     @Override
@@ -67,11 +76,14 @@ public class TopicPageProcessor implements PageProcessor {
             post.setTopicId(topicId);
             page.putField("post", post);
 
-            TopicUrl topicUrl = new TopicUrl();
-            topicUrl.setCreateTime(new Date());
-            topicUrl.setRealUrl(url);
-            topicUrl.setNoparamUrl(removeParameter(url));
-            page.putField("url", topicUrl);
+            String noParamUrl = removeParameter(url);
+            CollectUrl collectUrl = new CollectUrl();
+            collectUrl.setCreateTime(new Date());
+            collectUrl.setRealUrl(url);
+            collectUrl.setNoparamUrl(noParamUrl);
+            page.putField("url", collectUrl);
+
+            urlMap.put(noParamUrl, collectUrl);
         }
         Selectable links = html.links();
         List<String> l = links.regex("(https://(?:www\\.)?v2ex\\.com/t/(\\d+)(?:#reply\\d+)?.*)").all();

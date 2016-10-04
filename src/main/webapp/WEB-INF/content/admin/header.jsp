@@ -2,11 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value="/resource/module/bootstrap/css/bootstrap.min.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resource/module/bootstrap-table/bootstrap-table.min.css"/>" />
+
 <link rel="stylesheet" href="<c:url value="/resource/css/admin.css"/>" />
+
 
 <script src="<c:url value="/resource/module/jquery/jquery-1.12.3/jquery-1.12.3.min.js"/>"></script>
 <script src="<c:url value="/resource/module/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resource/module/bootstrap-table/bootstrap-table.min.js"/>"></script>
+<script src="<c:url value="/resource/module/vue/vue.min.js"/>"></script>
+
 <script src="<c:url value="/resource/js/topic.js"/>"></script>
 
 <nav class="navbar navbar-default">

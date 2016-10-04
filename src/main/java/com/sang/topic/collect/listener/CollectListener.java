@@ -1,6 +1,6 @@
 package com.sang.topic.collect.listener;
 
-import com.sang.topic.collect.SpiderMap;
+import com.sang.topic.collect.SpiderExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,12 +16,12 @@ public class CollectListener implements ServletContextListener{
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         logger.info("CollectListener init");
-        SpiderMap.getInstance();
+        SpiderExecutor.getInstance();
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         logger.info("CollectListener destroy");
-        SpiderMap.getInstance().destroy();
+        SpiderExecutor.getInstance().destroy();
     }
 }

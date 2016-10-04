@@ -1,14 +1,12 @@
 package com.sang.topic.collect.pipeline;
 
+import com.sang.topic.common.model.CollectUrl;
 import com.sang.topic.common.model.Post;
-import com.sang.topic.common.model.TopicUrl;
 import com.sang.topic.common.service.PostService;
-import com.sang.topic.common.service.TopicUrlService;
+import com.sang.topic.common.service.CollectUrlService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
@@ -20,7 +18,7 @@ import us.codecraft.webmagic.pipeline.Pipeline;
 @Component
 public class StoragePipeline implements Pipeline {
     @Autowired
-    TopicUrlService urlService;
+    CollectUrlService urlService;
     @Autowired
     PostService postService;
 
@@ -28,7 +26,7 @@ public class StoragePipeline implements Pipeline {
 
     @Override
     public void process(ResultItems resultItems, Task task) {
-        TopicUrl url = resultItems.get("url");
+        CollectUrl url = resultItems.get("url");
         if (url != null) {
             logger.info("Storage Url [ " + url.getRealUrl() + " ]");
             Post post = resultItems.get("post");

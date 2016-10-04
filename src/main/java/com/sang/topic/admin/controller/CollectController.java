@@ -1,34 +1,28 @@
 package com.sang.topic.admin.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sang.topic.collect.SpiderMap;
-import com.sang.topic.collect.processor.TopicPageProcessor;
-import com.sang.topic.common.model.Topic;
-import com.sang.topic.common.service.TopicUrlService;
-import com.sang.topic.common.util.ApplicationContextHelper;
+import com.sang.topic.collect.SpiderExecutor;
+import com.sang.topic.common.model.CollectRule;
+import com.sang.topic.common.model.Post;
+import com.sang.topic.common.service.CollectRuleService;
+import com.sang.topic.common.service.CollectUrlService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContextUtils;
-import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.processor.PageProcessor;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin/collect")
 public class CollectController {
     @Autowired
-    TopicUrlService urlService;
+    CollectUrlService urlService;
     @Autowired
-    SpiderMap spiderMap;
+    CollectRuleService ruleService;
+    @Autowired
+    SpiderExecutor spiderExecutor;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -38,58 +32,40 @@ public class CollectController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/create")
-    public String create() {
-        TopicPageProcessor pageProcessor = (TopicPageProcessor) ApplicationContextHelper.getBean("topicPageProcessor");
-        pageProcessor.init();
-        spiderMap.add(pageProcessor).addUrl("https://v2ex.com");
+    @RequestMapping(value = "/rule/test/{id}")
+    public Post ruleTest(@PathVariable int id, String url) {
+        logger.debug("Test begin. rule id:" + id + " url:" + url);
+        CollectRule collectRule = ruleService.get(id);
+        Post post = spiderExecutor.run(collectRule, url);
+        logger.debug("Test done. (rule) id:" + id + " url:" + url +
+                " (post) title:" + post.getTitle());
+        return post;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/rule")
+    public List<CollectRule> ruleAll() {
+        return ruleService.getAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/rule", method = RequestMethod.POST)
+    public String ruleAdd(String name) {
+        ruleService.insert(name);
         return "SUCCESS";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public String getAll() {
-        String result = "";
-        try {
-            Object o = spiderMap.mapSpider();
-            ObjectMapper mapper = new ObjectMapper();
-            result = mapper.writeValueAsString(o);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        logger.debug("all result: " + result);
-        return result;
+    @RequestMapping(value = "/rule/{id}", method = RequestMethod.GET)
+    public CollectRule ruleAdd(@PathVariable int id) {
+        return ruleService.get(id);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/status", method = RequestMethod.GET)
-    public String getStatus() {
-        String result = "";
-        try {
-            result = new ObjectMapper().writeValueAsString(spiderMap.mapStatus());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        logger.debug("SpiderMap status: " + result);
-        return result;
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/{cmd}", method = RequestMethod.POST)
-    public String executeSpider(@PathVariable String cmd, String uuid) {
-        logger.debug("cmd: " + cmd + " uuid:" + uuid);
-        switch (cmd) {
-            case "remove":
-                spiderMap.remove(uuid);
-                break;
-            case "pause":
-                spiderMap.pause(uuid);
-                break;
-            case "resume":
-                spiderMap.resume(uuid);
-                break;
-        }
+    @RequestMapping(value = "/rule/{id}", method = RequestMethod.PUT)
+    public String ruleUpdate(CollectRule collectRule) {
+        logger.debug("id " + collectRule.getId() + " name " + collectRule.getName());
+        ruleService.update(collectRule);
         return "SUCCESS";
     }
-
 }
