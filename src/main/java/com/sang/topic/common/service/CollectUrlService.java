@@ -24,4 +24,5 @@ public class CollectUrlService {
     public void insert(CollectUrl url){
         urlMapper.insertSelective(url);
     }
+    
 }

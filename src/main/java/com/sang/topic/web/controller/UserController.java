@@ -33,9 +33,9 @@ public class UserController {
     public ValidationResponse create(@ModelAttribute @Valid User user, BindingResult bindingResult) {
         ValidationResponse response = new ValidationResponse();
         List<ErrorMessage> errors = null;
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             errors = ValidationUtil.FieldErrorsToErrorMessages(bindingResult.getFieldErrors());
-        }else{
+        } else {
             User u = userService.getByUsername(user.getUsername());
             if (u == null) {
                 String newPwd = SecurityUtil.MD5(user.getPassword());
@@ -58,7 +58,7 @@ public class UserController {
         Map<String, Object> resultMap = new HashMap<>();
         User u = userService.getByUsernameAndPassword(username, SecurityUtil.MD5(password));
         if (u != null) {
-            logger.debug("登录成功,username："+username+" uid:"+u.getId());
+            logger.debug("登录成功,username：" + username + " uid:" + u.getId());
             httpSession.setAttribute("sessionUser", u);
             resultMap.put("success", true);
         } else {
@@ -75,9 +75,9 @@ public class UserController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpSession httpSession) {
-        if(httpSession != null) {
+        if (httpSession != null) {
             User user = (User) httpSession.getAttribute("sessionUser");
-            System.out.println("注销 "+user.getUsername());
+            System.out.println("注销 " + user.getUsername());
             httpSession.removeAttribute("sessionUser");
             httpSession.invalidate();
         }
@@ -95,19 +95,19 @@ public class UserController {
     public ModelAndView show(@PathVariable String username, HttpServletResponse response)
             throws IOException {
         User user = userService.getByUsername(username);
-        if(user == null)
+        if (user == null)
             response.sendError(404);
         return new ModelAndView("user/show", "user", user);
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
     public ValidationResponse update(@PathVariable String username, @Valid User user,
-                                      BindingResult bindingResult, HttpSession httpSession) {
+                                     BindingResult bindingResult, HttpSession httpSession) {
         ValidationResponse response = new ValidationResponse();
         List<ErrorMessage> errors;
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             errors = ValidationUtil.FieldErrorsToErrorMessages(bindingResult.getFieldErrors());
-        }else {
+        } else {
             errors = new ArrayList<>();
             User sessionUser = (User) httpSession.getAttribute("sessionUser");
             if (sessionUser != null && sessionUser.getUsername().equals(username)) {
@@ -115,7 +115,7 @@ public class UserController {
                 int n = userService.update(user);
                 if (n > 0) {
                     response.setStatus("SUCCESS");
-                }else{
+                } else {
                     errors.add(new ErrorMessage("alert", "更新错误"));
                 }
             } else {

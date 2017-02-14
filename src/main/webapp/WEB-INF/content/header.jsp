@@ -5,7 +5,9 @@
 
 <script src="<c:url value="/resource/module/jquery/jquery-1.12.3/jquery-1.12.3.min.js"/>"></script>
 <script src="<c:url value="/resource/module/bootstrap/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resource/module/jquery-cookie/jquery.cookie.js"/>"></script>
 <script src="<c:url value="/resource/js/topic.js"/>"></script>
+
 <div class="top">
     <nav class="navbar-default">
         <%-- Logo --%>

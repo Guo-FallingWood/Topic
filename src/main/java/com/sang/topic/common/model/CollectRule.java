@@ -31,6 +31,16 @@ public class CollectRule {
 
     private String commentFloor;
 
+    private boolean isTest;
+
+    public boolean isTest() {
+        return isTest;
+    }
+
+    public void setTest(boolean test) {
+        isTest = test;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -92,6 +92,9 @@ function dataBind(formId, jsonUrl) {
     });
 };
 
+/**
+ * 用json填充div,生产table,填充方式：key和value各一列
+ */
 function fillDiv($div, json){
     var $table = $("<table class='table'></table>")
     for (var key in json){
@@ -102,6 +105,18 @@ function fillDiv($div, json){
     }
     $div.text("");
     $div.append($table);
+}
+
+function showMessage(message, $appendElement){
+    if($appendElement == undefined){
+        $appendElement = $("#main");
+    }
+    var $message = $("<div class='alert alert-info'></div>");
+    $message.text(message);
+    $appendElement.append($message);
+    window.setTimeout(function () {
+        $message.alert('close');
+    }, 2000);
 }
 
 function fillForm($form, json) {
