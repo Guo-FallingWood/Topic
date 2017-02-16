@@ -10,7 +10,7 @@
  */
 /*global ActiveXObject */
 
-// AMD support
+// AMD model
 (function (factory) {
     "use strict";
     if (typeof define === 'function' && define.amd) {
@@ -529,7 +529,7 @@ $.fn.ajaxSubmit = function(options) {
                 });
             }
 
-            // support timout
+            // model timout
             if (s.timeout) {
                 timeoutHandle = setTimeout(function() { timedOut = true; cb(CLIENT_TIMEOUT_ABORT); }, s.timeout);
             }
@@ -681,7 +681,7 @@ $.fn.ajaxSubmit = function(options) {
                     var headers = {'content-type': s.dataType};
                     return headers[header.toLowerCase()];
                 };
-                // support for XHR 'status' & 'statusText' emulation :
+                // model for XHR 'status' & 'statusText' emulation :
                 if (docRoot) {
                     xhr.status = Number( docRoot.getAttribute('status') ) || xhr.status;
                     xhr.statusText = docRoot.getAttribute('statusText') || xhr.statusText;
@@ -694,7 +694,7 @@ $.fn.ajaxSubmit = function(options) {
                     var ta = doc.getElementsByTagName('textarea')[0];
                     if (ta) {
                         xhr.responseText = ta.value;
-                        // support for XHR 'status' & 'statusText' emulation :
+                        // model for XHR 'status' & 'statusText' emulation :
                         xhr.status = Number( ta.getAttribute('status') ) || xhr.status;
                         xhr.statusText = ta.getAttribute('statusText') || xhr.statusText;
                     }

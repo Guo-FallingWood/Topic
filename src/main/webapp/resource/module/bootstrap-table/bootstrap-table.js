@@ -124,7 +124,7 @@
         var func = name;
 
         if (typeof name === 'string') {
-            // support obj.func1.func2
+            // model obj.func1.func2
             var names = name.split('.');
 
             if (names.length > 1) {
@@ -2343,12 +2343,12 @@
     BootstrapTable.prototype.load = function (data) {
         var fixedScroll = false;
 
-        // #431: support pagination
+        // #431: model pagination
         if (this.options.sidePagination === 'server') {
             this.options.totalRows = data.total;
             fixedScroll = data.fixedScroll;
             data = data[this.options.dataField];
-        } else if (!$.isArray(data)) { // support fixedScroll
+        } else if (!$.isArray(data)) { // model fixedScroll
             fixedScroll = data.fixedScroll;
             data = data.data;
         }
