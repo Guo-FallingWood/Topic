@@ -1,89 +1,108 @@
-function ajaxForm(url, params, formAlertId) {
-    var $formAlert;
+var SUCCESS = "0";
+var FAIL = "1";
+var ALERT_TIME = 1500;
+
+/**
+ * 显示alert并一定时间后消失
+ * formAlert 格式：
+ <div id="formAlert" class="alert hidden" role="alert"></div>
+ */
+function showAlert(parameters) {
+    var $formAlert = parameters.$formAlert;
+    var data = parameters.data;
+    var callback = parameters.callback;
+
+    var status = data.status;
+    var message = data.message;
+    if (status == SUCCESS) {
+        $formAlert.removeClass("alert-danger");
+        $formAlert.addClass("alert-success");
+    } else {
+        $formAlert.addClass("alert-danger");
+    }
+    $formAlert.show();
+    $formAlert.removeClass("hidden");
+    $formAlert.text(message);
+    setTimeout(function () {
+        $formAlert.fadeOut(500, function () {
+            if (callback != undefined && status == SUCCESS) {
+                callback(data);
+            }
+        });
+    }, ALERT_TIME);
+}
+
+/**
+ * ajax请求，并在alert上显示返回消息
+ * formAlert 格式：
+ <div id="formAlert" class="alert hidden" role="alert"></div>
+ * @param url           必填
+ * @param params        选填 默认 $('#ajaxForm') 表单字段
+ * @param $formAlert    选填 默认 $("#formAlert")
+ * @param callback      选填 成功后调用
+ */
+function myAjaxForm(parameters) {
+    var url = parameters.url;
+    var params = parameters.params;
+    var $formAlert = parameters.$formAlert;
+    var callback = parameters.callback;
+
     if (params == undefined)
         params = $("#ajaxForm").serialize();
-    if (formAlertId == undefined)
+    if ($formAlert == undefined)
         $formAlert = $("#formAlert");
-    else
-        $formAlert = $("#" + formAlertId);
-    console.log("params:" + params);
     $.ajax({
         type: "post",
         url: url,
         data: params,
-        //dataType: "json",
+        dataType: "json",
         success: function (data) {
-            console.log(data);
-            $formAlert.removeClass("hidden");
-            if (data.success) {
-                $formAlert.removeClass("alert-danger");
-                $formAlert.addClass("alert-success");
-                $formAlert.text("成功");
+            if (callback != undefined) {
+                showAlert({
+                    $formAlert: $formAlert,
+                    data: data,
+                    callback: callback
+                });
             } else {
-                $formAlert.addClass("alert-danger");
-                //$("#formAlertText").text("失败");
-                $formAlert.text(data.message);
+                showAlert({$formAlert: $formAlert, data: data});
             }
-        },
-        error: function () {
-            $formAlert.removeClass("hidden");
-            $formAlert.addClass("alert-danger");
-            $formAlert.text("异常");
         }
     });
-}
-function ajaxDelete(url) {
-    console.log(url);
-    $.ajax({
-        type: "delete",
-        url: url,
-        success: function () {
-            location.reload();
-        }
-    });
-}
-function collectFormData(fields) {
-    var data = {};
-    for (var i = 0; i < fields.length; i++) {
-        var $item = $(fields[i]);
-        data[$item.attr('name')] = $item.val();
-    }
-    return data;
 }
 
-function dataBind(formId, jsonUrl) {
+
+/**
+ * 字段验证初始化
+ * @param formId
+ * @param jsonUrl
+ * @param callback
+ */
+function dataBind(formId, jsonUrl, callback) {
     var $form = $('#' + formId);
     $form.bind('submit', function (e) {
         // Ajax validation
         var $inputs = $form.find('input');
         var data = collectFormData($inputs);
 
-        $.post(jsonUrl, data, function (response) {
+        $.post(jsonUrl, data, function (data) {
             $form.find('.form-group').removeClass('error');
             $form.find('.help-inline').empty();
 
-            console.log(response);
-
             var $formAlert = $("#formAlert");
-            if (response.status == "SUCCESS") {
-                $formAlert.removeClass("hidden");
-                $formAlert.removeClass("alert-danger");
-                $formAlert.addClass("alert-success");
-                $formAlert.text("成功");
-
-                $form.unbind('submit');
+            if (data.status == SUCCESS || data.errors == null) {
+                showAlert({
+                    $formAlert: $formAlert,
+                    data: data,
+                    callback: callback
+                });
+                // $form.unbind('submit');
                 return false;
             } else {
-                if (response.message != null) {
-                    $formAlert.removeClass("hidden");
-                    $formAlert.addClass("alert-danger");
-                    $formAlert.text(response.message);
-                }
-                for (var i = 0; response.errors != null && i < response.errors.length; i++) {
-                    var item = response.errors[i];
-                    var $controlGroup = $('#' + item.fieldName);
+                for (var i = 0; data.errors != null && i < data.errors.length; i++) {
+                    var item = data.errors[i];
+                    var $controlGroup = $('#' + item.field);
                     $controlGroup.addClass('error');
-                    $controlGroup.find('.help-inline').html(item.message);
+                    $controlGroup.find('.help-inline').html(item.defaultMessage);
                 }
             }
         }, 'json');
@@ -92,41 +111,11 @@ function dataBind(formId, jsonUrl) {
     });
 };
 
-/**
- * 用json填充div,生产table,填充方式：key和value各一列
- */
-function fillDiv($div, json){
-    var $table = $("<table class='table'></table>")
-    for (var key in json){
-        var $tr = $("<tr></tr>");
-        var $td1 = $("<td></td>").text(key);
-        var $td2 = $("<td></td>").text(json[key]);
-        $table.append($tr.append($td1).append($td2));
+function collectFormData(fields) {
+    var data = {};
+    for (var i = 0; i < fields.length; i++) {
+        var $item = $(fields[i]);
+        data[$item.attr('name')] = $item.val();
     }
-    $div.text("");
-    $div.append($table);
-}
-
-function showMessage(message, $appendElement){
-    if($appendElement == undefined){
-        $appendElement = $("#main");
-    }
-    var $message = $("<div class='alert alert-info'></div>");
-    $message.text(message);
-    $appendElement.append($message);
-    window.setTimeout(function () {
-        $message.alert('close');
-    }, 2000);
-}
-
-function fillForm($form, json) {
-    var jsonObj = json;
-    if (typeof json === 'string') {
-        jsonObj = $.parseJSON(json);
-    }
-    for (var key in jsonObj) {  //遍历json字符串
-        var v = jsonObj[key];
-        if (v == null) v = '';
-        $("[name=" + key + "]", $form).val(v);
-    }
+    return data;
 }

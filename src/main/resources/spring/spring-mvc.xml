@@ -23,7 +23,13 @@
 
     <!-- 拦截器 -->
     <mvc:interceptors>
-        <!-- 后台拦截器 -->
+        <!-- 普通权限拦截 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/p"/>
+            <mvc:mapping path="/c"/>
+            <bean class="com.sang.topic.controller.interceptor.PermissionInterceptor"/>
+        </mvc:interceptor>
+        <!-- 管理员权限拦截器 -->
         <mvc:interceptor>
             <!-- 调试中，调试后下面地址改为 /admin/** -->
             <mvc:mapping path="/admin/a/**"/>

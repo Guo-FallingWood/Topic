@@ -56,21 +56,9 @@ public class UserServiceTest {
     @Ignore
     @Test
     public void insert() {
-        User user = new User();
-        user.setUsername("aaa");
-        user.setPassword(SecurityUtil.MD5("111"));
-        int n = userService.insert(user);
-        Assert.assertEquals(n, 1);
     }
 
     @Test
     public void updateDiscard(){
-        User user = new User();
-        user.setId(1);
-        user.setBan(1);
-        int n = userService.update(user);
-        Assert.assertEquals(n, 1);
-        user.setBan(0);
-        userService.update(user);
     }
 }

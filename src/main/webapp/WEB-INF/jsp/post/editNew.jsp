@@ -20,12 +20,24 @@
                 <textarea name="content" id="" cols="" rows="10" class="form-control"></textarea>
                 <br>
                 <div id="formAlert" class="alert hidden" role="alert"></div>
-                <button type="button" class="btn btn-default" onclick="ajaxForm('<c:url value="/p"/>')">发表</button>
+                <button type="button" class="btn btn-default" onclick="postNew()">发表</button>
             </form>
         </div>
         <%--<jsp:include page="../sidebar.jsp"/>--%>
     </div>
 </div>
 <jsp:include page="../common/footer.jsp"/>
+
+<script>
+    function postNew() {
+        myAjaxForm({
+            url: '<c:url value="/p"/>', callback: function (data) {
+                var id = data.data.id;
+                var url = '<c:url value="/p/"/>' + id;
+                window.location.href = url;
+            }
+        });
+    }
+</script>
 </body>
 </html>

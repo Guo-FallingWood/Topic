@@ -40,6 +40,17 @@
     WHERE topic_id = #{topic_id}
     ORDER BY last_time DESC
   </select>
+  <insert id="insertAndSelectID" parameterType="com.sang.topic.common.entity.Post"
+          useGeneratedKeys="true" keyProperty="id">
+    insert into topic_post (id, title, content,
+    user_id, topic_id,
+    user_username, create_time,
+    last_time)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+    #{userId,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER},
+    #{userUsername,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{lastTime,jdbcType=TIMESTAMP})
+  </insert>
   <update id="updateCommentsNumberByPrimaryKey" parameterType="Integer">
     UPDATE topic_post
     SET comments_number = comments_number+1

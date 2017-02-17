@@ -2,11 +2,13 @@ package com.sang.topic.common.entity;
 
 import com.sang.topic.common.format.annotation.TopicDateFormat;
 
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class Comments {
     private Integer id;
 
+    @Size(min = 5, max = 100, message = "内容长度应该为{min}-{max}")
     private String content;
 
     private Integer userId;
@@ -17,8 +19,7 @@ public class Comments {
 
     private String userUsername;
 
-
-//    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    //    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     @TopicDateFormat
     private Date createTime;
 

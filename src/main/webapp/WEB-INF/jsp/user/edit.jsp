@@ -24,7 +24,6 @@
                 </div>
             </div>
         </form>
-        <spring:url value="/u/${user.username}" var="formUrl"/>
         <form:form modelAttribute="user" id="user-update" class="form-horizontal">
             <input type="hidden" name="_method" value="put">
             <div class="form-group" id="email">
@@ -48,6 +47,7 @@
 </div>
 <jsp:include page="../common/footer.jsp"/>
 <script>
+    <spring:url value="/u/${user.username}" var="formUrl"/>
     $(document).ready(dataBind("user-update", '${formUrl}'));
 </script>
 </body>

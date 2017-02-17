@@ -15,9 +15,12 @@ public interface PostMapper {
 
     int updateByPrimaryKey(Post record);
 
+
     int selectCount();
 
     int selectCountByTopic(Integer id);
+
+    int insertAndSelectID(Post record);
 
     int updateCommentsNumberByPrimaryKey(Integer id);
 }

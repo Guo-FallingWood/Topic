@@ -14,10 +14,11 @@ public class User {
     @Size(max = 16, min = 5)
     private String password;
 
+    @Size(min = 5, max = 100)
     @Email
     private String email;
 
-    @Pattern(regexp = "^[\\d-]*$", message = "格式不正确")
+    @Pattern(regexp = "^[\\d-]*$")
     private String phone;
 
     private String photo;

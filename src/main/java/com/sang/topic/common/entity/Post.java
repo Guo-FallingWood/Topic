@@ -4,13 +4,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sang.topic.common.format.annotation.TopicDateFormat;
 
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class Post {
     private Integer id;
 
+    @Size(min = 5, max = 50, message = "标题长度应该为{min}-{max}")
     private String title;
 
+    @Size(min = 10, max = 50000, message = "内容长度应该为{min}-{max}")
     private String content;
 
     private Integer userId;
@@ -23,7 +26,6 @@ public class Post {
 
     private Integer commentsNumber;
 
-//    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     @TopicDateFormat
     private Date createTime;
 

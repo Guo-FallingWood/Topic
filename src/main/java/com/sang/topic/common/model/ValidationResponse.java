@@ -1,14 +1,30 @@
 package com.sang.topic.common.model;
 
+import com.sang.topic.common.constants.ResponseConstants;
+import org.apache.commons.collections.map.HashedMap;
+import org.springframework.validation.FieldError;
+
 import java.util.List;
+import java.util.Map;
 
 public class ValidationResponse {
     private String status;
     private String message;
-    private List<ErrorMessage> errors;
+    private Map<String, Object> data;
+    private List<FieldError> errors;
 
-    public ValidationResponse(){
-        status = "FAIL";
+    public ValidationResponse() {
+    }
+
+    public boolean success(){
+        return status.equals(ResponseConstants.SUCCESS);
+    }
+
+    public void addData(String name, Object value) {
+        if (data == null) {
+            data = new HashedMap();
+        }
+        data.put(name, value);
     }
 
     public void setMessage(String message) {
@@ -19,11 +35,19 @@ public class ValidationResponse {
         return message;
     }
 
+    public Map<String, Object> getData() {
+        return data;
+    }
+
+    public void setData(Map<String, Object> data) {
+        this.data = data;
+    }
+
     public List getErrors() {
         return errors;
     }
 
-    public void setErrors(List<ErrorMessage> errors) {
+    public void setErrors(List<FieldError> errors) {
         this.errors = errors;
     }
 

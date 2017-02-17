@@ -28,12 +28,12 @@
                     <c:if test="${topic.close == 1}">关闭</c:if>
                 </td>
                 <td>
-                        <%--<button onclick="ajaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:1})">关闭</button>--%>
-                        <%--<button onclick="ajaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:0})">开放</button>--%>
-                    <button onclick="ajaxForm('<c:url value="/admin/topic/${topic.id}"/>', {_method:'put', discard:1})"
+                        <%--<button onclick="myAjaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:1})">关闭</button>--%>
+                        <%--<button onclick="myAjaxForm('/admin/topic/${topic.id}', '更新', {_method:'put', discard:0})">开放</button>--%>
+                    <button onclick="myAjaxForm({url : '<c:url value="/admin/topic/${topic.id}"/>', params : {_method:'put', discard:1}})"
                             class="btn btn-default">关闭
                     </button>
-                    <button onclick="ajaxForm('<c:url value="/admin/topic/${topic.id}"/>', {_method:'put', discard:0})"
+                    <button onclick="myAjaxForm({url : '<c:url value="/admin/topic/${topic.id}"/>', params : {_method:'put', discard:0}})"
                             class="btn btn-default">开放
                     </button>
                 </td>
@@ -46,7 +46,7 @@
                     <td><input name="url"></td>
                     <td></td>
                     <td>
-                        <button type="button" onclick="ajaxForm('<c:url value="/admin/topic"/>')">new</button>
+                        <button type="button" onclick="myAjaxForm({url : '<c:url value="/admin/topic"/>'})">new</button>
                     </td>
                 </tr>
                 <div id="formAlert" class="alert alert-danger hidden" role="alert">

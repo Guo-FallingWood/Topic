@@ -23,3 +23,6 @@ buildNumber.properties
 
 # jrebel
 rebel.xml
+
+# resource
+resource/photo/

@@ -9,7 +9,7 @@
 <script src="<c:url value="/resource/js/topic.js"/>"></script>
 
 <div class="top">
-    <nav class="navbar-default">
+    <nav class="navbar-inverse">
         <%-- Logo --%>
         <div class="container container-fluid">
             <div class="navbar-header">

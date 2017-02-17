@@ -13,8 +13,9 @@ import java.util.Set;
 /**
  * Created by arch on 2016/6/11.
  */
-public class TopicDateFormatAnnotationFormatterFactory implements AnnotationFormatterFactory<TopicDateFormat>{
+public class TopicDateFormatAnnotationFormatterFactory implements AnnotationFormatterFactory<TopicDateFormat> {
     Logger logger = Logger.getLogger(TopicDateFormatAnnotationFormatterFactory.class);
+
     @Override
     public Set<Class<?>> getFieldTypes() {
         Set<Class<?>> fieldTypes = new HashSet<>();

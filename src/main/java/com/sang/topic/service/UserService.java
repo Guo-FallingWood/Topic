@@ -1,15 +1,24 @@
 package com.sang.topic.service;
 
+import com.sang.topic.common.model.ValidationResponse;
+import com.sang.topic.common.constants.MessageConstants;
 import com.sang.topic.dao.UserMapper;
 import com.sang.topic.common.entity.User;
 import com.sang.topic.util.MyBatisSession;
 import com.sang.topic.common.model.Page;
+import com.sang.topic.util.ResponseUtil;
+import com.sang.topic.util.SecurityUtil;
+import com.sang.topic.util.UploadUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.FieldError;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -46,13 +55,71 @@ public class UserService {
         return null;
     }
 
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
     @Transactional
-    public int insert(User user) {
-        return userMapper.insertSelective(user);
+    public ValidationResponse create(User user) {
+        List<FieldError> errors = new ArrayList<>();
+        if (getByUsername(user.getUsername()) == null) {
+            String newPwd = SecurityUtil.MD5(user.getPassword());
+            user.setPassword(newPwd);
+            int n = userMapper.insertSelective(user);
+            if (n > 0) {
+                return ResponseUtil.successValidation(MessageConstants.USER_CREATE_SUCCESS);
+            } else {
+                errors.add(new FieldError("username", "username", MessageConstants.USER_CREATE_FAIL));
+            }
+        } else {
+            errors.add(new FieldError("username", "username", MessageConstants.USER_CREATE_REPEAT));
+        }
+        return ResponseUtil.failFieldValidation(errors);
     }
 
+    /**
+     * 保存用户信息
+     * @param user
+     * @param httpSession
+     * @return
+     */
     @Transactional
-    public int update(User user) {
-        return userMapper.updateByPrimaryKeySelective(user);
+    public ValidationResponse save(User user, HttpSession httpSession) {
+        String message;
+        User sessionUser = (User) httpSession.getAttribute("sessionUser");
+        if (sessionUser != null && sessionUser.getUsername().equals(user.getUsername())) {
+            user.setId(sessionUser.getId());
+            int n = userMapper.updateByPrimaryKeySelective(user);
+            if (n > 0) {
+                return ResponseUtil.successValidation(MessageConstants.USER_SAVE_SUCCESS);
+            } else {
+                message = MessageConstants.USER_SAVE_FAIL;
+            }
+        } else {
+            message = MessageConstants.USER_LOGIN_REQUIRE;
+        }
+        return ResponseUtil.failValidation(message);
+    }
+
+    /**
+     * 上传图片并保存为用户头像
+     * @param file
+     * @param httpSession
+     * @return
+     * @throws IOException
+     */
+    @Transactional
+    public ValidationResponse savePhoto(MultipartFile file, HttpSession httpSession) throws IOException {
+        User user = (User) httpSession.getAttribute("sessionUser");
+        if (user != null) {
+            String filepath = httpSession.getServletContext().getRealPath("/resource/upload/photo/");
+            ValidationResponse response = UploadUtil.upload(file, filepath);
+            if (!response.success())
+                return response;
+            user.setPhoto((String) response.getData().get("filename"));
+            return save(user, httpSession);
+        }
+        return ResponseUtil.failValidation(MessageConstants.USER_LOGIN_REQUIRE);
     }
 }
