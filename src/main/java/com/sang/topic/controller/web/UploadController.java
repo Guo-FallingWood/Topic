@@ -18,11 +18,12 @@ import java.io.IOException;
  * Created by arch on 2016/6/3.
  */
 @RestController
+@RequestMapping("/upload")
 public class UploadController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/photo/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/photo", method = RequestMethod.POST)
     public ValidationResponse uploadUserPhoto(@RequestParam("photo") MultipartFile file, HttpServletRequest request) {
         try {
             return userService.savePhoto(file, request.getSession());

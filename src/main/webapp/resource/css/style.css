@@ -50,34 +50,45 @@ pre {
     float: left;
     width: 70%;
 }
-.user-show-top{
-
-}
-.user-show-top h1{
-    text-align: center;
-}
-.user-show-left{
-    width: 240px;
+.user-show-list{
+    width: 20%;
     float: left;
-    height: 240px;
+    margin-top: 30px;
 }
-.user-show-left a{
+.user-show-main{
+    width: 80%;
+    float: right;
+}
+.user-show-top{
     text-align: center;
-}
-.user-show-left img{
-    width: 200px;
-    height: 200px;
-    border: 2px #000 solid;
-}
-.user-show-right{
-    /*float: right;*/
-    padding: 20px;
-    margin-left: 100px;
-    min-height: 240px;
 }
 .user-show-bottom{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+.user-show-img{
+    width: 150px;
+    height: 150px;
+}
+.user-show-detail{
     width: 100%;
-    /*background: #ccc;*/
+}
+.user-show-detail li{
+    font-size: 16px;
+    list-style-type: none;
+    padding: 8px;
+}
+.user-show-detail li>div:first-child{
+    width: 40%;
+    text-align: right;
+    float: left;
+    padding-right: 40px;
+    font-weight: 700;
+}
+.user-show-detail li>div:last-child{
+    width: 60%;
+    float: right;
 }
 /* POST列表项 */
 .post-list{

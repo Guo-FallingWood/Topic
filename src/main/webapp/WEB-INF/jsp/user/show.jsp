@@ -11,30 +11,26 @@
     <div class="container">
         <div class="user-show">
             <div class="user-show-top">
-                <h1>个人信息</h1>
+                <h4>个人信息</h4>
+                <img class="user-show-img" src="<c:url value="/resource/upload/photo/${user.photo}"/>" alt=""/>
+                <p>${user.username}</p>
             </div>
-            <div class="user-show-left">
-                <img src="<c:url value="/resource/upload/photo/${user.photo}"/>" alt=""/><br>
-                <%--<a href="#">修改头像</a>--%>
+            <br>
+            <ul class="user-show-detail">
+                <li>
+                    <div>邮箱:</div>
+                    <div>${user.email}</div>
+                </li>
+                <li>
+                    <div>手机号码:</div>
+                    <div>${user.phone}</div>
+                </li>
+            </ul>
+            <c:if test="${sessionUser != null && sessionUser.id==user.id}">
+            <div class="user-show-bottom">
+                <a href="<c:url value="/u/edit"/>">编辑信息</a>
             </div>
-            <div class="user-show-right">
-                <p>用户名：${user.username}</p>
-                <p>email：${user.email}</p>
-                <p>手机号码：${user.phone}</p>
-                <c:if test="${sessionUser != null && sessionUser.id==user.id}">
-                    <a href="<c:url value="/u/${user.username}/edit"/>">编辑信息</a>
-                    <a href="#">修改密码</a>
-                </c:if>
-            </div>
-            <%--<div class="user-show-bottom">--%>
-            <%--<ul class="nav nav-tabs">--%>
-            <%--<li role="presentation" class="active"><a href="#">最近回复</a></li>--%>
-            <%--<li role="presentation" class=""><a href="#">最近发帖</a></li>--%>
-            <%--</ul>--%>
-            <%--<div class="panel panel-body">--%>
-            <%--没有内容--%>
-            <%--</div>--%>
-            <%--</div>--%>
+            </c:if>
         </div>
     </div>
 </div>

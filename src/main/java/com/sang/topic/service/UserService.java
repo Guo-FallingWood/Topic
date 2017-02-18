@@ -88,8 +88,8 @@ public class UserService {
     public ValidationResponse save(User user, HttpSession httpSession) {
         String message;
         User sessionUser = (User) httpSession.getAttribute("sessionUser");
-        if (sessionUser != null && sessionUser.getUsername().equals(user.getUsername())) {
-            user.setId(sessionUser.getId());
+        if (sessionUser != null && sessionUser.getId().equals(user.getId())) {
+            user.setUsername(null);
             int n = userMapper.updateByPrimaryKeySelective(user);
             if (n > 0) {
                 return ResponseUtil.successValidation(MessageConstants.USER_SAVE_SUCCESS);
@@ -100,6 +100,24 @@ public class UserService {
             message = MessageConstants.USER_LOGIN_REQUIRE;
         }
         return ResponseUtil.failValidation(message);
+    }
+
+    /**
+     * 保存密码
+     * @param user
+     * @param oldPassword
+     * @param httpSession
+     * @return
+     */
+    @Transactional
+    public ValidationResponse savePassword(User user, String oldPassword, HttpSession httpSession) {
+        User u = (User) httpSession.getAttribute("sessionUser");
+        if(SecurityUtil.MD5(oldPassword).equals(u.getPassword())){
+            user.setPassword(SecurityUtil.MD5(user.getPassword()));
+            return save(user, httpSession);
+        }else{
+            return ResponseUtil.failValidation(MessageConstants.USER_PASSWORD_FAIL);
+        }
     }
 
     /**

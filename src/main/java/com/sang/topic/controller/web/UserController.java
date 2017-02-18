@@ -19,7 +19,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping(value = "/u")
-@SessionAttributes(names = "sessionUser")
+//@SessionAttributes(names = "sessionUser")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -44,18 +44,31 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-    public ModelAndView show(@PathVariable String username, HttpServletResponse response)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView show(@PathVariable Integer id, HttpServletResponse response)
             throws IOException {
-        User user = userService.getByUsername(username);
+        User user = userService.get(id);
         if (user == null)
             response.sendError(404);
         return new ModelAndView("user/show", "user", user);
     }
 
-    @RequestMapping(value = "/{username}/edit", method = RequestMethod.GET)
-    public ModelAndView edit(@PathVariable String username) {
-        return new ModelAndView("user/edit", "user", userService.getByUsername(username));
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public ModelAndView edit(HttpSession session) {
+        User user = (User) session.getAttribute("sessionUser");
+        return new ModelAndView("user/edit", "user", user);
+    }
+
+    @RequestMapping(value = "/edit/photo", method = RequestMethod.GET)
+    public ModelAndView editPhoto(HttpSession session) {
+        User user = (User) session.getAttribute("sessionUser");
+        return new ModelAndView("user/edit-photo", "user", user);
+    }
+
+    @RequestMapping(value = "/edit/password", method = RequestMethod.GET)
+    public ModelAndView editPassword(HttpSession session) {
+        User user = (User) session.getAttribute("sessionUser");
+        return new ModelAndView("user/edit-password", "user", user);
     }
 
     /**
@@ -90,18 +103,39 @@ public class UserController {
     /**
      * 修改用户信息
      */
-    @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
-    public ValidationResponse update(@PathVariable String username, @Valid User user,
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ValidationResponse update(@PathVariable Integer id, @Valid User user,
                                      BindingResult bindingResult, HttpSession httpSession) {
         if (bindingResult.hasErrors()) {
-            return ResponseUtil.failFieldValidation(bindingResult.getFieldErrors());
+            return ResponseUtil.failFieldValidation(bindingResult);
         } else {
-            return userService.save(user, httpSession);
+            ValidationResponse res = userService.save(user, httpSession);
+            if (res.success()) {
+                httpSession.setAttribute("sessionUser", userService.get(id));
+            }
+            return res;
         }
     }
 
-    @RequestMapping(value="/loginMessage", method = RequestMethod.GET)
-    public ValidationResponse loginMessage(){
+    /**
+     * 修改用户密码
+     * @param id
+     * @param user
+     * @param oldPassword
+     * @return
+     */
+    @RequestMapping(value = "/{id}/password", method = RequestMethod.PUT)
+    public ValidationResponse updatePassword(@PathVariable Integer id, @ModelAttribute @Valid User user,
+                                             BindingResult bindingResult, String oldPassword, HttpSession httpSession) {
+        if (bindingResult.hasErrors()) {
+            return ResponseUtil.failFieldValidation(bindingResult);
+        } else {
+            return userService.savePassword(user, oldPassword, httpSession);
+        }
+    }
+
+    @RequestMapping(value = "/loginMessage", method = RequestMethod.GET)
+    public ValidationResponse loginMessage() {
         return ResponseUtil.failValidation(MessageConstants.USER_LOGIN_REQUIRE);
     }
 }

@@ -54,14 +54,14 @@
     function login() {
         myAjaxForm({
             url: '<c:url value="/u/valid"/>', params: undefined, $formAlert: undefined, callback: function () {
+                $.removeCookie("username");
+                $.removeCookie("password");
                 if ($("input[name='rememberPassword']").is(":checked")) {
                     $.cookie("rememberPassword", true);
                     $.cookie("username", $("input[name='username']").val(), {expires: 30});
                     $.cookie("password", $("input[name='password']").val(), {expires: 30});
                 } else {
                     $.removeCookie("rememberPassword");
-                    $.removeCookie("username");
-                    $.removeCookie("password");
                 }
                 window.location.href = '<c:url value="/"/>';
             }

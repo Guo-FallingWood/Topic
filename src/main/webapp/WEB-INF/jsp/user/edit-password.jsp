@@ -21,6 +21,7 @@
                 <form id="ajaxForm" action="" method="post" class="form-horizontal">
                     <input type="hidden" name="_method" value="put">
                     <input type="hidden" name="id" value="${user.id}">
+                    <input type="hidden" name="username" value="${user.username}">
                     <div class="form-group">
                         <label class="col-md-4 control-label">用户名</label>
                         <div class="col-md-6">
@@ -28,21 +29,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">邮箱</label>
+                        <label class="col-md-4 control-label">旧密码</label>
                         <div class="col-md-6">
-                            <input name="email" type="text" class="form-control" value="${user.email}"/>
+                            <input name="oldPassword" type="text" class="form-control" value=""/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">电话号码</label>
+                        <label class="col-md-4 control-label">新密码</label>
                         <div class="col-md-6">
-                            <input name="phone" type="text" class="form-control" value="${user.phone}"/>
+                            <input name="password" type="text" class="form-control" value=""/>
                         </div>
                     </div>
                     <div id="formAlert" class="alert hidden" role="alert"></div>
                     <div class="col-md-12">
                         <span class="col-md-9"></span>
-                        <button class="btn btn-default" type="button" onclick="saveUserInfo()">保存</button>
+                        <button class="btn btn-default" type="button" onclick="saveUserInfo()">更改密码</button>
                     </div>
                 </form>
             </div>
@@ -54,7 +55,7 @@
 <script>
     function saveUserInfo() {
         myAjaxForm({
-            url: '<c:url value="/u/${user.id}"/>',
+            url: '<c:url value="/u/${user.id}/password"/>',
             callback: function () {
                 location.reload();
             }

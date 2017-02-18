@@ -25,8 +25,11 @@
     <mvc:interceptors>
         <!-- 普通权限拦截 -->
         <mvc:interceptor>
+            <!--发帖和回复-->
             <mvc:mapping path="/p"/>
             <mvc:mapping path="/c"/>
+            <!--上传-->
+            <mvc:mapping path="/upload/**"/>
             <bean class="com.sang.topic.controller.interceptor.PermissionInterceptor"/>
         </mvc:interceptor>
         <!-- 管理员权限拦截器 -->

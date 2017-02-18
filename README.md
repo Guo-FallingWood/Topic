@@ -5,6 +5,13 @@
 Topic是一个简单的在线论坛，拥有论坛基本功能
 
 
+### 截图
+
+![截图0](src/main/webapp/resource/image/screenshot/0.png)
+![截图1](src/main/webapp/resource/image/screenshot/1.png)
+![截图2](src/main/webapp/resource/image/screenshot/2.png)
+![截图3](src/main/webapp/resource/image/screenshot/3.png)
+
 ### 使用技术框架
 
 后端

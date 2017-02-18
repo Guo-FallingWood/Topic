@@ -25,4 +25,4 @@ buildNumber.properties
 rebel.xml
 
 # resource
-resource/photo/
+/src/main/webapp/resource/upload/photo

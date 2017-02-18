@@ -36,7 +36,6 @@
         <mysql.version>5.1.38</mysql.version>
         <jstl.version>1.2</jstl.version>
         <servlet-api.version>3.0.1</servlet-api.version>
-        <webmagic.verson>0.5.3</webmagic.verson>
     </properties>
 
     <dependencies>
@@ -121,16 +120,6 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>us.codecraft</groupId>
-            <artifactId>webmagic-core</artifactId>
-            <version>${webmagic.verson}</version>
-        </dependency>
-        <dependency>
-            <groupId>us.codecraft</groupId>
-            <artifactId>webmagic-extension</artifactId>
-            <version>${webmagic.verson}</version>
         </dependency>
     </dependencies>
 

@@ -28,7 +28,7 @@
                             <a href="<c:url value="/u/new" />" class="btn btn-default navbar-btn" role="button">注册</a>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="<c:url value="/u/${sessionUser.username}"/>">${sessionUser.username}</a></li>
+                            <li><a href="<c:url value="/u/${sessionUser.id}"/>">${sessionUser.username}</a></li>
                             <li><a href="<c:url value="/u/logout"/>">退出登录</a></li>
                         </c:otherwise>
                     </c:choose>
