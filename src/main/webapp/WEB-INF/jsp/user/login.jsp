@@ -54,6 +54,7 @@
     function login() {
         myAjaxForm({
             url: '<c:url value="/u/valid"/>', params: undefined, $formAlert: undefined, callback: function () {
+                $.removeCookie("rememberPassword");
                 $.removeCookie("username");
                 $.removeCookie("password");
                 if ($("input[name='rememberPassword']").is(":checked")) {

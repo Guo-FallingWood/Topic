@@ -8,7 +8,7 @@
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <c:forEach var="index" begin="1" end="${page.pageNumber}" step="1">
+      <c:forEach var="index" begin="1" end="${page.pageNumber>10 ? 10 : page.pageNumber}" step="1">
         <li><a href="<c:url value="${page.url}${index}"/>">${index}</a></li>
       </c:forEach>
       <li>

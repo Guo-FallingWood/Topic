@@ -23,6 +23,10 @@ public class Page {
         setRowNumber(rowNumber);
     }
 
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
     private void countPageNumber(){
         int pageNumber = rowNumber / pageSize;
         if(rowNumber % pageSize != 0)
